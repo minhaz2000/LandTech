@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>জমিগ্রাফ এআই | JomiGraph AI</title>
+  <!-- Local Noto Sans Bengali font with CDN fallback -->
+  <link rel="stylesheet" href="/vendor/noto-sans-bengali.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  
+  <!-- Local Cytoscape.js with CDN fallback -->
+  <script src="/vendor/cytoscape.min.js"></script>
+  <script>
+    if (typeof cytoscape === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"><\\/script>');
+    }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <a href="#/" class="brand-link" id="brand-title"></a>
+        <span class="brand-subtitle" id="brand-subtitle"></span>
+      </div>
+      <div class="header-controls">
+        <nav class="nav-links">
+          <a href="#/" class="nav-link" id="nav-home"></a>
+          <a href="#/parcels" class="nav-link" id="nav-parcels"></a>
+          <a href="#/benchmark" class="nav-link" id="nav-benchmark"></a>
+        </nav>
+        <button id="lang-toggle-btn" class="lang-toggle" aria-label="Toggle language"></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="disclaimer-banner" id="disclaimer-banner" role="note"></div>
+
+  <main id="app-root" class="main-content" tabindex="-1"></main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p id="footer-text"></p>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
