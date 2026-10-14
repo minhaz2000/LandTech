@@ -2,34 +2,43 @@
 
 > **Last Updated**: 2026-10-14
 > **Current Phase**: Phase 1 — Core Engine
-> **Overall Status**: 🟡 In Progress
+> **Overall Status**: 🟡 Planning Complete — Ready for Execution
 
-## What We're Building
+## Current Position
+- **Phase**: 1
+- **Task**: Planning complete (3 plans written)
+- **Status**: Ready for execution — /execute 1
 
-A rule-based land-record consistency checker for a Bangladesh hackathon. Synthetic data only. Pure-function engine, FastAPI backend, bilingual HTML/JS frontend.
+## Next Steps
+1. /execute 1 — run plans 1.1, 1.2, 1.3 in order
 
-## Current Focus
+## What We Are Building
+A rule-based land-record consistency checker for a Bangladesh hackathon.
+Synthetic data only. Pure-function engine, FastAPI backend, bilingual HTML/JS frontend.
 
-Phase 1: Implement data models, event replay, R1–R7 rules, minimal evidence algorithm, pytest tests 1–11 and 14.
+## Phase 1 Plans
 
-## Last Action
-
-Project initialized from full spec. Ready to begin Phase 1 execution.
-
-## Blocking Issues
-
-None.
+| Plan | Wave | Title | Tests Covered |
+|------|------|-------|---------------|
+| 1.1 | 1 | Data Models and Event Replay | (foundation for all) |
+| 1.2 | 1 | Rules R1, R2, R3 + Alert Structure | 1, 2, 3, 4, 5, 6 |
+| 1.3 | 2 | Rules R4-R7 + Minimal Evidence | 7, 8, 9, 10, 11, 14 |
 
 ## Key Decisions Made
 
 - Python 3.11, fractions.Fraction — no floats anywhere in rules.
 - Exactly three statuses: Consistent with supplied records / Contradiction Found / Review Required.
-- Evaluation order: missing inputs → Review Required FIRST; baseline_complete applied second.
+- Evaluation order: missing inputs -> Review Required FIRST; baseline_complete applied second.
 - Minimal evidence: all alternative minimal sets returned.
-- Simulation: evaluate() is a pure function, baseline hash verified before and after.
+- simulate() is a pure function; baseline hash verified before and after.
+- recommended_next_step in every Alert (bn + en keys).
+- impact_event_ids in every Alert for downstream dependency view.
+- R4_TOLERANCE is a named Fraction in config.py.
+
+## Blocking Issues
+None.
 
 ## Environment
-
 - OS: Windows (PowerShell)
 - Language: Python 3.11
 - Backend: FastAPI
