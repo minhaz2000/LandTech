@@ -561,7 +561,7 @@ class TestMinimalEvidenceAndImpact:
         assert "not_minimized" in r1
         assert r1["not_minimized"] is False
         assert "impact_event_ids" in r1
-        assert isinstance(r1["impact_event_ids"], list)
+        assert r1["impact_event_ids"] == ["E_PLANTED_R1_3"]
 
     def test_impact_lookup_with_cyclic_or_self_referencing_terminates(self):
         """Verify impact_lookup terminates cleanly with self-referencing or cyclic events."""

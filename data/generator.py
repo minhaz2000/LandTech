@@ -113,6 +113,7 @@ def build_raw_dataset_dict(seed: int = 42) -> dict[str, Any]:
         # Planted deeds
         {"id": "DEED_PLANTED_R1_1", "deed_no": "D-1930-201", "registration_date": "1930-05-10"},
         {"id": "DEED_PLANTED_R1_2", "deed_no": "D-1935-202", "registration_date": "1935-08-20"},
+        {"id": "DEED_PLANTED_R1_3", "deed_no": "D-1940-207", "registration_date": "1940-01-15"},
         {"id": "DEED_PLANTED_R2_1", "deed_no": "D-1930-203", "registration_date": "1930-04-10"},
         {"id": "DEED_PLANTED_R2_2", "deed_no": "D-1932-204", "registration_date": "1932-09-15"},
         {"id": "DEED_PLANTED_R3_1", "deed_no": "D-1930-205", "registration_date": "1930-05-10"},
@@ -823,6 +824,12 @@ def build_raw_dataset_dict(seed: int = 42) -> dict[str, Any]:
                 "id": "E_PLANTED_R1_2", "type": "SALE", "seq": 2, "event_date": "1935-08-20",
                 "parcel_id": "PARCEL_PLANTED_R1", "from_person": "P_G1_RAHIM", "to_person": "P_EXT_RAFIQ",
                 "area": "5", "deed_id": "DEED_PLANTED_R1_2", "portion_id": None,
+                "linked_event_id": None, "source_record_id": None,
+            },
+            {
+                "id": "E_PLANTED_R1_3", "type": "SALE", "seq": 3, "event_date": "1940-01-15",
+                "parcel_id": "PARCEL_PLANTED_R1", "from_person": "P_EXT_RAFIQ", "to_person": "P_EXT_MONIR",
+                "area": "2", "deed_id": "DEED_PLANTED_R1_3", "portion_id": None,
                 "linked_event_id": None, "source_record_id": None,
             },
         ],
