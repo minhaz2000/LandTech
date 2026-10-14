@@ -36,4 +36,4 @@ coverage.xml
 Thumbs.db
 
 # Antigravity IDE internal state (do not commit)
-.gemini/
+.gemini/antigravity-ide/
