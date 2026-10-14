@@ -8,7 +8,7 @@ from datetime import date
 from fractions import Fraction
 import pytest
 
-from jomigraph.engine.evidence import impact_lookup, minimal_evidence
+from jomigraph.engine.evidence import impact_closure, impact_lookup, minimal_evidence
 from jomigraph.engine.rules import (
     Alert,
     Status,
@@ -289,3 +289,66 @@ class TestImpactLookup:
 
         dependents = impact_lookup("E1", [e1, e2, e3, e4])
         assert dependents == ["E2", "E3"]
+
+
+# ---------------------------------------------------------------------------
+# Impact Closure (Transitive, Same-Portion, Derived Title, Cycle-Safe)
+# ---------------------------------------------------------------------------
+
+class TestImpactClosure:
+    def test_impact_closure_chains_transitive(self):
+        """Impact closure follows linked_event_id links transitively (chain A -> B -> C)."""
+        e1 = make_sale("E1", "H1", "H2", 5, date(2000, 1, 1), seq=1)
+        e2 = make_sale("E2", "H2", "H3", 3, date(2001, 1, 1), seq=2, linked_event_id="E1")
+        e3 = make_sale("E3", "H3", "H4", 1, date(2002, 1, 1), seq=3, linked_event_id="E2")
+        e_unrelated = make_sale("E_OTHER", "H9", "H10", 2, date(2003, 1, 1), seq=4)
+
+        closure = impact_closure("E1", [e1, e2, e3, e_unrelated])
+        assert closure == ["E2", "E3"]
+
+    def test_impact_closure_same_portion(self):
+        """Impact closure includes later events on the same non-null portion_id."""
+        e1 = make_sale("E1", "H1", "H2", 5, date(2000, 1, 1), seq=1, portion_id="PORT_X")
+        # Later event on same portion
+        e2 = make_sale("E2", "H1", "H3", 5, date(2001, 1, 1), seq=2, portion_id="PORT_X")
+        # Later event on different portion
+        e3 = make_sale("E3", "H1", "H4", 5, date(2002, 1, 1), seq=3, portion_id="PORT_Y")
+        # Earlier event on same portion (must not be included)
+        e0 = make_sale("E0", "H0", "H1", 5, date(1999, 1, 1), seq=0, portion_id="PORT_X")
+
+        closure = impact_closure("E1", [e0, e1, e2, e3])
+        assert closure == ["E2"]
+
+    def test_impact_closure_derived_title(self):
+        """Impact closure includes later events where from_person is the conflicting event's to_person."""
+        e1 = make_sale("E1", "H1", "BUYER_BOB", 5, date(2000, 1, 1), seq=1)
+        # Later sale where Bob resells derived title
+        e2 = make_sale("E2", "BUYER_BOB", "BUYER_CHARLIE", 2, date(2001, 1, 1), seq=2)
+        # Unrelated sale by someone else
+        e3 = make_sale("E3", "H1", "BUYER_DAVE", 1, date(2002, 1, 1), seq=3)
+
+        closure = impact_closure("E1", [e1, e2, e3])
+        assert closure == ["E2"]
+
+    def test_impact_closure_cycle_safe_and_never_includes_self(self):
+        """Impact closure terminates cleanly on cyclic and self-referencing links, never including root."""
+        # 1. Cyclic: E1 -> E2 -> E1
+        e1 = make_sale("E1", "H1", "H2", 5, date(2000, 1, 1), seq=1, linked_event_id="E2")
+        e2 = make_sale("E2", "H2", "H3", 5, date(2001, 1, 1), seq=2, linked_event_id="E1")
+        closure_e1 = impact_closure("E1", [e1, e2])
+        assert closure_e1 == ["E2"]
+        assert "E1" not in closure_e1
+
+        # 2. Self-referencing
+        e_self = make_sale("E_SELF", "H1", "H2", 5, date(2000, 1, 1), seq=1, linked_event_id="E_SELF")
+        closure_self = impact_closure("E_SELF", [e_self])
+        assert closure_self == []
+
+    def test_impact_closure_empty_case(self):
+        """Impact closure returns empty list when no downstream dependents exist or event is unknown."""
+        e1 = make_sale("E1", "H1", "H2", 5, date(2000, 1, 1), seq=1)
+        e2 = make_sale("E2", "H5", "H6", 2, date(2001, 1, 1), seq=2)
+
+        assert impact_closure("E1", [e1, e2]) == []
+        assert impact_closure("NON_EXISTENT", [e1, e2]) == []
+

@@ -12,6 +12,7 @@ Tests all FastAPI endpoints using FastAPI TestClient:
 from datetime import date
 from fractions import Fraction
 from pathlib import Path
+from typing import Any
 import pytest
 from starlette.testclient import TestClient
 
@@ -464,3 +465,306 @@ class TestUIEndpoints:
         res_font = client.get("/vendor/noto-sans-bengali.css")
         assert res_font.status_code == 200
         assert "Noto Sans Bengali" in res_font.text
+
+
+# ---------------------------------------------------------------------------
+# 6. GET /search Tests
+# ---------------------------------------------------------------------------
+
+class TestSearchEndpoint:
+    def test_search_by_parcel_id(self, client: TestClient):
+        """Search matches parcel ID case-insensitively."""
+        response = client.get("/search?q=parcel_story_01")
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data) >= 1
+        first = data[0]
+        assert first["parcel_id"] == "PARCEL_STORY_01"
+        assert first["matched_on"] == "parcel_id"
+
+    def test_search_by_dag_no_english_and_bangla(self, client: TestClient):
+        """Search by dag number matches both English ('101') and Bangla ('১০১') digits."""
+        res_en = client.get("/search?q=101")
+        assert res_en.status_code == 200
+        data_en = res_en.json()
+        assert any(p["parcel_id"] == "PARCEL_STORY_01" and p["matched_on"] == "dag_no" for p in data_en)
+
+        res_bn = client.get("/search?q=১০১")
+        assert res_bn.status_code == 200
+        data_bn = res_bn.json()
+        assert any(p["parcel_id"] == "PARCEL_STORY_01" and p["matched_on"] == "dag_no" for p in data_bn)
+
+    def test_search_by_holder_name_case_insensitive(self, client: TestClient):
+        """Search by holder name matches recorded holders case-insensitively."""
+        response = client.get("/search?q=abdur")
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data) >= 1
+        assert any(p["parcel_id"] == "PARCEL_STORY_01" and p["matched_on"] == "holder_name" for p in data)
+
+    def test_search_by_khatian_no_english_and_bangla(self, client: TestClient):
+        """Search by khatian number matches both English and Bangla digits."""
+        res_en = client.get("/search?q=1001")
+        assert res_en.status_code == 200
+        data_en = res_en.json()
+        assert any(p["parcel_id"] == "PARCEL_STORY_01" and p["matched_on"] == "khatian_no" for p in data_en)
+
+        res_bn = client.get("/search?q=১০০১")
+        assert res_bn.status_code == 200
+        data_bn = res_bn.json()
+        assert any(p["parcel_id"] == "PARCEL_STORY_01" and p["matched_on"] == "khatian_no" for p in data_bn)
+
+    def test_search_by_deed_no_english_and_bangla(self, client: TestClient):
+        """Search by deed number matches both English and Bangla digits."""
+        res_en = client.get("/search?q=1948")
+        assert res_en.status_code == 200
+        data_en = res_en.json()
+        assert any(p["parcel_id"] == "PARCEL_STORY_01" and p["matched_on"] == "deed_no" for p in data_en)
+
+        res_bn = client.get("/search?q=১৯৪৮")
+        assert res_bn.status_code == 200
+        data_bn = res_bn.json()
+        assert any(p["parcel_id"] == "PARCEL_STORY_01" and p["matched_on"] == "deed_no" for p in data_bn)
+
+    def test_search_empty_or_one_char_returns_empty_list(self, client: TestClient):
+        """Search with an empty string or single character returns an empty list."""
+        assert client.get("/search?q=").json() == []
+        assert client.get("/search?q=a").json() == []
+        assert client.get("/search?q=1").json() == []
+        assert client.get("/search?q=১").json() == []
+        assert client.get("/search?q=   ").json() == []
+
+    def test_search_no_match_returns_empty_list(self, client: TestClient):
+        """Search for a non-matching query returns an empty list."""
+        res = client.get("/search?q=nonexistent_query_xyz")
+        assert res.status_code == 200
+        assert res.json() == []
+
+
+# ---------------------------------------------------------------------------
+# 7. Minimal Evidence and Impact Tests
+# ---------------------------------------------------------------------------
+
+class TestMinimalEvidenceAndImpact:
+    def test_reviewer_alert_contains_minimal_evidence_and_not_minimized_flag(self, client: TestClient):
+        """Reviewer alert on contradiction parcel exposes minimal_evidence_sets and not_minimized."""
+        response = client.get("/parcel/PARCEL_PLANTED_R1?role=reviewer&lang=en")
+        assert response.status_code == 200
+        data = response.json()
+        r1_alerts = [a for a in data["alerts"] if a["rule_id"] == "R1" and a["status"] == "Contradiction Found"]
+        assert len(r1_alerts) == 1
+        r1 = r1_alerts[0]
+
+        assert "minimal_evidence_sets" in r1
+        assert isinstance(r1["minimal_evidence_sets"], list)
+        assert len(r1["minimal_evidence_sets"]) >= 1
+        assert "not_minimized" in r1
+        assert r1["not_minimized"] is False
+        assert "impact_event_ids" in r1
+        assert isinstance(r1["impact_event_ids"], list)
+
+    def test_impact_lookup_with_cyclic_or_self_referencing_terminates(self):
+        """Verify impact_lookup terminates cleanly with self-referencing or cyclic events."""
+        from jomigraph.engine.evidence import impact_lookup
+        from jomigraph.models import Event, EventType
+
+        # 1. Self-referencing event
+        e_self = Event(
+            id="E_SELF",
+            type=EventType.SALE,
+            seq=1,
+            event_date=date(2000, 1, 1),
+            parcel_id="P1",
+            from_person="H1",
+            to_person="H2",
+            area=Fraction(1),
+            deed_id=None,
+            portion_id=None,
+            linked_event_id="E_SELF",
+            source_record_id=None,
+        )
+        res_self = impact_lookup("E_SELF", [e_self])
+        assert res_self == []
+
+        # 2. Cyclic reference: E1 links to E2, E2 links to E1
+        e1 = Event(
+            id="E1",
+            type=EventType.SALE,
+            seq=1,
+            event_date=date(2000, 1, 1),
+            parcel_id="P1",
+            from_person="H1",
+            to_person="H2",
+            area=Fraction(1),
+            deed_id=None,
+            portion_id=None,
+            linked_event_id="E2",
+            source_record_id=None,
+        )
+        e2 = Event(
+            id="E2",
+            type=EventType.SALE,
+            seq=2,
+            event_date=date(2001, 1, 1),
+            parcel_id="P1",
+            from_person="H2",
+            to_person="H3",
+            area=Fraction(1),
+            deed_id=None,
+            portion_id=None,
+            linked_event_id="E1",
+            source_record_id=None,
+        )
+        res_e1 = impact_lookup("E1", [e1, e2])
+        assert res_e1 == ["E2"]
+        res_e2 = impact_lookup("E2", [e1, e2])
+        assert res_e2 == ["E1"]
+
+
+# ---------------------------------------------------------------------------
+# 8. Role Parameter Tests (Citizen vs. Reviewer)
+# ---------------------------------------------------------------------------
+
+class TestRoleParameter:
+    FORBIDDEN_CITIZEN_KEYS = {
+        "rule_id",
+        "calculation",
+        "evidence_ids",
+        "minimal_evidence_sets",
+        "not_minimized",
+        "impact_event_ids",
+    }
+
+    def _assert_no_forbidden_keys(self, obj: Any):
+        """Recursively ensure none of the forbidden reviewer keys appear anywhere."""
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                assert k not in self.FORBIDDEN_CITIZEN_KEYS, f"Leak: Forbidden key '{k}' found in response!"
+                self._assert_no_forbidden_keys(v)
+        elif isinstance(obj, list):
+            for item in obj:
+                self._assert_no_forbidden_keys(item)
+
+    def test_default_role_is_reviewer(self, client: TestClient):
+        """When role is omitted, default is 'reviewer' and returns technical fields."""
+        response = client.get("/parcel/PARCEL_PLANTED_R1")
+        assert response.status_code == 200
+        data = response.json()
+        assert "overall_status" in data
+        assert len(data["alerts"]) > 0
+        first_alert = data["alerts"][0]
+        assert "rule_id" in first_alert
+        assert "calculation" in first_alert
+        assert "evidence_ids" in first_alert
+        assert "minimal_evidence_sets" in first_alert
+        assert "not_minimized" in first_alert
+        assert "impact_event_ids" in first_alert
+
+    def test_citizen_role_overall_status_and_filtered_alerts(self, client: TestClient):
+        """
+        Citizen role returns worst status as overall_status and ONLY non-consistent alerts.
+        Repeated consistent alerts are excluded.
+        """
+        # 1. Contradiction planted parcel
+        res_p1 = client.get("/parcel/PARCEL_PLANTED_R1?role=citizen&lang=en")
+        assert res_p1.status_code == 200
+        data_p1 = res_p1.json()
+        assert data_p1["overall_status"] == "Contradiction Found"
+        # Only 1 non-consistent alert (R1 over-transfer) returned; consistent alerts excluded
+        assert len(data_p1["alerts"]) == 1
+        assert data_p1["alerts"][0]["status"] == "Contradiction Found"
+
+        # 2. Clean parcel (all consistent) -> 0 non-consistent alerts returned
+        res_clean = client.get("/parcel/PARCEL_STORY_01?role=citizen&lang=en")
+        assert res_clean.status_code == 200
+        data_clean = res_clean.json()
+        assert data_clean["overall_status"] == "Consistent with supplied records"
+        assert len(data_clean["alerts"]) == 0
+
+    def test_citizen_leak_test_no_reviewer_keys_anywhere(self, client: TestClient):
+        """
+        Comprehensive leak test asserting that none of the reviewer keys appear
+        anywhere in /parcel or /report responses for citizen role.
+        """
+        res_parcel = client.get("/parcel/PARCEL_PLANTED_R1?role=citizen")
+        assert res_parcel.status_code == 200
+        self._assert_no_forbidden_keys(res_parcel.json())
+
+        res_report = client.get("/report/PARCEL_PLANTED_R1?role=citizen")
+        assert res_report.status_code == 200
+        self._assert_no_forbidden_keys(res_report.json())
+
+
+# ---------------------------------------------------------------------------
+# 9. GET /report/{parcel_id} Tests
+# ---------------------------------------------------------------------------
+
+class TestReportEndpoint:
+    def test_report_citizen_role_structure_and_keys(self, client: TestClient):
+        """GET /report/{id}?role=citizen returns structured report with citizen alerts only."""
+        response = client.get("/report/PARCEL_STORY_01?role=citizen&lang=bn")
+        assert response.status_code == 200
+        data = response.json()
+
+        assert data["parcel_id"] == "PARCEL_STORY_01"
+        assert data["role"] == "citizen"
+        assert data["lang"] == "bn"
+        assert data["overall_status"] == "সঙ্গতিপূর্ণ"
+        assert "parcel" in data
+        assert "records" in data
+        assert "survey_records" in data["records"]
+        assert "events" in data["records"]
+        assert "alerts" in data
+        # Clean parcel has zero non-consistent alerts
+        assert len(data["alerts"]) == 0
+        assert "recommended_next_steps" in data
+        assert isinstance(data["recommended_next_steps"], list)
+        assert "disclaimer" in data
+        assert len(data["disclaimer"]) > 0
+        assert "dataset_hash" in data
+        assert len(data["dataset_hash"]) == 64  # SHA-256 hex digest
+
+    def test_report_citizen_role_with_contradiction(self, client: TestClient):
+        """GET /report/{id}?role=citizen on planted parcel returns overall contradiction and single alert."""
+        response = client.get("/report/PARCEL_PLANTED_R1?role=citizen&lang=en")
+        assert response.status_code == 200
+        data = response.json()
+        assert data["overall_status"] == "Contradiction Found"
+        assert len(data["alerts"]) == 1
+        assert data["alerts"][0]["status"] == "Contradiction Found"
+
+    def test_report_reviewer_role_includes_technical_fields(self, client: TestClient):
+        """GET /report/{id}?role=reviewer returns rule IDs, calculations, evidence sets, and impact."""
+        response = client.get("/report/PARCEL_PLANTED_R1?role=reviewer&lang=en")
+        assert response.status_code == 200
+        data = response.json()
+
+        assert data["role"] == "reviewer"
+        assert data["overall_status"] == "Contradiction Found"
+        assert len(data["alerts"]) > 0
+        r1_alerts = [a for a in data["alerts"] if a.get("rule_id") == "R1" and a.get("status") == "Contradiction Found"]
+        assert len(r1_alerts) == 1
+        r1 = r1_alerts[0]
+        assert "calculation" in r1
+        assert "evidence_ids" in r1
+        assert "minimal_evidence_sets" in r1
+        assert "not_minimized" in r1
+        assert "impact_event_ids" in r1
+
+    def test_report_bilingual_disclaimer(self, client: TestClient):
+        """Disclaimer text is provided in both bn and en without forbidden words."""
+        res_bn = client.get("/report/PARCEL_STORY_01?lang=bn")
+        assert res_bn.status_code == 200
+        disc_bn = res_bn.json()["disclaimer"]
+        assert "আইনি সিদ্ধান্ত নয়" in disc_bn
+        assert "জালিয়াতি" not in disc_bn
+
+        res_en = client.get("/report/PARCEL_STORY_01?lang=en")
+        assert res_en.status_code == 200
+        disc_en = res_en.json()["disclaimer"]
+        assert "not a legal ruling" in disc_en.lower()
+
+    def test_report_nonexistent_parcel_returns_404(self, client: TestClient):
+        """GET /report/{id} on non-existent parcel returns 404."""
+        response = client.get("/report/NON_EXISTENT_PARCEL")
+        assert response.status_code == 404

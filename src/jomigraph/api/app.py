@@ -13,7 +13,7 @@ from __future__ import annotations
 from datetime import date
 from fractions import Fraction
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional, Sequence
 
 from fastapi import FastAPI, HTTPException, Query, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -22,33 +22,142 @@ from jomigraph.api.graph import build_parcel_graph
 from jomigraph.api.schemas import (
     AlertDetail,
     BenchmarkResponse,
+    CitizenAlertDetail,
+    CitizenParcelDetailResponse,
+    CitizenReportResponse,
     CoverageRowItem,
     EventDetail,
     HolderDetail,
     ParcelDetailResponse,
     ParcelListItem,
     ProposedEventDetail,
+    ReportParcelItem,
+    ReportRecordsDetail,
+    ReviewerAlertDetail,
+    ReviewerReportResponse,
+    SearchResultItem,
     SimulateRequest,
     SimulateResponse,
     SimulationIntegrityResult,
     SurveyRecordDetail,
 )
 from jomigraph.engine.benchmark import evaluate_dataset, evaluate_history
-from jomigraph.engine.rules import Status
+from jomigraph.engine.evidence import MinimalEvidenceResult, impact_closure, impact_lookup, minimal_evidence
+from jomigraph.engine.rules import (
+    Alert,
+    Status,
+    check_r1,
+    check_r2,
+    check_r3,
+    check_r4,
+    check_r7,
+)
 from jomigraph.engine.simulate import hash_dataset, simulate
 from jomigraph.i18n import translate
 from jomigraph.loader import Dataset, get_clean_false_alarms_and_coverage, load_dataset
-from jomigraph.models import Event, EventType, load_fraction
+from jomigraph.models import Event, EventType, ParcelHistory, SurveyRecord, load_fraction
 
 
 DEFAULT_DATASET_PATH = Path("data/demo_family.json")
 
 EN_TO_BN_DIGITS = str.maketrans("0123456789", "০১২৩৪৫৬৭৮৯")
+BN_TO_EN_DIGITS = str.maketrans("০১২৩৪৫৬৭৮৯", "0123456789")
 
 
 def to_bangla_digits(val: Any) -> str:
     """Convert ASCII digits in a number/string to Bangla digits."""
     return str(val).translate(EN_TO_BN_DIGITS)
+
+
+def normalize_for_search(val: Any) -> str:
+    """Normalize text for search by converting Bengali digits to ASCII, lowercasing, and stripping."""
+    if val is None:
+        return ""
+    return str(val).translate(BN_TO_EN_DIGITS).lower().strip()
+
+
+def compute_overall_status(alerts: Sequence[Alert], lang: str = "bn") -> str:
+    """Return worst status across alerts, localized."""
+    if any(a.status == Status.CONTRADICTION for a in alerts):
+        raw = Status.CONTRADICTION.value
+    elif any(a.status == Status.REVIEW for a in alerts):
+        raw = Status.REVIEW.value
+    else:
+        raw = Status.CONSISTENT.value
+    return localize_status(raw, lang=lang)
+
+
+def build_minimal_evidence_and_impact(
+    a: Alert,
+    history: ParcelHistory,
+    ds: Dataset,
+) -> tuple[list[list[str]], bool, list[str]]:
+    """
+    Reuse minimal_evidence() and impact_closure() from engine/evidence.py.
+    Returns (minimal_evidence_sets, not_minimized, impact_event_ids).
+    """
+    event_by_id = {e.id: e for e in history.events}
+    trigger_event = event_by_id.get(a.evidence_ids[0]) if a.evidence_ids else None
+    if trigger_event is None:
+        trigger_event = next((e for e in history.events if e.id in a.evidence_ids), None)
+    impact_ids: list[str] = []
+    if trigger_event is not None:
+        impact_ids = impact_closure(trigger_event.id, history.events)
+
+    if a.status != Status.CONTRADICTION or trigger_event is None:
+        return [], False, impact_ids
+
+    baseline = history.survey_records[0]
+
+    # Build rule-specific eval_fn
+    if a.rule_id == "R1":
+        def eval_fn(subset: Sequence[Event]) -> Alert:
+            sub_hist = ParcelHistory(
+                parcel_id=history.parcel_id,
+                baseline_record_id=history.baseline_record_id,
+                baseline_complete=history.baseline_complete,
+                start_record_id=history.start_record_id,
+                end_date=history.end_date,
+                survey_records=history.survey_records,
+                events=tuple(subset),
+            )
+            return check_r1(trigger_event, sub_hist, subset)
+    elif a.rule_id == "R2":
+        def eval_fn(subset: Sequence[Event]) -> Alert:
+            return check_r2(trigger_event, subset, baseline)
+    elif a.rule_id == "R3":
+        def eval_fn(subset: Sequence[Event]) -> Alert:
+            sub_hist = ParcelHistory(
+                parcel_id=history.parcel_id,
+                baseline_record_id=history.baseline_record_id,
+                baseline_complete=history.baseline_complete,
+                start_record_id=history.start_record_id,
+                end_date=history.end_date,
+                survey_records=history.survey_records,
+                events=tuple(subset),
+            )
+            return check_r3(trigger_event, sub_hist, subset)
+    elif a.rule_id == "R4":
+        child_parcel_ids = {p.id for p in ds.parcels if p.parent_id == history.parcel_id}
+        child_srs = [sr for h in ds.histories if h.parcel_id in child_parcel_ids for sr in h.survey_records]
+        def eval_fn(subset: Sequence[Event]) -> Alert:
+            return check_r4(trigger_event, child_srs, subset, baseline)
+    elif a.rule_id == "R7":
+        deed = ds.get_deed(trigger_event.deed_id) if trigger_event.deed_id else None
+        def eval_fn(subset: Sequence[Event]) -> Alert:
+            return check_r7(trigger_event, deed, subset, baseline)
+    else:
+        return [list(a.evidence_ids)], False, impact_ids
+
+    res: MinimalEvidenceResult = minimal_evidence(
+        eval_fn=eval_fn,
+        all_events=history.events,
+        baseline_record=baseline,
+        trigger_event=trigger_event,
+    )
+
+    min_sets = [list(s) for s in res] if res else [list(a.evidence_ids)]
+    return min_sets, res.not_minimized, impact_ids
 
 
 STATUS_TRANSLATIONS = {
@@ -259,11 +368,18 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
         return items
 
     # -----------------------------------------------------------------------
-    # GET /parcel/{id}?lang=bn|en
+    # GET /parcel/{id}?lang=bn|en&role=citizen|reviewer
     # -----------------------------------------------------------------------
-    @app.get("/parcel/{parcel_id}", response_model=ParcelDetailResponse)
-    def get_parcel(parcel_id: str, lang: str = Query("bn", pattern="^(bn|en)$")) -> ParcelDetailResponse:
-        """Get parcel details, survey records, events timeline, Cytoscape graph, and evaluated alerts."""
+    @app.get("/parcel/{parcel_id}")
+    def get_parcel(
+        parcel_id: str,
+        lang: str = Query("bn", pattern="^(bn|en)$"),
+        role: str = Query("reviewer", pattern="^(citizen|reviewer)$"),
+    ) -> ParcelDetailResponse | CitizenParcelDetailResponse:
+        """
+        Get parcel details, survey records, events timeline, Cytoscape graph, and evaluated alerts.
+        # This is a demo role, not authentication.
+        """
         ds: Dataset = app.state.dataset
         parcel = ds.get_parcel(parcel_id)
         if parcel is None:
@@ -333,28 +449,58 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
 
         # 4. Evaluated alerts
         raw_alerts = evaluate_history(history, ds.parcels, ds.deeds, ds.histories)
-        alerts: list[AlertDetail] = [
-            AlertDetail(
-                rule_id=a.rule_id,
-                status=localize_status(a.status.value, lang=lang),
-                message=translate(a.message_key, lang=lang),
-                recommended_next_step=translate(a.recommended_next_step, lang=lang),
-                evidence_ids=list(a.evidence_ids),
-                calculation=localize_calculation(a.calculation, a.rule_id, lang=lang),
-            )
-            for a in raw_alerts
-        ]
+        overall_status = compute_overall_status(raw_alerts, lang=lang)
 
-        return ParcelDetailResponse(
-            id=parcel.id,
-            dag_no=parcel.dag_no,
-            mouza=parcel.mouza,
-            parent_id=parcel.parent_id,
-            survey_records=srs,
-            events=events,
-            graph=graph_data,  # type: ignore[arg-type]
-            alerts=alerts,
-        )
+        if role == "citizen":
+            non_consistent = [a for a in raw_alerts if a.status != Status.CONSISTENT]
+            citizen_alerts = [
+                CitizenAlertDetail(
+                    status=localize_status(a.status.value, lang=lang),
+                    message=translate(a.message_key, lang=lang),
+                    recommended_next_step=translate(a.recommended_next_step, lang=lang),
+                )
+                for a in non_consistent
+            ]
+            return CitizenParcelDetailResponse(
+                id=parcel.id,
+                dag_no=parcel.dag_no,
+                mouza=parcel.mouza,
+                parent_id=parcel.parent_id,
+                overall_status=overall_status,
+                survey_records=srs,
+                events=events,
+                graph=graph_data,  # type: ignore[arg-type]
+                alerts=citizen_alerts,
+            )
+        else:  # reviewer
+            reviewer_alerts: list[ReviewerAlertDetail] = []
+            for a in raw_alerts:
+                min_sets, not_min, impacts = build_minimal_evidence_and_impact(a, history, ds)
+                reviewer_alerts.append(
+                    ReviewerAlertDetail(
+                        rule_id=a.rule_id,
+                        status=localize_status(a.status.value, lang=lang),
+                        message=translate(a.message_key, lang=lang),
+                        recommended_next_step=translate(a.recommended_next_step, lang=lang),
+                        evidence_ids=list(a.evidence_ids),
+                        calculation=localize_calculation(a.calculation, a.rule_id, lang=lang),
+                        minimal_evidence_sets=min_sets,
+                        not_minimized=not_min,
+                        impact_event_ids=impacts,
+                    )
+                )
+
+            return ParcelDetailResponse(
+                id=parcel.id,
+                dag_no=parcel.dag_no,
+                mouza=parcel.mouza,
+                parent_id=parcel.parent_id,
+                overall_status=overall_status,
+                survey_records=srs,
+                events=events,
+                graph=graph_data,  # type: ignore[arg-type]
+                alerts=reviewer_alerts,
+            )
 
     # -----------------------------------------------------------------------
     # POST /simulate
@@ -517,6 +663,237 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                 unchanged=(hash_before == hash_after),
             ),
         )
+
+    # -----------------------------------------------------------------------
+    # GET /search?q=...&lang=bn|en
+    # -----------------------------------------------------------------------
+    @app.get("/search", response_model=list[SearchResultItem])
+    def search_parcels(
+        q: str = Query("", description="Search query string"),
+        lang: str = Query("bn", pattern="^(bn|en)$"),
+    ) -> list[SearchResultItem]:
+        """
+        Search parcels across ID, dag number, holder name, khatian number, and deed number.
+        Case-insensitive and accepts both Bangla and English digits.
+        Empty or single-character queries return an empty list.
+        """
+        if not q or len(q.strip()) <= 1:
+            return []
+
+        q_norm = normalize_for_search(q)
+        ds: Dataset = app.state.dataset
+        results: list[SearchResultItem] = []
+
+        for p in ds.parcels:
+            history = ds.get_history(p.id)
+            matched_field = None
+
+            if q_norm in normalize_for_search(p.id):
+                matched_field = "parcel_id"
+            elif q_norm in normalize_for_search(p.dag_no):
+                matched_field = "dag_no"
+            elif history:
+                for sr in history.survey_records:
+                    for pid, _ in sr.holders:
+                        person = ds.get_person(pid)
+                        if person and q_norm in normalize_for_search(person.name):
+                            matched_field = "holder_name"
+                            break
+                    if matched_field:
+                        break
+
+            if not matched_field and history:
+                for sr in history.survey_records:
+                    if q_norm in normalize_for_search(sr.khatian_no):
+                        matched_field = "khatian_no"
+                        break
+
+            if not matched_field and history:
+                for e in history.events:
+                    if e.deed_id:
+                        deed = ds.get_deed(e.deed_id)
+                        if deed and (
+                            q_norm in normalize_for_search(deed.deed_no)
+                            or q_norm in normalize_for_search(deed.id)
+                        ):
+                            matched_field = "deed_no"
+                            break
+
+            if matched_field:
+                label = f"{p.mouza} দাগ {p.dag_no}" if lang == "bn" else f"{p.mouza} Dag {p.dag_no}"
+                results.append(
+                    SearchResultItem(
+                        id=p.id,
+                        parcel_id=p.id,
+                        dag_no=p.dag_no,
+                        mouza=p.mouza,
+                        label=label,
+                        matched_on=matched_field,
+                    )
+                )
+
+        return results
+
+    # -----------------------------------------------------------------------
+    # GET /report/{parcel_id}?lang=bn|en&role=citizen|reviewer
+    # -----------------------------------------------------------------------
+    @app.get("/report/{parcel_id}")
+    def get_report(
+        parcel_id: str,
+        lang: str = Query("bn", pattern="^(bn|en)$"),
+        role: str = Query("citizen", pattern="^(citizen|reviewer)$"),
+    ) -> ReviewerReportResponse | CitizenReportResponse:
+        """
+        Return structured case summary report for the parcel.
+        # This is a demo role, not authentication.
+        """
+        ds: Dataset = app.state.dataset
+        parcel = ds.get_parcel(parcel_id)
+        if parcel is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Parcel '{parcel_id}' not found.",
+            )
+
+        history = ds.get_history(parcel_id)
+        if history is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"History for parcel '{parcel_id}' not found.",
+            )
+
+        # 1. Survey records
+        srs: list[SurveyRecordDetail] = []
+        for sr in history.survey_records:
+            holders: list[HolderDetail] = []
+            for pid, area in sr.holders:
+                person = ds.get_person(pid)
+                holders.append(
+                    HolderDetail(
+                        person_id=pid,
+                        person_name=person.name if person else pid,
+                        area=str(area),
+                    )
+                )
+            srs.append(
+                SurveyRecordDetail(
+                    id=sr.id,
+                    parcel_id=sr.parcel_id,
+                    survey=sr.survey,
+                    khatian_no=sr.khatian_no,
+                    record_date=sr.record_date.isoformat(),
+                    recorded_area=str(sr.recorded_area),
+                    holders=holders,
+                )
+            )
+
+        # 2. Events timeline
+        events: list[EventDetail] = []
+        for e in history.events:
+            from_name = ds.get_person(e.from_person).name if e.from_person and ds.get_person(e.from_person) else None
+            to_name = ds.get_person(e.to_person).name if e.to_person and ds.get_person(e.to_person) else None
+            events.append(
+                EventDetail(
+                    id=e.id,
+                    type=e.type.value,
+                    seq=e.seq,
+                    event_date=e.event_date.isoformat() if e.event_date else None,
+                    parcel_id=e.parcel_id,
+                    from_person=e.from_person,
+                    from_person_name=from_name,
+                    to_person=e.to_person,
+                    to_person_name=to_name,
+                    area=str(e.area) if e.area is not None else None,
+                    deed_id=e.deed_id,
+                    portion_id=e.portion_id,
+                    linked_event_id=e.linked_event_id,
+                    source_record_id=e.source_record_id,
+                )
+            )
+
+        label = f"{parcel.mouza} দাগ {parcel.dag_no}" if lang == "bn" else f"{parcel.mouza} Dag {parcel.dag_no}"
+        parcel_info = ReportParcelItem(
+            id=parcel.id,
+            dag_no=parcel.dag_no,
+            mouza=parcel.mouza,
+            parent_id=parcel.parent_id,
+            label=label,
+        )
+
+        records_info = ReportRecordsDetail(
+            survey_records=srs,
+            events=events,
+        )
+
+        # Canonical dataset hash
+        all_events = [e for h in ds.histories for e in h.events]
+        all_srs = [sr for h in ds.histories for sr in h.survey_records]
+        ds_hash = hash_dataset(all_events, all_srs)
+
+        # Localized disclaimer (no forbidden words)
+        if lang == "bn":
+            disclaimer = "ডেমো, কাল্পনিক তথ্য, আইনি সিদ্ধান্ত নয়। এটি একটি নিয়মভিত্তিক সিদ্ধান্ত-সহায়ক প্রোটোটাইপ, যা কোনো আইনি রায় প্রদান করে না।"
+        else:
+            disclaimer = "Demo, fictional data, not a legal ruling. JomiGraph AI is a rule-based decision-support prototype; it never certifies legal ownership."
+
+        raw_alerts = evaluate_history(history, ds.parcels, ds.deeds, ds.histories)
+        overall_status = compute_overall_status(raw_alerts, lang=lang)
+
+        if role == "citizen":
+            non_consistent = [a for a in raw_alerts if a.status != Status.CONSISTENT]
+            citizen_alerts = [
+                CitizenAlertDetail(
+                    status=localize_status(a.status.value, lang=lang),
+                    message=translate(a.message_key, lang=lang),
+                    recommended_next_step=translate(a.recommended_next_step, lang=lang),
+                )
+                for a in non_consistent
+            ]
+            target_for_steps = non_consistent if non_consistent else raw_alerts
+            next_steps = list(dict.fromkeys(translate(a.recommended_next_step, lang=lang) for a in target_for_steps))
+            return CitizenReportResponse(
+                parcel_id=parcel.id,
+                parcel=parcel_info,
+                role=role,
+                lang=lang,
+                overall_status=overall_status,
+                records=records_info,
+                alerts=citizen_alerts,
+                recommended_next_steps=next_steps,
+                disclaimer=disclaimer,
+                dataset_hash=ds_hash,
+            )
+        else:  # reviewer
+            next_steps = list(dict.fromkeys(translate(a.recommended_next_step, lang=lang) for a in raw_alerts))
+            reviewer_alerts: list[ReviewerAlertDetail] = []
+            for a in raw_alerts:
+                min_sets, not_min, impacts = build_minimal_evidence_and_impact(a, history, ds)
+                reviewer_alerts.append(
+                    ReviewerAlertDetail(
+                        rule_id=a.rule_id,
+                        status=localize_status(a.status.value, lang=lang),
+                        message=translate(a.message_key, lang=lang),
+                        recommended_next_step=translate(a.recommended_next_step, lang=lang),
+                        evidence_ids=list(a.evidence_ids),
+                        calculation=localize_calculation(a.calculation, a.rule_id, lang=lang),
+                        minimal_evidence_sets=min_sets,
+                        not_minimized=not_min,
+                        impact_event_ids=impacts,
+                    )
+                )
+
+            return ReviewerReportResponse(
+                parcel_id=parcel.id,
+                parcel=parcel_info,
+                role=role,
+                lang=lang,
+                overall_status=overall_status,
+                records=records_info,
+                alerts=reviewer_alerts,
+                recommended_next_steps=next_steps,
+                disclaimer=disclaimer,
+                dataset_hash=ds_hash,
+            )
 
     # -----------------------------------------------------------------------
     # Static UI Files & Root Route

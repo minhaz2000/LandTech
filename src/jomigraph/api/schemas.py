@@ -99,13 +99,38 @@ class EventDetail(BaseModel):
     source_record_id: Optional[str]
 
 
-class AlertDetail(BaseModel):
+class CitizenAlertDetail(BaseModel):
+    status: str
+    message: str
+    recommended_next_step: str
+
+
+class ReviewerAlertDetail(BaseModel):
     rule_id: str
     status: str
     message: str
     recommended_next_step: str
     evidence_ids: list[str]
     calculation: str
+    minimal_evidence_sets: list[list[str]] = Field(default_factory=list)
+    not_minimized: bool = False
+    impact_event_ids: list[str] = Field(default_factory=list)
+
+
+# Alias AlertDetail to ReviewerAlertDetail for backwards compatibility
+AlertDetail = ReviewerAlertDetail
+
+
+class CitizenParcelDetailResponse(BaseModel):
+    id: str
+    dag_no: str
+    mouza: str
+    parent_id: Optional[str]
+    overall_status: str
+    survey_records: list[SurveyRecordDetail]
+    events: list[EventDetail]
+    graph: GraphResponse
+    alerts: list[CitizenAlertDetail]
 
 
 class ParcelDetailResponse(BaseModel):
@@ -113,10 +138,73 @@ class ParcelDetailResponse(BaseModel):
     dag_no: str
     mouza: str
     parent_id: Optional[str]
+    overall_status: str
     survey_records: list[SurveyRecordDetail]
     events: list[EventDetail]
     graph: GraphResponse
-    alerts: list[AlertDetail]
+    alerts: list[ReviewerAlertDetail]
+
+
+ReviewerParcelDetailResponse = ParcelDetailResponse
+
+
+# ---------------------------------------------------------------------------
+# Search Schemas (GET /search)
+# ---------------------------------------------------------------------------
+
+class SearchResultItem(BaseModel):
+    id: str
+    parcel_id: str
+    dag_no: str
+    mouza: str
+    label: str
+    matched_on: str
+
+
+# ---------------------------------------------------------------------------
+# Report Schemas (GET /report/{parcel_id})
+# ---------------------------------------------------------------------------
+
+class ReportParcelItem(BaseModel):
+    id: str
+    dag_no: str
+    mouza: str
+    parent_id: Optional[str]
+    label: str
+
+
+class ReportRecordsDetail(BaseModel):
+    survey_records: list[SurveyRecordDetail]
+    events: list[EventDetail]
+
+
+class CitizenReportResponse(BaseModel):
+    parcel_id: str
+    parcel: ReportParcelItem
+    role: str
+    lang: str
+    overall_status: str
+    records: ReportRecordsDetail
+    alerts: list[CitizenAlertDetail]
+    recommended_next_steps: list[str]
+    disclaimer: str
+    dataset_hash: str
+
+
+class ReviewerReportResponse(BaseModel):
+    parcel_id: str
+    parcel: ReportParcelItem
+    role: str
+    lang: str
+    overall_status: str
+    records: ReportRecordsDetail
+    alerts: list[ReviewerAlertDetail]
+    recommended_next_steps: list[str]
+    disclaimer: str
+    dataset_hash: str
+
+
+ReportResponse = ReviewerReportResponse
 
 
 # ---------------------------------------------------------------------------

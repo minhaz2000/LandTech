@@ -145,3 +145,69 @@ def impact_lookup(
         and (e.linked_event_id == event_id or e.source_record_id == event_id)
     ]
     return sorted(dependents)
+
+
+def impact_closure(
+    event_id: str,
+    all_events: Sequence[Event],
+) -> list[str]:
+    """
+    Compute transitive downstream impact of event_id.
+    Includes:
+      (a) Events referencing event_id (or any impacted event) via linked_event_id or source_record_id transitively.
+      (b) Later events (by seq/date) on the same parcel with the same non-null portion_id.
+      (c) Later events on the same parcel whose from_person is the to_person of an impacted event (derived title).
+      (d) Cycle-safe and never includes event_id itself.
+    """
+    root_event = next((e for e in all_events if e.id == event_id), None)
+    if root_event is None:
+        return []
+
+    def is_later(e_later: Event, e_earlier: Event) -> bool:
+        if e_later.event_date and e_earlier.event_date:
+            return (e_later.event_date, e_later.seq) > (e_earlier.event_date, e_earlier.seq)
+        return e_later.seq > e_earlier.seq
+
+    impacted_ids: set[str] = set()
+    queue = [root_event]
+    visited_for_queue = {event_id}
+
+    while queue:
+        current = queue.pop(0)
+        for candidate in all_events:
+            if candidate.id == event_id or candidate.id in impacted_ids:
+                continue
+
+            is_dependent = False
+
+            # (a) Transitive link via linked_event_id or source_record_id
+            if candidate.linked_event_id == current.id or candidate.source_record_id == current.id:
+                is_dependent = True
+
+            # (b) Same parcel, same non-null portion_id, later in time
+            elif (
+                candidate.parcel_id == current.parcel_id
+                and current.portion_id is not None
+                and candidate.portion_id == current.portion_id
+                and is_later(candidate, current)
+            ):
+                is_dependent = True
+
+            # (c) Derived title: later event on same parcel where from_person == current.to_person
+            elif (
+                candidate.parcel_id == current.parcel_id
+                and current.to_person is not None
+                and candidate.from_person == current.to_person
+                and is_later(candidate, current)
+            ):
+                is_dependent = True
+
+            if is_dependent:
+                impacted_ids.add(candidate.id)
+                if candidate.id not in visited_for_queue:
+                    visited_for_queue.add(candidate.id)
+                    queue.append(candidate)
+
+    impacted_ids.discard(event_id)
+    return sorted(impacted_ids)
+
