@@ -2,8 +2,8 @@
 JomiGraph AI — API Request & Response Schemas
 ============================================
 Pydantic models for API serialization and strict validation:
-  - Rejects float areas with HTTP 422
-  - Accepts exact rational fraction strings ("10", "7/2")
+  - Rejects float-typed areas, zero and negative areas with HTTP 422
+  - Accepts exact integer, decimal and fraction strings ("10", "2.5", "7/2")
 """
 
 from __future__ import annotations
@@ -12,7 +12,7 @@ from datetime import date
 from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator
 
-from jomigraph.models import load_fraction
+from jomigraph.area_input import parse_area
 
 
 # ---------------------------------------------------------------------------
@@ -25,8 +25,9 @@ class ParcelListItem(BaseModel):
     status_summary: str
     status_summary_code: str = "CONSISTENT"
     status_code: str = "CONSISTENT"
-    planted: bool
-    category: str
+    # Staging fields: present for the reviewer role only (see GET /parcels).
+    planted: Optional[bool] = None
+    category: Optional[str] = None
 
 
 # ---------------------------------------------------------------------------
@@ -233,39 +234,26 @@ class SimulateRequest(BaseModel):
     @classmethod
     def validate_area(cls, v: Any) -> str:
         """
-        Strictly reject float areas with HTTP 422.
-        Must be a string representing an integer or rational fraction ('10', '7/2').
+        Accept an exact positive area as text: "5", "2.5" or "5/2".
+        Decimal strings are parsed straight into a Fraction, so no float is
+        ever created. JSON numbers with a fractional part, zero, negative
+        values and malformed text are rejected with HTTP 422 and a code
+        (AREA_*) that the UI turns into a localised message.
         """
-        if isinstance(v, float):
-            raise ValueError(
-                "Float areas are strictly forbidden in JomiGraph; "
-                "provide an exact integer or fraction string (e.g. '5' or '7/2')."
-            )
-        if not isinstance(v, (str, int)):
-            raise ValueError(f"Area must be a string or integer, got {type(v).__name__}.")
-
-        s = str(v).strip()
-        if "." in s:
-            raise ValueError(
-                f"Float decimal area '{s}' is strictly forbidden; "
-                "use exact rational fraction strings e.g. '7/2'."
-            )
-        try:
-            load_fraction(s)
-        except Exception as exc:
-            raise ValueError(f"Invalid area '{s}': {exc}")
-        return s
+        return str(parse_area(v))
 
     @field_validator("date", mode="before")
     @classmethod
-    def validate_date(cls, v: Any) -> str:
+    def validate_date(cls, v: Any) -> Optional[str]:
+        if v is None or (isinstance(v, str) and not v.strip()):
+            return None
         if not isinstance(v, str):
             raise ValueError("Date must be an ISO format string YYYY-MM-DD.")
         try:
             date.fromisoformat(v)
         except Exception as exc:
             raise ValueError(f"Invalid ISO date '{v}': {exc}")
-        return v
+        return v.strip()
 
     @field_validator("lang")
     @classmethod
@@ -289,11 +277,31 @@ class ProposedEventDetail(BaseModel):
 
 
 class SimulateResponse(BaseModel):
+    """Reviewer view of a simulated transfer (full detail)."""
     proposed_event: ProposedEventDetail
     available_before: str
     available_after: str
+    # Plain numbers the UI shows directly. All are exact fraction strings.
+    requested_area: str
+    seller_available_before: str
+    seller_available_after: str
+    excess: str = "0"
     r1_calculation: Optional[str] = None
     alerts: list[AlertDetail]
+    status_code: Optional[str] = "CONSISTENT"
+    overall_status_code: Optional[str] = "CONSISTENT"
+
+
+class CitizenSimulateResponse(BaseModel):
+    """
+    Citizen view of a simulated transfer. Carries no rule IDs, calculations,
+    evidence IDs or internal record IDs. This is a demo role, not access control.
+    """
+    requested_area: str
+    seller_available_before: str
+    seller_available_after: str
+    excess: str = "0"
+    alerts: list[CitizenAlertDetail]
     status_code: Optional[str] = "CONSISTENT"
     overall_status_code: Optional[str] = "CONSISTENT"
 
@@ -321,5 +329,5 @@ class BenchmarkResponse(BaseModel):
     coverage_table: list[CoverageRowItem]
     simulation_integrity: SimulationIntegrityResult
     total_parcels: Optional[int] = None
-    planted_parcel_count: Optional[int] = None
+    planted_case_count: Optional[int] = None
     planted_detected_count: Optional[int] = None

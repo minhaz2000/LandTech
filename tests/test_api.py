@@ -289,43 +289,36 @@ class TestSimulateEndpoint:
 
     def test_simulate_rejects_float_area_with_422(self, client: TestClient):
         """
-        Numeric float literals and decimal float strings in request body
-        must be rejected with HTTP 422 Unprocessable Entity.
+        A JSON number with a fractional part is a float and stays rejected
+        with HTTP 422. Malformed text is rejected too.
         """
-        # 1. Numeric float literal in JSON: {"area": 5.5}
-        payload_float_literal = {
+        base = {
             "parcel_id": "PARCEL_LAB_DEMO",
             "from_person": "P_G3_TAREQ",
             "to_person": "P_EXT_MONIR",
-            "area": 5.5,
             "date": "1996-05-15",
         }
-        res1 = client.post("/simulate", json=payload_float_literal)
+        res1 = client.post("/simulate", json={**base, "area": 5.5})
         assert res1.status_code == 422
-        assert "Float" in res1.text or "float" in res1.text
+        assert "AREA_FLOAT_TYPE" in res1.text
 
-        # 2. Decimal float string in JSON: {"area": "5.5"}
-        payload_float_str = {
-            "parcel_id": "PARCEL_LAB_DEMO",
-            "from_person": "P_G3_TAREQ",
-            "to_person": "P_EXT_MONIR",
-            "area": "5.5",
-            "date": "1996-05-15",
-        }
-        res2 = client.post("/simulate", json=payload_float_str)
-        assert res2.status_code == 422
-        assert "Float" in res2.text or "forbidden" in res2.text
-
-        # 3. Invalid non-rational string: {"area": "five"}
-        payload_bad_str = {
-            "parcel_id": "PARCEL_LAB_DEMO",
-            "from_person": "P_G3_TAREQ",
-            "to_person": "P_EXT_MONIR",
-            "area": "five",
-            "date": "1996-05-15",
-        }
-        res3 = client.post("/simulate", json=payload_bad_str)
+        res3 = client.post("/simulate", json={**base, "area": "five"})
         assert res3.status_code == 422
+        assert "AREA_FORMAT" in res3.text
+
+    def test_simulate_accepts_decimal_string_exactly(self, client: TestClient):
+        """A decimal string such as "2.5" is parsed exactly (5/2), never as a float."""
+        res = client.post("/simulate", json={
+            "parcel_id": "PARCEL_LAB_DEMO",
+            "from_person": "P_G3_TAREQ",
+            "area": "2.5",
+            "lang": "en",
+        })
+        assert res.status_code == 200
+        data = res.json()
+        assert data["requested_area"] == "5/2"
+        assert data["seller_available_after"] == "1/2"
+        assert data["overall_status_code"] == "CONSISTENT"
 
     def test_simulate_unknown_parcel_returns_404(self, client: TestClient):
         """Simulate on unknown parcel returns 404."""
@@ -511,7 +504,7 @@ class TestUIEndpoints:
           - Benchmark metric titles are localized with t().
           - Reviewer view replaces raw parcel ID in page title with '<mouza> Dag <dag_no> · Khatian <khatian_no>'.
           - Raw parcel ID is kept in technical details only (<details class="technical-details-card">).
-          - GET /benchmark returns total_parcels, planted_parcel_count, and planted_detected_count.
+          - GET /benchmark returns total_parcels, planted_case_count, and planted_detected_count.
         """
         res_js = client.get("/app.js")
         assert res_js.status_code == 200
@@ -539,9 +532,9 @@ class TestUIEndpoints:
         assert res_bm.status_code == 200
         bm_data = res_bm.json()
         assert bm_data.get("total_parcels") is not None
-        assert bm_data.get("planted_parcel_count") is not None
+        assert bm_data.get("planted_case_count") is not None
         assert bm_data.get("planted_detected_count") is not None
-        assert bm_data["planted_detected_count"] == bm_data["planted_parcel_count"]
+        assert bm_data["planted_detected_count"] == bm_data["planted_case_count"]
 
 
 

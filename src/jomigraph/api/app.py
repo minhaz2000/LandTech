@@ -25,6 +25,7 @@ from jomigraph.api.schemas import (
     CitizenAlertDetail,
     CitizenParcelDetailResponse,
     CitizenReportResponse,
+    CitizenSimulateResponse,
     CoverageRowItem,
     EventDetail,
     HolderDetail,
@@ -53,12 +54,15 @@ from jomigraph.engine.rules import (
     check_r7,
 )
 from jomigraph.engine.simulate import hash_dataset, simulate
+from jomigraph.area_input import parse_area
 from jomigraph.i18n import translate
 from jomigraph.loader import Dataset, get_clean_false_alarms_and_coverage, load_dataset
 from jomigraph.models import Event, EventType, ParcelHistory, SurveyRecord, load_fraction
 
 
-DEFAULT_DATASET_PATH = Path("data/demo_family.json")
+# Anchored to this file, not the working directory, so the server starts
+# correctly from any folder. Layout: <repo>/src/jomigraph/api/app.py
+DEFAULT_DATASET_PATH = Path(__file__).resolve().parents[3] / "data" / "demo_family.json"
 
 EN_TO_BN_DIGITS = str.maketrans("0123456789", "০১২৩৪৫৬৭৮৯")
 BN_TO_EN_DIGITS = str.maketrans("০১২৩৪৫৬৭৮৯", "0123456789")
@@ -345,9 +349,16 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
     # -----------------------------------------------------------------------
     # GET /parcels?lang=bn|en
     # -----------------------------------------------------------------------
-    @app.get("/parcels", response_model=list[ParcelListItem])
-    def get_parcels(lang: str = Query("bn", pattern="^(bn|en)$")) -> list[ParcelListItem]:
-        """List all parcels with label, status summary, and planted/clean category."""
+    @app.get("/parcels", response_model=list[ParcelListItem], response_model_exclude_none=True)
+    def get_parcels(
+        lang: str = Query("bn", pattern="^(bn|en)$"),
+        role: str = Query("reviewer", pattern="^(citizen|reviewer)$"),
+    ) -> list[ParcelListItem]:
+        """
+        List all parcels with label and status summary.
+        The reviewer role also gets the staging fields (planted, category).
+        The citizen role never receives them. Demo role, not authentication.
+        """
         ds: Dataset = app.state.dataset
         items: list[ParcelListItem] = []
 
@@ -384,8 +395,8 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                     status_summary=status_summary,
                     status_summary_code=status_summary,
                     status_code=status_summary,
-                    planted=is_planted,
-                    category=category,
+                    planted=is_planted if role == "reviewer" else None,
+                    category=category if role == "reviewer" else None,
                 )
             )
 
@@ -535,14 +546,17 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
     # -----------------------------------------------------------------------
     # POST /simulate
     # -----------------------------------------------------------------------
-    @app.post("/simulate", response_model=SimulateResponse)
+    @app.post("/simulate", response_model=None)
     def post_simulate(
         payload: SimulateRequest,
         lang: Optional[str] = Query(None, pattern="^(bn|en)$"),
-    ) -> SimulateResponse:
+        role: str = Query("reviewer", pattern="^(citizen|reviewer)$"),
+    ) -> SimulateResponse | CitizenSimulateResponse:
         """
         Counterfactual simulation of a proposed transaction.
         Never mutates or persists any data in the dataset.
+        The citizen role gets a response without rule IDs, calculations or
+        evidence IDs. This is a demo role, not authentication.
         """
         ds: Dataset = app.state.dataset
         history = ds.get_history(payload.parcel_id)
@@ -553,7 +567,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
             )
 
         # Build proposed Event with exact Fraction area
-        prop_area = load_fraction(payload.area)
+        prop_area = parse_area(payload.area)
         
         # Determine from_person (support 'H' alias for holder in lab demo/parcels)
         from_person_id = payload.from_person
@@ -615,6 +629,30 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
 
         _, sim_status_code = compute_overall_status(sim_res.alerts, lang=active_lang)
 
+        requested = sim_res.proposed_event.area
+        seller_before = sim_res.available_before
+        excess = max(Fraction(0), requested - seller_before)
+
+        if role == "citizen":
+            citizen_alerts = [
+                CitizenAlertDetail(
+                    status=a.status,
+                    status_code=a.status_code,
+                    message=a.message,
+                    recommended_next_step=a.recommended_next_step,
+                )
+                for a in formatted_alerts
+            ]
+            return CitizenSimulateResponse(
+                requested_area=str(requested),
+                seller_available_before=str(seller_before),
+                seller_available_after=str(sim_res.available_after),
+                excess=str(excess),
+                alerts=citizen_alerts,
+                status_code=sim_status_code,
+                overall_status_code=sim_status_code,
+            )
+
         r1_calc_out = (
             localize_calculation(sim_res.r1_calculation, "R1", lang=active_lang)
             if sim_res.r1_calculation
@@ -636,6 +674,10 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
             ),
             available_before=str(sim_res.available_before),
             available_after=str(sim_res.available_after),
+            requested_area=str(requested),
+            seller_available_before=str(seller_before),
+            seller_available_after=str(sim_res.available_after),
+            excess=str(excess),
             r1_calculation=r1_calc_out,
             alerts=formatted_alerts,
             status_code=sim_status_code,
@@ -705,7 +747,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                 unchanged=(hash_before == hash_after),
             ),
             total_parcels=len(ds.histories),
-            planted_parcel_count=len(planted_rows),
+            planted_case_count=len(planted_rows),
             planted_detected_count=len(planted_detected),
         )
 

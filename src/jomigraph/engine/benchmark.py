@@ -41,7 +41,8 @@ class BenchmarkReport:
     total_parcels: int
     clean_parcel_count: int
     clean_false_alarm_count: int
-    planted_parcel_count: int
+    planted_parcel_count: int  # parcels carrying a planted problem (9)
+    planted_case_count: int  # distinct planted problems, one per rule (7)
     planted_detected_count: int
     coverage_table: tuple[RuleCoverageRow, ...]
 
@@ -51,6 +52,7 @@ class BenchmarkReport:
             "clean_parcel_count": self.clean_parcel_count,
             "clean_false_alarm_count": self.clean_false_alarm_count,
             "planted_parcel_count": self.planted_parcel_count,
+            "planted_case_count": self.planted_case_count,
             "planted_detected_count": self.planted_detected_count,
             "coverage_table": [
                 {
@@ -204,6 +206,7 @@ def evaluate_dataset(dataset: Dataset) -> BenchmarkReport:
         clean_parcel_count=len(clean_histories),
         clean_false_alarm_count=clean_false_alarms,
         planted_parcel_count=len(planted_histories),
+        planted_case_count=len(planted_targets),
         planted_detected_count=planted_detected,
         coverage_table=tuple(coverage_rows),
     )
