@@ -867,7 +867,8 @@ function renderParcelDetailContent(data) {
       ` : data.alerts.map((alert, idx) => {
         const sc = (alert.status_code || "").toUpperCase();
         const statusClass = sc === "CONTRADICTION" ? "status-contradiction" :
-                            sc === "REVIEW" ? "status-review" : "status-consistent";
+                            sc === "REVIEW" ? "status-review" :
+                            sc === "CONSISTENT" ? "status-consistent" : "status-unknown";
 
         if (isCitizen) {
           // CITIZEN ALERT: Only status, message, recommended next step. NO rule_id, calculation, evidence_ids.
@@ -1169,9 +1170,13 @@ function attachLabFormHandler(parcelId, isCitizen) {
       const simRes = await res.json();
       resultCard.style.display = "block";
 
-      const firstAlert = simRes.alerts && simRes.alerts[0];
-      const alertStatusCode = firstAlert ? firstAlert.status_code : (simRes.overall_status_code || "CONSISTENT");
-      const nextStep = firstAlert ? firstAlert.recommended_next_step : "";
+      const targetAlert = (simRes.alerts && (
+        simRes.alerts.find(a => a.status_code === "CONTRADICTION") ||
+        simRes.alerts.find(a => a.status_code === "REVIEW") ||
+        simRes.alerts[0]
+      )) || null;
+      const alertStatusCode = simRes.overall_status_code || simRes.status_code || (targetAlert ? targetAlert.status_code : "CONSISTENT");
+      const nextStep = targetAlert ? targetAlert.recommended_next_step : "";
 
       if (isCitizen) {
         // CITIZEN LAB: Status, plain-language sentence with numbers in words/numerals, next step, unchanged badge.
@@ -1224,9 +1229,9 @@ function attachLabFormHandler(parcelId, isCitizen) {
               </div>
             </div>
           </div>
-          ${firstAlert && firstAlert.calculation ? `
+          ${targetAlert && targetAlert.calculation ? `
             <div class="r1-calc-line">
-              <strong>${t("lab_calc_label")}</strong> <span>${firstAlert.calculation}</span>
+              <strong>${t("lab_calc_label")}</strong> <span>${targetAlert.calculation}</span>
             </div>
           ` : ""}
           ${nextStep ? `

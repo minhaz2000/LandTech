@@ -999,7 +999,12 @@ class TestBilingualCitizenAndUIStrings:
 
     def test_ui_badge_formatting_via_node(self):
         """Execute Node.js test_badges.js asserting badge classes across bn and en."""
+        import shutil
         import subprocess
+
+        if shutil.which("node") is None:
+            pytest.skip("Node.js is not installed; skipping UI JavaScript badge formatting test.")
+
         script_path = Path("tests/test_badges.js")
         assert script_path.is_file()
         result = subprocess.run(["node", str(script_path)], capture_output=True, text=True)

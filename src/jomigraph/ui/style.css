@@ -540,6 +540,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .alert-card.status-contradiction {
   border-left-color: #ef4444;
 }
+.alert-card.status-unknown {
+  border-left-color: #94a3b8;
+}
 
 .alert-header {
   display: flex;
