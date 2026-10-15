@@ -508,7 +508,10 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
     # POST /simulate
     # -----------------------------------------------------------------------
     @app.post("/simulate", response_model=SimulateResponse)
-    def post_simulate(payload: SimulateRequest) -> SimulateResponse:
+    def post_simulate(
+        payload: SimulateRequest,
+        lang: Optional[str] = Query(None, pattern="^(bn|en)$"),
+    ) -> SimulateResponse:
         """
         Counterfactual simulation of a proposed transaction.
         Never mutates or persists any data in the dataset.
@@ -566,23 +569,23 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
             deeds=ds.deeds,
         )
 
-        lang = payload.lang
+        active_lang = lang if lang is not None else (payload.lang or "bn")
 
         # Format alerts with localization
         formatted_alerts = [
             AlertDetail(
                 rule_id=a.rule_id,
-                status=localize_status(a.status.value, lang=lang),
-                message=translate(a.message_key, lang=lang),
-                recommended_next_step=translate(a.recommended_next_step, lang=lang),
+                status=localize_status(a.status.value, lang=active_lang),
+                message=translate(a.message_key, lang=active_lang),
+                recommended_next_step=translate(a.recommended_next_step, lang=active_lang),
                 evidence_ids=list(a.evidence_ids),
-                calculation=localize_calculation(a.calculation, a.rule_id, lang=lang),
+                calculation=localize_calculation(a.calculation, a.rule_id, lang=active_lang),
             )
             for a in sim_res.alerts
         ]
 
         r1_calc_out = (
-            localize_calculation(sim_res.r1_calculation, "R1", lang=lang)
+            localize_calculation(sim_res.r1_calculation, "R1", lang=active_lang)
             if sim_res.r1_calculation
             else None
         )

@@ -774,3 +774,87 @@ class TestReportEndpoint:
         """GET /report/{id} on non-existent parcel returns 404."""
         response = client.get("/report/NON_EXISTENT_PARCEL")
         assert response.status_code == 404
+
+
+# ---------------------------------------------------------------------------
+# 10. Bilingual / Citizen and UI String Synchronization Tests
+# ---------------------------------------------------------------------------
+
+class TestBilingualCitizenAndUIStrings:
+    def test_parcel_citizen_role_bilingual(self, client: TestClient):
+        """
+        Verify that for /parcel?role=citizen:
+        - When lang=bn: alert message and recommended_next_step appear in Bangla,
+          and overall_status is in Bangla.
+        - When lang=en: alert message and recommended_next_step appear in English,
+          and overall_status is in English.
+        """
+        # Contradiction planted parcel (PARCEL_PLANTED_R1)
+        res_bn = client.get("/parcel/PARCEL_PLANTED_R1?role=citizen&lang=bn")
+        assert res_bn.status_code == 200
+        data_bn = res_bn.json()
+        assert data_bn["overall_status"] == "অসঙ্গতি পাওয়া গেছে"
+        assert len(data_bn["alerts"]) > 0
+        for alert in data_bn["alerts"]:
+            assert alert["status"] == "অসঙ্গতি পাওয়া গেছে"
+            # Ensure message and recommended_next_step contain Bengali characters (\u0980-\u09FF)
+            assert any("\u0980" <= c <= "\u09FF" for c in alert["message"])
+            assert any("\u0980" <= c <= "\u09FF" for c in alert["recommended_next_step"])
+
+        res_en = client.get("/parcel/PARCEL_PLANTED_R1?role=citizen&lang=en")
+        assert res_en.status_code == 200
+        data_en = res_en.json()
+        assert data_en["overall_status"] == "Contradiction Found"
+        assert len(data_en["alerts"]) > 0
+        for alert in data_en["alerts"]:
+            assert alert["status"] == "Contradiction Found"
+            assert not any("\u0980" <= c <= "\u09FF" for c in alert["message"])
+            assert not any("\u0980" <= c <= "\u09FF" for c in alert["recommended_next_step"])
+
+        # Clean parcel (PARCEL_STORY_01)
+        res_clean_bn = client.get("/parcel/PARCEL_STORY_01?role=citizen&lang=bn")
+        assert res_clean_bn.status_code == 200
+        assert res_clean_bn.json()["overall_status"] == "সঙ্গতিপূর্ণ"
+        assert len(res_clean_bn.json()["alerts"]) == 0
+
+        res_clean_en = client.get("/parcel/PARCEL_STORY_01?role=citizen&lang=en")
+        assert res_clean_en.status_code == 200
+        assert res_clean_en.json()["overall_status"] == "Consistent with supplied records"
+        assert len(res_clean_en.json()["alerts"]) == 0
+
+    def test_strings_json_and_inlined_ui_strings_match(self):
+        """
+        Verify that the key sets of strings.json and the inlined ui_strings in app.js
+        differ neither for 'bn' nor for 'en'.
+        """
+        import json
+        import re
+
+        strings_path = Path("src/jomigraph/ui/strings.json")
+        app_js_path = Path("src/jomigraph/ui/app.js")
+
+        with open(strings_path, "r", encoding="utf-8") as f:
+            strings_data = json.load(f)
+
+        with open(app_js_path, "r", encoding="utf-8") as f:
+            app_js_content = f.read()
+
+        match = re.search(r"const\s+ui_strings\s*=\s*(\{[\s\S]*?\n\});", app_js_content)
+        assert match, "ui_strings constant not found in app.js"
+
+        ui_strings_data = json.loads(match.group(1))
+
+        for locale in ("bn", "en"):
+            assert locale in strings_data, f"Locale '{locale}' missing in strings.json"
+            assert locale in ui_strings_data, f"Locale '{locale}' missing in app.js ui_strings"
+
+            strings_keys = set(strings_data[locale].keys())
+            ui_keys = set(ui_strings_data[locale].keys())
+
+            diff_in_json = strings_keys - ui_keys
+            diff_in_js = ui_keys - strings_keys
+
+            assert not diff_in_json, f"Keys in strings.json but missing in app.js [{locale}]: {diff_in_json}"
+            assert not diff_in_js, f"Keys in app.js but missing in strings.json [{locale}]: {diff_in_js}"
+            assert strings_keys == ui_keys
+

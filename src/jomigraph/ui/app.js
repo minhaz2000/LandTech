@@ -135,7 +135,32 @@ const ui_strings = {
     "print_dataset_hash": "ডাটাবেজ হ্যাশ (SHA-256):",
     "lab_plain_consistent": "বিক্রেতার অংশ পর্যাপ্ত রয়েছে এবং হস্তান্তরের পর কোনো ঘাটতি নেই।",
     "lab_plain_excess_prefix": "বিক্রেতার পূর্বে প্রাপ্য অংশ",
-    "lab_plain_excess_mid": ", হস্তান্তরের পর অতিরিক্ত ঘাটতি"
+    "lab_plain_excess_mid": ", হস্তান্তরের পর অতিরিক্ত ঘাটতি",
+    "event_type_sale": "বিক্রয়",
+    "event_type_gift": "দান/হেবা",
+    "event_type_mutation": "নামজারি",
+    "event_type_subdivide": "উপ-বিভাগ",
+    "event_type_cancel": "বাতিল",
+    "event_type_correct": "সংশোধন",
+    "dag_label": "দাগ",
+    "khatian_label_inline": "খতিয়ান",
+    "survey_label_inline": "জরিপ",
+    "tech_details_summary": "কারিগরি বিবরণ ও সিস্টেম আইডি",
+    "tech_system_id": "সিস্টেম আইডি:",
+    "tech_parent_id": "প্যারেন্ট দাগ আইডি:",
+    "loading_parcels": "লোড হচ্ছে...",
+    "loading_parcel_details": "লোড হচ্ছে...",
+    "loading_benchmark": "লোড হচ্ছে...",
+    "total_parcels_label": "মোট দাগ",
+    "planted_detected_label": "চিহ্নিত পরীক্ষামূলক কেস",
+    "undated_label": "অনির্ধারিত",
+    "survey_unit": "জরিপ",
+    "print_parcel_label": "দাগের পরিচিতি:",
+    "print_mouza_label": "মৌজা:",
+    "print_dag_no_label": "দাগ নং:",
+    "print_overall_status_label": "সার্বিক স্থিতি:",
+    "print_disclaimer_label": "আইনি সতর্কবার্তা:",
+    "proposed_buyer_label": "প্রস্তাবিত ক্রেতা"
   },
   "en": {
     "app_title": "JomiGraph AI",
@@ -264,7 +289,32 @@ const ui_strings = {
     "print_dataset_hash": "Dataset Hash (SHA-256):",
     "lab_plain_consistent": "Seller has sufficient share and no deficit after transfer.",
     "lab_plain_excess_prefix": "Seller's available share before: ",
-    "lab_plain_excess_mid": ", excess deficit after transfer: "
+    "lab_plain_excess_mid": ", excess deficit after transfer: ",
+    "event_type_sale": "Sale",
+    "event_type_gift": "Gift",
+    "event_type_mutation": "Mutation",
+    "event_type_subdivide": "Subdivision",
+    "event_type_cancel": "Cancellation",
+    "event_type_correct": "Correction",
+    "dag_label": "Dag",
+    "khatian_label_inline": "Khatian",
+    "survey_label_inline": "Survey",
+    "tech_details_summary": "Technical Details & System ID",
+    "tech_system_id": "System Parcel ID:",
+    "tech_parent_id": "Parent Parcel ID:",
+    "loading_parcels": "Loading parcels...",
+    "loading_parcel_details": "Loading parcel...",
+    "loading_benchmark": "Loading benchmark report...",
+    "total_parcels_label": "Total Parcels",
+    "planted_detected_label": "Planted Cases Detected",
+    "undated_label": "Undated",
+    "survey_unit": "Survey",
+    "print_parcel_label": "Parcel:",
+    "print_mouza_label": "Mouza:",
+    "print_dag_no_label": "Dag No:",
+    "print_overall_status_label": "Overall Status:",
+    "print_disclaimer_label": "Disclaimer:",
+    "proposed_buyer_label": "Proposed buyer"
   }
 };
 
@@ -577,7 +627,7 @@ async function renderParcelsScreen() {
 
     <!-- Main Parcels List (Never shows planted/category tags) -->
     <div id="parcels-container" class="parcel-list-grid">
-      <p style="color: var(--text-muted); padding: 2rem 0;">${currentLang === "bn" ? "লোড হচ্ছে..." : "Loading parcels..."}</p>
+      <p style="color: var(--text-muted); padding: 2rem 0;">${t("loading_parcels")}</p>
     </div>
   `;
 
@@ -689,7 +739,7 @@ async function renderParcelDetailScreen(parcelId) {
       </div>
     </div>
     <div id="parcel-detail-content">
-      <p style="color: var(--text-muted); padding: 2rem 0;">${currentLang === "bn" ? "লোড হচ্ছে..." : "Loading parcel..."}</p>
+      <p style="color: var(--text-muted); padding: 2rem 0;">${t("loading_parcel_details")}</p>
     </div>
     <div id="print-modal-container"></div>
   `;
@@ -941,7 +991,7 @@ function renderParcelDetailContent(data) {
                     <strong>#${ev.seq} [${ev.type}]</strong>
                     ${!isCitizen ? `ID: <code>${ev.id}</code>` : ""}
                   </span>
-                  <span>📅 ${ev.event_date || (currentLang === "bn" ? "অনির্ধারিত" : "Undated")}</span>
+                  <span>📅 ${ev.event_date || t("undated_label")}</span>
                 </div>
                 ${isImpacted ? `
                   <div class="impact-event-badge">
@@ -968,7 +1018,7 @@ function renderParcelDetailContent(data) {
         ${(data.survey_records || []).map(sr => `
           <div class="timeline-row-card" id="survey-row-${sr.id}">
             <div class="timeline-meta-row">
-              <span><strong>${sr.survey} ${currentLang === "bn" ? "জরিপ" : "Survey"}</strong> ${!isCitizen ? `(<code>${sr.id}</code>)` : ""}</span>
+              <span><strong>${sr.survey} ${t("survey_unit")}</strong> ${!isCitizen ? `(<code>${sr.id}</code>)` : ""}</span>
               <span>📅 ${sr.record_date}</span>
             </div>
             <div class="timeline-data-grid">
@@ -1098,7 +1148,7 @@ function attachLabFormHandler(parcelId, isCitizen) {
     };
 
     try {
-      const res = await fetch("/simulate", {
+      const res = await fetch(`/simulate?lang=${currentLang}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -1210,7 +1260,7 @@ async function renderBenchmarkScreen() {
       </summary>
 
       <div id="benchmark-content-box" style="padding-top: 1rem;">
-        <p style="color: var(--text-muted);">${currentLang === "bn" ? "লোড হচ্ছে..." : "Loading benchmark report..."}</p>
+        <p style="color: var(--text-muted);">${t("loading_benchmark")}</p>
       </div>
     </details>
   `;
@@ -1227,7 +1277,7 @@ async function renderBenchmarkScreen() {
       <div class="benchmark-metrics-grid">
         <div class="metric-card">
           <div class="metric-num">${currentLang === "bn" ? toBanglaDigits(data.total_parcels) : data.total_parcels}</div>
-          <div class="metric-label">${currentLang === "bn" ? "মোট দাগ" : "Total Parcels"}</div>
+          <div class="metric-label">${t("total_parcels_label")}</div>
         </div>
         <div class="metric-card">
           <div class="metric-num">${currentLang === "bn" ? toBanglaDigits(data.clean_false_alarm_count) : data.clean_false_alarm_count}</div>
@@ -1235,7 +1285,7 @@ async function renderBenchmarkScreen() {
         </div>
         <div class="metric-card">
           <div class="metric-num">${currentLang === "bn" ? toBanglaDigits(data.planted_detected_count) : data.planted_detected_count} / ${currentLang === "bn" ? toBanglaDigits(data.planted_parcel_count) : data.planted_parcel_count}</div>
-          <div class="metric-label">${currentLang === "bn" ? "চিহ্নিত পরীক্ষামূলক কেস" : "Planted Cases Detected"}</div>
+          <div class="metric-label">${t("planted_detected_label")}</div>
         </div>
       </div>
 
@@ -1290,15 +1340,15 @@ async function openPrintReport(parcelId) {
         <div class="print-header">
           <h1 class="print-title">${t("print_report_title")}</h1>
           <div class="print-meta-grid">
-            <div><strong>${currentLang === "bn" ? "দাগের পরিচিতি:" : "Parcel:"}</strong> ${report.parcel?.label || report.parcel_id}</div>
-            <div><strong>${currentLang === "bn" ? "মৌজা:" : "Mouza:"}</strong> ${report.parcel?.mouza || "—"}, ${currentLang === "bn" ? "দাগ নং:" : "Dag No:"} ${report.parcel?.dag_no || "—"}</div>
+            <div><strong>${t("print_parcel_label")}</strong> ${report.parcel?.label || report.parcel_id}</div>
+            <div><strong>${t("print_mouza_label")}</strong> ${report.parcel?.mouza || "—"}, <strong>${t("print_dag_no_label")}</strong> ${report.parcel?.dag_no || "—"}</div>
             <div><strong>${t("current_role_label")}</strong> ${report.role === "citizen" ? t("role_citizen_badge") : t("role_reviewer_badge")}</div>
             <div><strong>${t("print_generated_at")}</strong> ${dateStr}</div>
           </div>
         </div>
 
         <div class="print-overall-status">
-          <strong>${currentLang === "bn" ? "সার্বিক স্থিতি:" : "Overall Status:"}</strong>
+          <strong>${t("print_overall_status_label")}</strong>
           ${formatStatusBadge(report.overall_status)}
         </div>
 
@@ -1352,7 +1402,7 @@ async function openPrintReport(parcelId) {
             <table class="print-table">
               <thead>
                 <tr>
-                  <th>${currentLang === "bn" ? "জরিপ" : "Survey"}</th>
+                  <th>${t("survey_unit")}</th>
                   <th>${t("khatian_label")}</th>
                   <th>${t("col_date")}</th>
                   <th>${t("recorded_area_label")}</th>
@@ -1376,7 +1426,7 @@ async function openPrintReport(parcelId) {
 
         <div class="print-footer">
           <div class="print-disclaimer">
-            <strong>${currentLang === "bn" ? "আইনি সতর্কবার্তা:" : "Disclaimer:"}</strong> ${report.disclaimer}
+            <strong>${t("print_disclaimer_label")}</strong> ${report.disclaimer}
           </div>
           <div class="print-hash">
             <strong>${t("print_dataset_hash")}</strong> <code>${report.dataset_hash}</code>

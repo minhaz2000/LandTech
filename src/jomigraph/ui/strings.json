@@ -138,7 +138,20 @@
     "survey_label_inline": "জরিপ",
     "tech_details_summary": "কারিগরি বিবরণ ও সিস্টেম আইডি",
     "tech_system_id": "সিস্টেম আইডি:",
-    "tech_parent_id": "প্যারেন্ট দাগ আইডি:"
+    "tech_parent_id": "প্যারেন্ট দাগ আইডি:",
+    "loading_parcels": "লোড হচ্ছে...",
+    "loading_parcel_details": "লোড হচ্ছে...",
+    "loading_benchmark": "লোড হচ্ছে...",
+    "total_parcels_label": "মোট দাগ",
+    "planted_detected_label": "চিহ্নিত পরীক্ষামূলক কেস",
+    "undated_label": "অনির্ধারিত",
+    "survey_unit": "জরিপ",
+    "print_parcel_label": "দাগের পরিচিতি:",
+    "print_mouza_label": "মৌজা:",
+    "print_dag_no_label": "দাগ নং:",
+    "print_overall_status_label": "সার্বিক স্থিতি:",
+    "print_disclaimer_label": "আইনি সতর্কবার্তা:",
+    "proposed_buyer_label": "প্রস্তাবিত ক্রেতা"
   },
   "en": {
     "app_title": "JomiGraph AI",
@@ -279,6 +292,19 @@
     "survey_label_inline": "Survey",
     "tech_details_summary": "Technical Details & System ID",
     "tech_system_id": "System Parcel ID:",
-    "tech_parent_id": "Parent Parcel ID:"
+    "tech_parent_id": "Parent Parcel ID:",
+    "loading_parcels": "Loading parcels...",
+    "loading_parcel_details": "Loading parcel...",
+    "loading_benchmark": "Loading benchmark report...",
+    "total_parcels_label": "Total Parcels",
+    "planted_detected_label": "Planted Cases Detected",
+    "undated_label": "Undated",
+    "survey_unit": "Survey",
+    "print_parcel_label": "Parcel:",
+    "print_mouza_label": "Mouza:",
+    "print_dag_no_label": "Dag No:",
+    "print_overall_status_label": "Overall Status:",
+    "print_disclaimer_label": "Disclaimer:",
+    "proposed_buyer_label": "Proposed buyer"
   }
 }
