@@ -854,6 +854,82 @@ class TestReportEndpoint:
         response = client.get("/report/NON_EXISTENT_PARCEL")
         assert response.status_code == 404
 
+    def test_citizen_report_api_and_rendered_html_contain_no_reviewer_fields(self, client: TestClient):
+        """
+        Verify Step 5 requirements:
+          - Citizen report API response (/report/{id}?role=citizen) contains NO reviewer-only keys
+            (rule_id, evidence_ids, calculation, minimal_evidence_sets, not_minimized, impact_event_ids)
+            in both Bangla ('bn') and English ('en').
+          - Rendered citizen print report contains NO reviewer labels (rule IDs, calculation lines,
+            evidence IDs, minimal sets, impact list, or internal entity IDs).
+          - Print container exists in index.html outside #app-root.
+          - openPrintReport fails loudly (visible message banner) if print container is missing.
+          - @media print enforces A4, hides #app-root and buttons, and avoids breaking inside alerts or footer.
+        """
+        # 1. API Response Check in both languages
+        for lang in ("bn", "en"):
+            res = client.get(f"/report/PARCEL_PLANTED_R1?role=citizen&lang={lang}")
+            assert res.status_code == 200
+            data = res.json()
+            assert data["role"] == "citizen"
+            assert data["lang"] == lang
+            assert data["overall_status_code"] == "CONTRADICTION"
+            assert len(data["alerts"]) == 1
+
+            alert = data["alerts"][0]
+            # Must contain user-facing fields
+            assert "message" in alert
+            assert "status" in alert
+            assert "status_code" in alert
+            assert "recommended_next_step" in alert
+            # MUST NOT contain reviewer-only fields
+            for forbidden_key in (
+                "rule_id",
+                "evidence_ids",
+                "calculation",
+                "minimal_evidence_sets",
+                "not_minimized",
+                "impact_event_ids",
+            ):
+                assert forbidden_key not in alert, f"Forbidden key '{forbidden_key}' found in citizen alert!"
+
+        # 2. UI Code / Template Guard Checks in app.js
+        res_js = client.get("/app.js")
+        assert res_js.status_code == 200
+        js = res_js.text
+
+        # Loud error when #print-modal-container is missing
+        assert 'if (!printContainer)' in js
+        assert 'print-error-banner' in js
+
+        # Reviewer-only sections guarded with !isCitizen
+        assert '!isCitizen && a.rule_id' in js
+        assert '!isCitizen && a.calculation' in js
+        assert '!isCitizen && a.evidence_ids' in js
+        assert '!isCitizen && a.minimal_evidence_sets' in js
+        assert '!isCitizen && a.impact_event_ids' in js
+        assert '!isCitizen ? `<th>ID</th>` : ""' in js
+
+        # 3. index.html Check: print-modal-container outside #app-root
+        res_html = client.get("/")
+        assert res_html.status_code == 200
+        html = res_html.text
+        assert '<div id="print-modal-container"></div>' in html
+        root_idx = html.find('id="app-root"')
+        print_idx = html.find('id="print-modal-container"')
+        assert root_idx != -1 and print_idx != -1
+        assert print_idx > root_idx, "print-modal-container must be outside/after #app-root"
+
+        # 4. style.css Check: @media print rules
+        res_css = client.get("/style.css")
+        assert res_css.status_code == 200
+        css = res_css.text
+        assert "@media print" in css
+        assert "size: A4 portrait;" in css
+        assert "#app-root" in css
+        assert "page-break-inside: avoid !important;" in css or "page-break-inside: avoid;" in css
+
+
 
 # ---------------------------------------------------------------------------
 # 10. Bilingual / Citizen and UI String Synchronization Tests

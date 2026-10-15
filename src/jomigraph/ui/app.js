@@ -797,7 +797,6 @@ async function renderParcelDetailScreen(parcelId) {
     <div id="parcel-detail-content">
       <p style="color: var(--text-muted); padding: 2rem 0;">${t("loading_parcel_details")}</p>
     </div>
-    <div id="print-modal-container"></div>
   `;
 
   document.getElementById("print-report-btn")?.addEventListener("click", () => {
@@ -1426,6 +1425,25 @@ async function renderBenchmarkScreen() {
 // ---------------------------------------------------------------------------
 
 async function openPrintReport(parcelId) {
+  const printContainer = document.getElementById("print-modal-container");
+  if (!printContainer) {
+    const errorMsg = currentLang === "bn"
+      ? "ত্রুটি: প্রিন্ট কন্টেইনার (#print-modal-container) পাওয়া যায়নি।"
+      : "Error: Print container (#print-modal-container) is missing from DOM.";
+    console.error(errorMsg);
+    let errBanner = document.getElementById("print-error-banner");
+    if (!errBanner) {
+      errBanner = document.createElement("div");
+      errBanner.id = "print-error-banner";
+      errBanner.className = "form-error-msg visible";
+      errBanner.setAttribute("role", "alert");
+      const root = document.getElementById("app-root") || document.body;
+      root.prepend(errBanner);
+    }
+    errBanner.textContent = errorMsg;
+    return;
+  }
+
   try {
     const res = await fetch(`/report/${encodeURIComponent(parcelId)}?lang=${currentLang}&role=${currentRole || "citizen"}`);
     if (!res.ok) throw new Error("Failed to fetch report");
@@ -1434,15 +1452,12 @@ async function openPrintReport(parcelId) {
     const isCitizen = report.role === "citizen";
     const dateStr = new Date().toISOString().split("T")[0];
 
-    const printContainer = document.getElementById("print-modal-container");
-    if (!printContainer) return;
-
     printContainer.innerHTML = `
       <div class="print-document">
         <div class="print-header">
           <h1 class="print-title">${t("print_report_title")}</h1>
           <div class="print-meta-grid">
-            <div><strong>${t("print_parcel_label")}</strong> ${report.parcel?.label || report.parcel_id}</div>
+            <div><strong>${t("print_parcel_label")}</strong> ${report.parcel?.label || report.parcel_id} ${!isCitizen ? `<code>(${report.parcel_id})</code>` : ""}</div>
             <div><strong>${t("print_mouza_label")}</strong> ${report.parcel?.mouza || "—"}, <strong>${t("print_dag_no_label")}</strong> ${report.parcel?.dag_no || "—"}</div>
             <div><strong>${t("current_role_label")}</strong> ${report.role === "citizen" ? t("role_citizen_badge") : t("role_reviewer_badge")}</div>
             <div><strong>${t("print_generated_at")}</strong> ${dateStr}</div>
@@ -1454,6 +1469,15 @@ async function openPrintReport(parcelId) {
           ${formatStatusBadge(report.overall_status_code)}
         </div>
 
+        ${report.recommended_next_steps && report.recommended_next_steps.length > 0 ? `
+          <div class="print-section">
+            <h2>${t("next_step_label")}</h2>
+            <ul class="print-next-steps-list">
+              ${report.recommended_next_steps.map(step => `<li>${step}</li>`).join("")}
+            </ul>
+          </div>
+        ` : ""}
+
         <div class="print-section">
           <h2>${t("alerts_heading")}</h2>
           ${report.alerts.length === 0 ? `
@@ -1461,11 +1485,68 @@ async function openPrintReport(parcelId) {
           ` : report.alerts.map(a => `
             <div class="print-alert-item">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>${!isCitizen && a.rule_id ? `<strong>[${a.rule_id}]</strong> ` : ""}${a.message}</span>
+                <span>
+                  ${!isCitizen && a.rule_id ? `<strong class="print-rule-id">[${a.rule_id}]</strong> ` : ""}
+                  ${a.message}
+                </span>
                 <span>${formatStatusBadge(a.status_code)}</span>
               </div>
-              ${!isCitizen && a.calculation ? `<div style="font-size: 0.9rem; margin-top: 0.25rem;"><em>${a.calculation}</em></div>` : ""}
-              ${a.recommended_next_step ? `<div style="margin-top: 0.25rem;"><strong>${t("next_step_label")}</strong> ${a.recommended_next_step}</div>` : ""}
+
+              ${!isCitizen && a.calculation ? `
+                <div class="print-alert-calc">
+                  <strong>${currentLang === "bn" ? "হিসাব:" : "Calculation:"}</strong> <em>${a.calculation}</em>
+                </div>
+              ` : ""}
+
+              ${!isCitizen && a.evidence_ids && a.evidence_ids.length > 0 ? `
+                <div class="print-alert-evidence">
+                  <strong>${currentLang === "bn" ? "প্রাসঙ্গিক প্রমাণাদি:" : "Evidence IDs:"}</strong>
+                  ${a.evidence_ids.map(eid => `<code>${eid}</code>`).join(", ")}
+                </div>
+              ` : ""}
+
+              ${!isCitizen && a.minimal_evidence_sets && a.minimal_evidence_sets.length > 0 ? `
+                <div class="print-minimal-evidence">
+                  <strong>${t("minimal_evidence_heading")}</strong>
+                  ${a.not_minimized ? `
+                    <span class="print-warning">⚠️ ${t("not_minimized_warning")}</span>
+                  ` : ""}
+                  <div style="margin-top: 0.25rem;">
+                    ${a.minimal_evidence_sets.map((mSet, sIdx) => `
+                      <div>
+                        ${a.minimal_evidence_sets.length > 1 ? `<span>${t("alt_set_label")} ${sIdx + 1}:</span> ` : ""}
+                        ${mSet.map(sid => `<code>${sid}</code>`).join(", ")}
+                      </div>
+                    `).join("")}
+                  </div>
+                </div>
+              ` : ""}
+
+              ${!isCitizen && a.impact_event_ids && a.impact_event_ids.length > 0 ? `
+                <div class="print-alert-impacts">
+                  <strong>${t("impact_heading")}:</strong>
+                  <ul class="print-impacts-list" style="margin: 0.25rem 0 0 1.25rem; padding: 0;">
+                    ${a.impact_event_ids.map(impId => {
+                      const ev = (report.records?.events || []).find(e => e.id === impId);
+                      if (ev) {
+                        const evType = t("event_type_" + (ev.type || "").toLowerCase()) || ev.type;
+                        const fromP = ev.from_person_name || ev.from_person || "—";
+                        const toP = ev.to_person_name || ev.to_person || "—";
+                        const areaStr = formatAreaNumber(ev.area);
+                        return `<li>⚠️ 📅 ${ev.event_date || "—"} | <strong>${evType}</strong> | ${t("col_from")}: ${fromP} ➔ ${t("col_to")}: ${toP} | ${t("col_area")}: ${areaStr} ${t("lab_decimals_unit")} ${ev.deed_id ? `(${ev.deed_id})` : ""}</li>`;
+                      } else {
+                        return `<li>⚠️ <code>${impId}</code></li>`;
+                      }
+                    }).join("")}
+                  </ul>
+                </div>
+              ` : ""}
+
+              ${a.recommended_next_step ? `
+                <div style="margin-top: 0.35rem;">
+                  <strong>${t("next_step_label")}</strong> ${a.recommended_next_step}
+                </div>
+              ` : ""}
             </div>
           `).join("")}
         </div>
@@ -1481,6 +1562,7 @@ async function openPrintReport(parcelId) {
                   <th>${t("col_from")}</th>
                   <th>${t("col_to")}</th>
                   <th>${t("col_area")}</th>
+                  ${!isCitizen ? `<th>ID</th>` : ""}
                 </tr>
               </thead>
               <tbody>
@@ -1490,7 +1572,8 @@ async function openPrintReport(parcelId) {
                     <td>${t("event_type_" + (ev.type || "").toLowerCase()) || ev.type}</td>
                     <td>${ev.from_person_name || ev.from_person || "—"}</td>
                     <td>${ev.to_person_name || ev.to_person || "—"}</td>
-                    <td>${formatAreaNumber(ev.area)}</td>
+                    <td>${formatAreaNumber(ev.area)} ${t("lab_decimals_unit")}</td>
+                    ${!isCitizen ? `<td><code>${ev.id}</code></td>` : ""}
                   </tr>
                 `).join("")}
               </tbody>
@@ -1509,6 +1592,7 @@ async function openPrintReport(parcelId) {
                   <th>${t("col_date")}</th>
                   <th>${t("recorded_area_label")}</th>
                   <th>${t("holders_label")}</th>
+                  ${!isCitizen ? `<th>ID</th>` : ""}
                 </tr>
               </thead>
               <tbody>
@@ -1517,8 +1601,9 @@ async function openPrintReport(parcelId) {
                     <td>${sr.survey}</td>
                     <td>${formatAreaNumber(sr.khatian_no)}</td>
                     <td>${sr.record_date}</td>
-                    <td>${formatAreaNumber(sr.recorded_area)}</td>
-                    <td>${sr.holders.map(h => `${h.person_name} (${formatAreaNumber(h.area)})`).join(", ")}</td>
+                    <td>${formatAreaNumber(sr.recorded_area)} ${t("lab_decimals_unit")}</td>
+                    <td>${sr.holders.map(h => `${h.person_name}${!isCitizen ? ` (${h.person_id})` : ""} (${formatAreaNumber(h.area)} ${t("lab_decimals_unit")})`).join(", ")}</td>
+                    ${!isCitizen ? `<td><code>${sr.id}</code></td>` : ""}
                   </tr>
                 `).join("")}
               </tbody>
@@ -1539,7 +1624,17 @@ async function openPrintReport(parcelId) {
 
     window.print();
   } catch (e) {
-    alert(t("error_simulate_failed"));
+    console.error("Failed to generate print report:", e);
+    let errBanner = document.getElementById("print-error-banner");
+    if (!errBanner) {
+      errBanner = document.createElement("div");
+      errBanner.id = "print-error-banner";
+      errBanner.className = "form-error-msg visible";
+      errBanner.setAttribute("role", "alert");
+      const root = document.getElementById("app-root") || document.body;
+      root.prepend(errBanner);
+    }
+    errBanner.textContent = t("error_simulate_failed") || "Failed to load report for printing.";
   }
 }
 

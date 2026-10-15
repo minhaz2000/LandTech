@@ -1415,14 +1415,20 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     color: #000000 !important;
   }
 
-  .app-header, .app-footer, .disclaimer-banner, .detail-top-nav,
+  /* Completely hide all screen elements, headers, navigation, buttons, and app-root */
+  #app-root, .app-header, .app-footer, .disclaimer-banner,
+  .detail-top-nav, .nav-links, .role-controls, .lang-toggle,
+  button, input, select, form, #simulation-lab, .back-link,
   .summary-card, .alerts-section, .graph-section, .timeline-section,
-  .survey-section, #simulation-lab, .back-link, button {
+  .survey-section {
     display: none !important;
   }
 
   #print-modal-container {
     display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .print-document {
@@ -1470,12 +1476,44 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     margin-bottom: 0.75rem;
   }
 
+  .print-next-steps-list {
+    margin: 0.35rem 0 0.5rem 1.25rem;
+    padding: 0;
+  }
+
+  .print-next-steps-list li {
+    margin-bottom: 0.25rem;
+  }
+
   .print-alert-item {
     border: 1px solid #cccccc;
     padding: 0.75rem;
-    margin-bottom: 0.5rem;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    margin-bottom: 0.65rem;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-rule-id {
+    font-family: monospace;
+    font-weight: 700;
+    margin-right: 0.4rem;
+  }
+
+  .print-alert-calc,
+  .print-alert-evidence,
+  .print-minimal-evidence,
+  .print-alert-impacts {
+    font-size: 9pt;
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px dashed #cbd5e1;
+  }
+
+  .print-warning {
+    color: #b45309;
+    font-weight: 600;
+    font-size: 8.5pt;
+    margin-left: 0.5rem;
   }
 
   .print-table {
@@ -1501,8 +1539,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     padding-top: 1rem;
     border-top: 1px solid #000000;
     font-size: 9pt;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-disclaimer,
+  .print-hash {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   .print-disclaimer {
