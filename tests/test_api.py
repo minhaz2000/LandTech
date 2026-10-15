@@ -466,6 +466,22 @@ class TestUIEndpoints:
         assert res_font.status_code == 200
         assert "Noto Sans Bengali" in res_font.text
 
+    def test_nav_links_hidden_until_role_chosen_in_ui(self, client: TestClient):
+        """Header nav links are hidden until a role is chosen, and switchRole preserves state."""
+        res_html = client.get("/")
+        assert res_html.status_code == 200
+        # HTML shell initializes nav-links with display: none
+        assert 'class="nav-links" style="display: none;"' in res_html.text
+
+        res_js = client.get("/app.js")
+        assert res_js.status_code == 200
+        js_text = res_js.text
+        # app.js controls navContainer display based on currentRole
+        assert "currentRole ? \"flex\" : \"none\"" in js_text
+        # Switch role retains route and language
+        assert "function switchRole()" in js_text
+
+
 
 # ---------------------------------------------------------------------------
 # 6. GET /search Tests

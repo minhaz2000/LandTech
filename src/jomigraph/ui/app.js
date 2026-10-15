@@ -394,6 +394,12 @@ function updateGlobalChrome() {
   document.getElementById("brand-subtitle").textContent = t("app_subtitle");
   document.getElementById("disclaimer-banner").textContent = t("disclaimer_banner");
 
+  // Navigation Links: Hidden until a role is chosen (Step 2)
+  const navContainer = document.querySelector(".nav-links");
+  if (navContainer) {
+    navContainer.style.display = currentRole ? "flex" : "none";
+  }
+
   document.getElementById("nav-home").textContent = t("nav_home");
   document.getElementById("nav-parcels").textContent = t("nav_parcels");
 
