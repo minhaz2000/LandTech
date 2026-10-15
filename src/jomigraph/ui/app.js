@@ -66,7 +66,7 @@ const ui_strings = {
     "lab_desc": "বর্তমান রেকর্ড অপরিবর্তিত রেখে কাল্পনিক একটি বিক্রয় প্রস্তাব যাচাই করুন।",
     "lab_from_label": "বিক্রেতা (রেকর্ডভুক্ত অংশীদার নির্বাচন করুন):",
     "lab_to_label": "ক্রেতার নাম/আইডি:",
-    "lab_area_label": "বিক্রির পরিমাণ (শতক - পূর্ণসংখ্যা বা ভগ্নাংশ, যেমন ৫ বা ৭/২):",
+    "lab_area_label": "বিক্রির পরিমাণ (শতক, যেমন ৫, ২.৫ বা ৭/২):",
     "lab_date_label": "প্রস্তাবিত তারিখ (ঐচ্ছিক):",
     "lab_portion_label": "অংশ বা প্লট আইডি (ঐচ্ছিক):",
     "lab_submit_btn": "হস্তান্তর যাচাই করুন",
@@ -82,7 +82,11 @@ const ui_strings = {
     "lab_calc_label": "গণনা লাইন:",
     "lab_decimals_unit": "শতক",
     "error_empty_fields": "অনুগ্রহ করে বিক্রেতা, ক্রেতা এবং জমির পরিমাণ সঠিকভাবে পূরণ করুন।",
-    "error_float_area": "দশমিক সংখ্যা গ্রহণযোগ্য নয় (যেমন ৫.৫)। পূর্ণসংখ্যা (৫) বা ভগ্নাংশ (১১/২) লিখুন।",
+    "lab_area_placeholder": "যেমন ৫, ২.৫ বা ৭/২",
+    "error_area_not_positive": "পরিমাণ শূন্যের চেয়ে বেশি হতে হবে।",
+    "error_area_format": "পূর্ণসংখ্যা (৫), দশমিক (২.৫) বা ভগ্নাংশ (৫/২) লিখুন।",
+    "error_area_too_large": "পরিমাণটি অস্বাভাবিক বেশি। সংখ্যাটি আবার দেখুন।",
+    "error_server_unreachable": "সার্ভারের সাথে যোগাযোগ করা যায়নি। সংযোগ দেখে আবার চেষ্টা করুন।",
     "error_unknown_person": "বিক্রেতা হিসেবে একজন রেকর্ডভুক্ত ব্যক্তি নির্বাচন করুন।",
     "error_simulate_failed": "সিমুলেশন সম্পন্ন করা সম্ভব হয়নি। অনুগ্রহ করে তথ্য পুনরায় পরীক্ষা করুন।",
     "benchmark_heading": "সিস্টেম বেঞ্চমার্ক ও নির্ভরযোগ্যতা",
@@ -221,7 +225,7 @@ const ui_strings = {
     "lab_desc": "Test a hypothetical sale counterfactually without modifying or persisting original records.",
     "lab_from_label": "Seller (select recorded holder):",
     "lab_to_label": "Buyer name/ID:",
-    "lab_area_label": "Transfer Area (decimals - integer or fraction, e.g. 5 or 7/2):",
+    "lab_area_label": "Transfer area (decimals, e.g. 5, 2.5 or 7/2):",
     "lab_date_label": "Proposed Date (optional):",
     "lab_portion_label": "Portion ID (optional):",
     "lab_submit_btn": "Simulate Transfer",
@@ -237,7 +241,11 @@ const ui_strings = {
     "lab_calc_label": "Calculation Line:",
     "lab_decimals_unit": "decimals",
     "error_empty_fields": "Please fill seller, buyer, and area fields correctly.",
-    "error_float_area": "Decimal float values (e.g. 5.5) are rejected. Enter an integer (5) or fraction (11/2).",
+    "lab_area_placeholder": "e.g. 5, 2.5 or 7/2",
+    "error_area_not_positive": "Area must be greater than zero.",
+    "error_area_format": "Enter a whole number (5), a decimal (2.5) or a fraction (5/2).",
+    "error_area_too_large": "That area is larger than any plausible parcel. Check the number.",
+    "error_server_unreachable": "Could not reach the server. Check the connection and try again.",
     "error_unknown_person": "Please select a recorded holder as the seller.",
     "error_simulate_failed": "Simulation failed. Please verify the input values.",
     "benchmark_heading": "System Benchmark & Integrity",
@@ -380,9 +388,69 @@ function toBanglaDigits(val) {
   return String(val).replace(/[0-9]/g, d => enToBn[d] || d);
 }
 
+// Exact fraction string ("5/2", "-3/10", "7") -> readable decimal when the
+// decimal terminates ("2.5"), otherwise the fraction itself. Integer-only
+// arithmetic, so no floating-point rounding is involved.
+function fractionToDisplay(val) {
+  const m = /^(-?)(\d+)(?:\/(\d+))?$/.exec(String(val).trim());
+  if (!m) return String(val);
+  const sign = m[1];
+  const num = BigInt(m[2]);
+  const den = m[3] ? BigInt(m[3]) : 1n;
+  if (den === 0n) return String(val);
+  if (den === 1n) return sign + num.toString();
+  for (let k = 1; k <= 6; k++) {
+    const scale = 10n ** BigInt(k);
+    if ((num * scale) % den === 0n) {
+      const scaled = ((num * scale) / den).toString().padStart(k + 1, "0");
+      const cut = scaled.length - k;
+      const out = scaled.slice(0, cut) + "." + scaled.slice(cut);
+      return sign + out.replace(/0+$/, "").replace(/\.$/, "");
+    }
+  }
+  return sign + num.toString() + "/" + den.toString();
+}
+
 function formatAreaNumber(val) {
   if (val === null || val === undefined) return "—";
-  return currentLang === "bn" ? toBanglaDigits(val) : String(val);
+  const shown = fractionToDisplay(val);
+  return currentLang === "bn" ? toBanglaDigits(shown) : shown;
+}
+
+// Area text typed by a person -> { ok: true } or { ok: false, key: <string key> }.
+// Mirrors the server rules in area_input.py so errors appear instantly.
+function checkAreaInput(raw) {
+  const bn = "০১২৩৪৫৬৭৮৯";
+  const text = String(raw).trim().replace(/[০-৯]/g, d => String(bn.indexOf(d)));
+  if (!text) return { ok: false, key: "error_empty_fields" };
+  let m;
+  let positive;
+  if ((m = /^(-?\d+)\s*\/\s*(\d+)$/.exec(text))) {
+    if (/^0+$/.test(m[2])) return { ok: false, key: "error_area_format" };
+    positive = BigInt(m[1]) > 0n;
+  } else if ((m = /^(-?)\d+(\.\d+)?$/.exec(text))) {
+    positive = !m[1] && /[1-9]/.test(text);
+  } else {
+    return { ok: false, key: "error_area_format" };
+  }
+  if (!positive) return { ok: false, key: "error_area_not_positive" };
+  if (text.length > 40) return { ok: false, key: "error_area_too_large" };
+  return { ok: true };
+}
+
+// FastAPI 422 bodies carry detail as a list. Pull out our AREA_* code and map
+// it to a localised string; anything else falls back to the generic message.
+function errorKeyFromResponse(errJson) {
+  const raw = JSON.stringify(errJson || {});
+  const code = /AREA_[A-Z_]+/.exec(raw);
+  const map = {
+    AREA_EMPTY: "error_empty_fields",
+    AREA_FORMAT: "error_area_format",
+    AREA_FLOAT_TYPE: "error_area_format",
+    AREA_NOT_POSITIVE: "error_area_not_positive",
+    AREA_TOO_LARGE: "error_area_too_large"
+  };
+  return (code && map[code[0]]) || "error_simulate_failed";
 }
 
 function formatPortionId(portionId, isCitizen) {
@@ -695,7 +763,7 @@ async function renderParcelsScreen() {
   });
 
   try {
-    const res = await fetch(`/parcels?lang=${currentLang}`);
+    const res = await fetch(`/parcels?lang=${currentLang}&role=${currentRole || "citizen"}`);
     if (!res.ok) throw new Error("Failed to fetch parcels");
     cachedParcels = await res.json();
     displayParcels(cachedParcels);
@@ -1138,7 +1206,7 @@ function renderParcelDetailContent(data) {
 
         <div class="form-group">
           <label for="lab-area-input" class="form-label">${t("lab_area_label")}</label>
-          <input type="text" id="lab-area-input" class="form-input" placeholder="e.g. 5 or 7/2" required>
+          <input type="text" id="lab-area-input" class="form-input" placeholder="${t("lab_area_placeholder")}" inputmode="decimal" autocomplete="off" required>
         </div>
 
         <div class="form-group">
@@ -1148,7 +1216,7 @@ function renderParcelDetailContent(data) {
 
         <div class="form-group">
           <label for="lab-portion-input" class="form-label">${t("lab_portion_label")}</label>
-          <input type="text" id="lab-portion-input" class="form-input" placeholder="e.g. PORTION_A">
+          <input type="text" id="lab-portion-input" class="form-input" placeholder="PORTION_A">
         </div>
 
         <div id="lab-form-error" class="form-error-msg" role="alert"></div>
@@ -1191,28 +1259,42 @@ function attachLabFormHandler(parcelId, isCitizen) {
   const errorBox = document.getElementById("lab-form-error");
   const resultCard = document.getElementById("lab-result-card");
   const resultBody = document.getElementById("lab-result-body");
+  const submitBtn = document.getElementById("lab-submit-btn");
   if (!form) return;
+
+  const showError = (key) => {
+    resultCard.style.display = "none";
+    resultBody.innerHTML = "";
+    errorBox.textContent = t(key);
+    errorBox.classList.add("visible");
+  };
+  const clearError = () => {
+    errorBox.textContent = "";
+    errorBox.classList.remove("visible");
+  };
+
+  form.addEventListener("reset", () => {
+    clearError();
+    resultCard.style.display = "none";
+    resultBody.innerHTML = "";
+  });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    errorBox.textContent = "";
-    errorBox.classList.remove("visible");
+    clearError();
 
     const fromPerson = document.getElementById("lab-from-select").value.trim();
     const areaVal = document.getElementById("lab-area-input").value.trim();
     const dateVal = document.getElementById("lab-date-input").value.trim() || null;
     const portionVal = document.getElementById("lab-portion-input").value.trim() || null;
 
-    if (!fromPerson || !areaVal) {
-      errorBox.textContent = t("error_empty_fields");
-      errorBox.classList.add("visible");
+    if (!fromPerson) {
+      showError("error_empty_fields");
       return;
     }
-
-    // Check float rejection
-    if (areaVal.includes(".")) {
-      errorBox.textContent = t("error_float_area");
-      errorBox.classList.add("visible");
+    const check = checkAreaInput(areaVal);
+    if (!check.ok) {
+      showError(check.key);
       return;
     }
 
@@ -1221,13 +1303,15 @@ function attachLabFormHandler(parcelId, isCitizen) {
       from_person: fromPerson,
       to_person: "P_BUYER_SIM",
       area: areaVal,
-      event_date: dateVal,
+      date: dateVal,
       portion_id: portionVal,
       lang: currentLang
     };
 
+    if (submitBtn) submitBtn.disabled = true;
     try {
-      const res = await fetch(`/simulate?lang=${currentLang}`, {
+      const role = isCitizen ? "citizen" : "reviewer";
+      const res = await fetch(`/simulate?lang=${currentLang}&role=${role}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -1235,33 +1319,34 @@ function attachLabFormHandler(parcelId, isCitizen) {
 
       if (!res.ok) {
         const errJson = await res.json().catch(() => ({}));
-        errorBox.textContent = errJson.detail || t("error_simulate_failed");
-        errorBox.classList.add("visible");
+        showError(errorKeyFromResponse(errJson));
         return;
       }
 
       const simRes = await res.json();
       resultCard.style.display = "block";
 
-      const targetAlert = (simRes.alerts && (
-        simRes.alerts.find(a => a.status_code === "CONTRADICTION") ||
-        simRes.alerts.find(a => a.status_code === "REVIEW") ||
-        simRes.alerts[0]
-      )) || null;
+      const alerts = simRes.alerts || [];
+      const targetAlert =
+        alerts.find(a => a.status_code === "CONTRADICTION") ||
+        alerts.find(a => a.status_code === "REVIEW") ||
+        alerts[0] || null;
       const alertStatusCode = simRes.overall_status_code || simRes.status_code || (targetAlert ? targetAlert.status_code : "CONSISTENT");
       const nextStep = targetAlert ? targetAlert.recommended_next_step : "";
+      const hasExcess = !!simRes.excess && simRes.excess !== "0" && !simRes.excess.startsWith("-");
 
       if (isCitizen) {
-        // CITIZEN LAB: Status, plain-language sentence with numbers in words/numerals, next step, unchanged badge.
-        // NO rule ID, NO evidence IDs, NO calculation line. (Addition 1)
-        const availBefore = simRes.seller_available_before;
-        const excessVal = simRes.excess;
+        // CITIZEN LAB: status, one plain sentence, next step. No rule ID,
+        // no evidence IDs, no calculation line.
         let plainSentence = "";
-
-        if (excessVal && excessVal !== "0" && !excessVal.startsWith("-")) {
+        if (hasExcess) {
+          const before = formatAreaNumber(simRes.seller_available_before);
+          const excess = formatAreaNumber(simRes.excess);
           plainSentence = currentLang === "bn"
-            ? `${t("lab_plain_excess_prefix")} ${toBanglaDigits(availBefore)} ${t("lab_decimals_unit")}${t("lab_plain_excess_mid")} ${toBanglaDigits(excessVal)} ${t("lab_decimals_unit")}।`
-            : `${t("lab_plain_excess_prefix")}${availBefore} ${t("lab_decimals_unit")}${t("lab_plain_excess_mid")}${excessVal} ${t("lab_decimals_unit")}`;
+            ? `${t("lab_plain_excess_prefix")} ${before} ${t("lab_decimals_unit")}${t("lab_plain_excess_mid")} ${excess} ${t("lab_decimals_unit")}।`
+            : `${t("lab_plain_excess_prefix")}${before} ${t("lab_decimals_unit")}${t("lab_plain_excess_mid")}${excess} ${t("lab_decimals_unit")}`;
+        } else if (alertStatusCode !== "CONSISTENT" && targetAlert && targetAlert.message) {
+          plainSentence = targetAlert.message;
         } else {
           plainSentence = t("lab_plain_consistent");
         }
@@ -1280,8 +1365,7 @@ function attachLabFormHandler(parcelId, isCitizen) {
           ` : ""}
         `;
       } else {
-        // REVIEWER LAB: Full detail with before/after stats, calculation line, rule ID, and evidence IDs.
-        const isExcess = simRes.excess && simRes.excess !== "0" && !simRes.excess.startsWith("-");
+        // REVIEWER LAB: before/after numbers, calculation line, next step.
         resultBody.innerHTML = `
           <div style="margin: 1rem 0;">
             ${formatStatusBadge(alertStatusCode)}
@@ -1296,9 +1380,9 @@ function attachLabFormHandler(parcelId, isCitizen) {
               <div class="result-stat-value">${formatAreaNumber(simRes.requested_area)} ${t("lab_decimals_unit")}</div>
             </div>
             <div class="result-stat-box">
-              <div class="result-stat-label">${isExcess ? t("lab_excess_label") : t("lab_after_label")}</div>
-              <div class="result-stat-value" style="color: ${isExcess ? "var(--status-contradiction-text)" : "inherit"}">
-                ${isExcess ? `${t("lab_excess_prefix")} ${formatAreaNumber(simRes.excess)}` : `${t("lab_remaining_prefix")} ${formatAreaNumber(simRes.seller_available_after)}`} ${t("lab_decimals_unit")}
+              <div class="result-stat-label">${hasExcess ? t("lab_excess_label") : t("lab_after_label")}</div>
+              <div class="result-stat-value" style="color: ${hasExcess ? "var(--status-contradiction-text)" : "inherit"}">
+                ${hasExcess ? `${t("lab_excess_prefix")} ${formatAreaNumber(simRes.excess)}` : `${t("lab_remaining_prefix")} ${formatAreaNumber(simRes.seller_available_after)}`} ${t("lab_decimals_unit")}
               </div>
             </div>
           </div>
@@ -1316,9 +1400,10 @@ function attachLabFormHandler(parcelId, isCitizen) {
       }
 
       resultCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    } catch (e) {
-      errorBox.textContent = t("error_simulate_failed");
-      errorBox.classList.add("visible");
+    } catch (err) {
+      showError("error_server_unreachable");
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 }

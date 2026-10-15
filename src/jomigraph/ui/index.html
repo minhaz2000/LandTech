@@ -4,18 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>জমিগ্রাফ এআই | JomiGraph AI</title>
-  <!-- Local Noto Sans Bengali font with CDN fallback -->
+  <link rel="icon" href="data:,">
+  <!-- Noto Sans Bengali is bundled locally (no external font request, works offline) -->
   <link rel="stylesheet" href="/vendor/noto-sans-bengali.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
   
   <!-- Local Cytoscape.js with CDN fallback -->
   <script src="/vendor/cytoscape.min.js"></script>
   <script>
     if (typeof cytoscape === 'undefined') {
-      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"><\\/script>');
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"><\/script>');
     }
   </script>
 </head>
