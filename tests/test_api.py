@@ -858,3 +858,152 @@ class TestBilingualCitizenAndUIStrings:
             assert not diff_in_js, f"Keys in app.js but missing in strings.json [{locale}]: {diff_in_js}"
             assert strings_keys == ui_keys
 
+    def test_status_codes_present_and_stable_across_languages(self, client: TestClient):
+        """
+        Verify that status_code (or overall_status_code / status_summary_code) is present,
+        stable ('CONTRADICTION' | 'REVIEW' | 'CONSISTENT'), and never depends on UI language (bn vs en).
+        Checks:
+          - Planted R1 (PARCEL_PLANTED_R1) -> CONTRADICTION
+          - Planted R5 (PARCEL_PLANTED_R5) -> REVIEW
+          - Clean parcel (PARCEL_STORY_01) -> CONSISTENT
+          - /parcels list endpoint items
+          - /simulate endpoint (area 5 vs area 3)
+          - /benchmark coverage table rows
+        """
+        # 1. Parcel detail & report: R1 CONTRADICTION
+        for lang in ("bn", "en"):
+            for role in ("citizen", "reviewer"):
+                res = client.get(f"/parcel/PARCEL_PLANTED_R1?lang={lang}&role={role}")
+                assert res.status_code == 200
+                data = res.json()
+                assert data["overall_status_code"] == "CONTRADICTION"
+                assert len(data["alerts"]) >= 1
+                if role == "citizen":
+                    for alert in data["alerts"]:
+                        assert alert["status_code"] == "CONTRADICTION"
+                else:
+                    assert any(a["rule_id"] == "R1" and a["status_code"] == "CONTRADICTION" for a in data["alerts"])
+
+                rep = client.get(f"/report/PARCEL_PLANTED_R1?lang={lang}&role={role}")
+                assert rep.status_code == 200
+                rdata = rep.json()
+                assert rdata["overall_status_code"] == "CONTRADICTION"
+                if role == "citizen":
+                    for alert in rdata["alerts"]:
+                        assert alert["status_code"] == "CONTRADICTION"
+                else:
+                    assert any(a["rule_id"] == "R1" and a["status_code"] == "CONTRADICTION" for a in rdata["alerts"])
+
+        # 2. Parcel detail & report: R5 REVIEW
+        for lang in ("bn", "en"):
+            for role in ("citizen", "reviewer"):
+                res = client.get(f"/parcel/PARCEL_PLANTED_R5?lang={lang}&role={role}")
+                assert res.status_code == 200
+                data = res.json()
+                assert data["overall_status_code"] == "REVIEW"
+                assert len(data["alerts"]) >= 1
+                if role == "citizen":
+                    for alert in data["alerts"]:
+                        assert alert["status_code"] == "REVIEW"
+                else:
+                    assert any(a["rule_id"] == "R5" and a["status_code"] == "REVIEW" for a in data["alerts"])
+
+                rep = client.get(f"/report/PARCEL_PLANTED_R5?lang={lang}&role={role}")
+                assert rep.status_code == 200
+                rdata = rep.json()
+                assert rdata["overall_status_code"] == "REVIEW"
+                if role == "citizen":
+                    for alert in rdata["alerts"]:
+                        assert alert["status_code"] == "REVIEW"
+                else:
+                    assert any(a["rule_id"] == "R5" and a["status_code"] == "REVIEW" for a in rdata["alerts"])
+
+        # 3. Clean parcel: CONSISTENT
+        for lang in ("bn", "en"):
+            for role in ("citizen", "reviewer"):
+                res = client.get(f"/parcel/PARCEL_STORY_01?lang={lang}&role={role}")
+                assert res.status_code == 200
+                data = res.json()
+                assert data["overall_status_code"] == "CONSISTENT"
+                if role == "citizen":
+                    assert len(data["alerts"]) == 0
+                else:
+                    assert len(data["alerts"]) >= 1
+                    for alert in data["alerts"]:
+                        assert alert["status_code"] == "CONSISTENT"
+
+                rep = client.get(f"/report/PARCEL_STORY_01?lang={lang}&role={role}")
+                assert rep.status_code == 200
+                rdata = rep.json()
+                assert rdata["overall_status_code"] == "CONSISTENT"
+                if role == "citizen":
+                    assert len(rdata["alerts"]) == 0
+                else:
+                    for alert in rdata["alerts"]:
+                        assert alert["status_code"] == "CONSISTENT"
+
+        # 4. /parcels list endpoint
+        for lang in ("bn", "en"):
+            res = client.get(f"/parcels?lang={lang}")
+            assert res.status_code == 200
+            items = {p["id"]: p for p in res.json()}
+            assert items["PARCEL_PLANTED_R1"]["status_code"] == "CONTRADICTION"
+            assert items["PARCEL_PLANTED_R1"]["status_summary_code"] == "CONTRADICTION"
+            assert items["PARCEL_PLANTED_R5"]["status_code"] == "REVIEW"
+            assert items["PARCEL_PLANTED_R5"]["status_summary_code"] == "REVIEW"
+            assert items["PARCEL_STORY_01"]["status_code"] == "CONSISTENT"
+            assert items["PARCEL_STORY_01"]["status_summary_code"] == "CONSISTENT"
+
+        # 5. /simulate endpoint on PARCEL_LAB_DEMO
+        for lang in ("bn", "en"):
+            # Area 5: over-transfer contradiction
+            sim_req_5 = {
+                "parcel_id": "PARCEL_LAB_DEMO",
+                "from_person": "H",
+                "to_person": "P_BUYER_SIM",
+                "area": "5",
+                "lang": lang,
+            }
+            res_sim_5 = client.post("/simulate", json=sim_req_5)
+            assert res_sim_5.status_code == 200
+            data_5 = res_sim_5.json()
+            assert data_5["overall_status_code"] == "CONTRADICTION"
+            assert data_5["status_code"] == "CONTRADICTION"
+            assert len(data_5["alerts"]) >= 1
+            r1_alert = next(a for a in data_5["alerts"] if a["rule_id"] == "R1")
+            assert r1_alert["status_code"] == "CONTRADICTION"
+
+            # Area 3: valid consistent transfer
+            sim_req_3 = {
+                "parcel_id": "PARCEL_LAB_DEMO",
+                "from_person": "H",
+                "to_person": "P_BUYER_SIM",
+                "area": "3",
+                "lang": lang,
+            }
+            res_sim_3 = client.post("/simulate", json=sim_req_3)
+            assert res_sim_3.status_code == 200
+            data_3 = res_sim_3.json()
+            assert data_3["overall_status_code"] == "CONSISTENT"
+            assert data_3["status_code"] == "CONSISTENT"
+            for alert in data_3["alerts"]:
+                assert alert["status_code"] == "CONSISTENT"
+
+        # 6. /benchmark endpoint
+        res_bm = client.get("/benchmark")
+        assert res_bm.status_code == 200
+        bm_data = res_bm.json()
+        cov_by_rule = {r["rule_id"]: r for r in bm_data["coverage_table"]}
+        assert cov_by_rule["R1"]["status_code"] == "CONTRADICTION"
+        assert cov_by_rule["R5"]["status_code"] == "REVIEW"
+
+    def test_ui_badge_formatting_via_node(self):
+        """Execute Node.js test_badges.js asserting badge classes across bn and en."""
+        import subprocess
+        script_path = Path("tests/test_badges.js")
+        assert script_path.is_file()
+        result = subprocess.run(["node", str(script_path)], capture_output=True, text=True)
+        assert result.returncode == 0, f"Node test_badges.js failed: {result.stderr}\n{result.stdout}"
+        assert "ALL BADGE FORMATTING TESTS PASSED" in result.stdout
+
+

@@ -26,6 +26,7 @@ const ui_strings = {
     "status_consistent": "সঙ্গতিপূর্ণ",
     "status_review": "পর্যালোচনা প্রয়োজন",
     "status_contradiction": "অসঙ্গতি পাওয়া গেছে",
+    "status_unknown": "অজানা",
     "search_placeholder": "দাগ নম্বর বা আইডি দিয়ে খুঁজুন...",
     "filter_all": "সকল দাগ",
     "filter_planted": "পরীক্ষামূলক অসঙ্গতি",
@@ -180,6 +181,7 @@ const ui_strings = {
     "status_consistent": "Consistent",
     "status_review": "Needs review",
     "status_contradiction": "Contradiction",
+    "status_unknown": "Unknown",
     "search_placeholder": "Filter by parcel ID or dag number...",
     "filter_all": "All Parcels",
     "filter_planted": "Planted Tests",
@@ -452,14 +454,17 @@ if (switchBtn) {
 // Badges and Helpers
 // ---------------------------------------------------------------------------
 
-function formatStatusBadge(status) {
-  const s = (status || "").toUpperCase();
-  if (s.includes("CONTRADICTION") || s.includes("অসঙ্গতি")) {
+function formatStatusBadge(statusCode) {
+  const code = (statusCode || "").toUpperCase().trim();
+  if (code === "CONTRADICTION") {
     return `<span class="badge badge-contradiction" aria-label="${t('status_contradiction')}"><span aria-hidden="true">✕</span> ${t('status_contradiction')}</span>`;
-  } else if (s.includes("REVIEW") || s.includes("পর্যালোচনা")) {
+  } else if (code === "REVIEW") {
     return `<span class="badge badge-review" aria-label="${t('status_review')}"><span aria-hidden="true">⚠</span> ${t('status_review')}</span>`;
-  } else {
+  } else if (code === "CONSISTENT") {
     return `<span class="badge badge-consistent" aria-label="${t('status_consistent')}"><span aria-hidden="true">✓</span> ${t('status_consistent')}</span>`;
+  } else {
+    const unknownLabel = t("status_unknown");
+    return `<span class="badge badge-unknown" aria-label="${unknownLabel}"><span aria-hidden="true">?</span> ${unknownLabel}</span>`;
   }
 }
 
@@ -714,7 +719,7 @@ function displayParcels(parcels) {
         ${currentRole === "reviewer" ? `<div class="parcel-info-meta"><span>ID: <code>${p.id}</code></span></div>` : ""}
       </div>
       <div class="parcel-actions">
-        ${formatStatusBadge(p.status_summary)}
+        ${formatStatusBadge(p.status_code || p.status_summary_code)}
         <a href="#/parcel/${p.id}" class="btn-secondary btn-sm">${t("view_details")} →</a>
       </div>
     </div>
@@ -778,12 +783,12 @@ function renderParcelDetailContent(data) {
   const isCitizen = currentRole === "citizen";
   const parcelLabel = `${data.mouza} ${currentLang === "bn" ? "দাগ" : "Dag"} ${data.dag_no}`;
 
-  // Summary description based on overall_status
+  // Summary description based on overall_status_code
   let summaryDesc = t("summary_consistent_desc");
-  const os = (data.overall_status || "").toLowerCase();
-  if (os.includes("contradiction") || os.includes("অসঙ্গতি")) {
+  const osc = (data.overall_status_code || "").toUpperCase();
+  if (osc === "CONTRADICTION") {
     summaryDesc = t("summary_contradiction_desc");
-  } else if (os.includes("review") || os.includes("পর্যালোচনা")) {
+  } else if (osc === "REVIEW") {
     summaryDesc = t("summary_review_desc");
   }
 
@@ -840,7 +845,7 @@ function renderParcelDetailContent(data) {
           <p class="summary-desc">${summaryDesc}</p>
         </div>
         <div>
-          ${formatStatusBadge(data.overall_status)}
+          ${formatStatusBadge(data.overall_status_code)}
         </div>
       </div>
       <div class="summary-meta-line">
@@ -860,9 +865,9 @@ function renderParcelDetailContent(data) {
           </div>
         </div>
       ` : data.alerts.map((alert, idx) => {
-        const s = (alert.status || "").toLowerCase();
-        const statusClass = s.includes("contradiction") || s.includes("অসঙ্গতি") ? "status-contradiction" :
-                            s.includes("review") || s.includes("পর্যালোচনা") ? "status-review" : "status-consistent";
+        const sc = (alert.status_code || "").toUpperCase();
+        const statusClass = sc === "CONTRADICTION" ? "status-contradiction" :
+                            sc === "REVIEW" ? "status-review" : "status-consistent";
 
         if (isCitizen) {
           // CITIZEN ALERT: Only status, message, recommended next step. NO rule_id, calculation, evidence_ids.
@@ -870,7 +875,7 @@ function renderParcelDetailContent(data) {
             <div class="alert-card ${statusClass}">
               <div class="alert-header">
                 <h3 class="alert-message">${alert.message}</h3>
-                ${formatStatusBadge(alert.status)}
+                ${formatStatusBadge(alert.status_code)}
               </div>
               <div class="alert-next-step">
                 <strong>${t("next_step_label")}</strong> ${alert.recommended_next_step}
@@ -888,7 +893,7 @@ function renderParcelDetailContent(data) {
                   <span class="rule-id-pill"><code>${alert.rule_id}</code></span>
                   <h3 class="alert-message" style="display: inline-block; margin-left: 0.5rem;">${alert.message}</h3>
                 </div>
-                ${formatStatusBadge(alert.status)}
+                ${formatStatusBadge(alert.status_code)}
               </div>
               <div class="alert-next-step">
                 <strong>${t("next_step_label")}</strong> ${alert.recommended_next_step}
@@ -953,7 +958,7 @@ function renderParcelDetailContent(data) {
                       }).join("")}
                     </div>
                   </div>
-                ` : (alert.status.includes("Contradiction") || alert.status.includes("Review") ? `
+                ` : (alert.status_code === "CONTRADICTION" || alert.status_code === "REVIEW" ? `
                   <div class="impact-box" style="color: var(--text-muted); font-size: 0.9rem;">
                     ${t("impact_empty")}
                   </div>
@@ -1165,7 +1170,7 @@ function attachLabFormHandler(parcelId, isCitizen) {
       resultCard.style.display = "block";
 
       const firstAlert = simRes.alerts && simRes.alerts[0];
-      const alertStatus = firstAlert ? firstAlert.status : "Consistent";
+      const alertStatusCode = firstAlert ? firstAlert.status_code : (simRes.overall_status_code || "CONSISTENT");
       const nextStep = firstAlert ? firstAlert.recommended_next_step : "";
 
       if (isCitizen) {
@@ -1185,7 +1190,7 @@ function attachLabFormHandler(parcelId, isCitizen) {
 
         resultBody.innerHTML = `
           <div style="margin: 1rem 0;">
-            ${formatStatusBadge(alertStatus)}
+            ${formatStatusBadge(alertStatusCode)}
           </div>
           <div class="citizen-lab-sentence">
             <p style="font-size: 1.1rem; font-weight: 500; margin: 0.5rem 0;">${plainSentence}</p>
@@ -1201,7 +1206,7 @@ function attachLabFormHandler(parcelId, isCitizen) {
         const isExcess = simRes.excess && simRes.excess !== "0" && !simRes.excess.startsWith("-");
         resultBody.innerHTML = `
           <div style="margin: 1rem 0;">
-            ${formatStatusBadge(alertStatus)}
+            ${formatStatusBadge(alertStatusCode)}
           </div>
           <div class="lab-result-data">
             <div class="result-stat-box">
@@ -1306,7 +1311,7 @@ async function renderBenchmarkScreen() {
                 <td><strong>${row.rule_id}</strong></td>
                 <td>${row.has_planted_case ? `<span class="badge-tag tag-yes">${t("yes")}</span>` : `<span class="badge-tag tag-no">${t("no")}</span>`}</td>
                 <td>${row.detected ? `<span class="badge-tag tag-yes">${t("yes")}</span>` : `<span class="badge-tag tag-no">${t("no")}</span>`}</td>
-                <td>${formatStatusBadge(row.status_detected || "CONSISTENT")}</td>
+                <td>${formatStatusBadge(row.status_code)}</td>
               </tr>
             `).join("")}
           </tbody>
@@ -1349,7 +1354,7 @@ async function openPrintReport(parcelId) {
 
         <div class="print-overall-status">
           <strong>${t("print_overall_status_label")}</strong>
-          ${formatStatusBadge(report.overall_status)}
+          ${formatStatusBadge(report.overall_status_code)}
         </div>
 
         <div class="print-section">
@@ -1360,7 +1365,7 @@ async function openPrintReport(parcelId) {
             <div class="print-alert-item">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span>${!isCitizen && a.rule_id ? `<strong>[${a.rule_id}]</strong> ` : ""}${a.message}</span>
-                <span>${formatStatusBadge(a.status)}</span>
+                <span>${formatStatusBadge(a.status_code)}</span>
               </div>
               ${!isCitizen && a.calculation ? `<div style="font-size: 0.9rem; margin-top: 0.25rem;"><em>${a.calculation}</em></div>` : ""}
               ${a.recommended_next_step ? `<div style="margin-top: 0.25rem;"><strong>${t("next_step_label")}</strong> ${a.recommended_next_step}</div>` : ""}

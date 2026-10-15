@@ -23,6 +23,8 @@ class ParcelListItem(BaseModel):
     id: str
     label: str
     status_summary: str
+    status_summary_code: str = "CONSISTENT"
+    status_code: str = "CONSISTENT"
     planted: bool
     category: str
 
@@ -101,6 +103,7 @@ class EventDetail(BaseModel):
 
 class CitizenAlertDetail(BaseModel):
     status: str
+    status_code: str = "CONSISTENT"
     message: str
     recommended_next_step: str
 
@@ -108,6 +111,7 @@ class CitizenAlertDetail(BaseModel):
 class ReviewerAlertDetail(BaseModel):
     rule_id: str
     status: str
+    status_code: str = "CONSISTENT"
     message: str
     recommended_next_step: str
     evidence_ids: list[str]
@@ -127,6 +131,7 @@ class CitizenParcelDetailResponse(BaseModel):
     mouza: str
     parent_id: Optional[str]
     overall_status: str
+    overall_status_code: str = "CONSISTENT"
     survey_records: list[SurveyRecordDetail]
     events: list[EventDetail]
     graph: GraphResponse
@@ -139,6 +144,7 @@ class ParcelDetailResponse(BaseModel):
     mouza: str
     parent_id: Optional[str]
     overall_status: str
+    overall_status_code: str = "CONSISTENT"
     survey_records: list[SurveyRecordDetail]
     events: list[EventDetail]
     graph: GraphResponse
@@ -184,6 +190,7 @@ class CitizenReportResponse(BaseModel):
     role: str
     lang: str
     overall_status: str
+    overall_status_code: str = "CONSISTENT"
     records: ReportRecordsDetail
     alerts: list[CitizenAlertDetail]
     recommended_next_steps: list[str]
@@ -197,6 +204,7 @@ class ReviewerReportResponse(BaseModel):
     role: str
     lang: str
     overall_status: str
+    overall_status_code: str = "CONSISTENT"
     records: ReportRecordsDetail
     alerts: list[ReviewerAlertDetail]
     recommended_next_steps: list[str]
@@ -286,6 +294,8 @@ class SimulateResponse(BaseModel):
     available_after: str
     r1_calculation: Optional[str] = None
     alerts: list[AlertDetail]
+    status_code: Optional[str] = "CONSISTENT"
+    overall_status_code: Optional[str] = "CONSISTENT"
 
 
 # ---------------------------------------------------------------------------
@@ -297,6 +307,7 @@ class CoverageRowItem(BaseModel):
     has_planted_case: bool
     detected: bool
     status_detected: Optional[str]
+    status_code: Optional[str] = None
 
 
 class SimulationIntegrityResult(BaseModel):

@@ -313,6 +313,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   color: var(--status-contradiction-text);
 }
 
+.badge-unknown {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+}
+
 .tag-planted {
   background-color: #f1f5f9;
   border: 1px solid #cbd5e1;

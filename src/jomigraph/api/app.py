@@ -76,15 +76,37 @@ def normalize_for_search(val: Any) -> str:
     return str(val).translate(BN_TO_EN_DIGITS).lower().strip()
 
 
-def compute_overall_status(alerts: Sequence[Alert], lang: str = "bn") -> str:
-    """Return worst status across alerts, localized."""
+def to_status_code(val: Any) -> str:
+    """Convert any Status enum or status string into a stable uppercase status_code."""
+    if isinstance(val, Status):
+        return val.name
+    if isinstance(val, str):
+        val_upper = val.strip().upper()
+        if "CONTRADICTION" in val_upper or "অসঙ্গতি" in val:
+            return "CONTRADICTION"
+        if "REVIEW" in val_upper or "পর্যালোচনা" in val:
+            return "REVIEW"
+        if "CONSISTENT" in val_upper or "সঙ্গতিপূর্ণ" in val:
+            return "CONSISTENT"
+        try:
+            return Status(val).name
+        except Exception:
+            pass
+    return "UNKNOWN"
+
+
+def compute_overall_status(alerts: Sequence[Alert], lang: str = "bn") -> tuple[str, str]:
+    """Return (localized_status, status_code)."""
     if any(a.status == Status.CONTRADICTION for a in alerts):
+        code = "CONTRADICTION"
         raw = Status.CONTRADICTION.value
     elif any(a.status == Status.REVIEW for a in alerts):
+        code = "REVIEW"
         raw = Status.REVIEW.value
     else:
+        code = "CONSISTENT"
         raw = Status.CONSISTENT.value
-    return localize_status(raw, lang=lang)
+    return localize_status(raw, lang=lang), code
 
 
 def build_minimal_evidence_and_impact(
@@ -360,6 +382,8 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                     id=p.id,
                     label=label,
                     status_summary=status_summary,
+                    status_summary_code=status_summary,
+                    status_code=status_summary,
                     planted=is_planted,
                     category=category,
                 )
@@ -451,13 +475,14 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
 
         # 4. Evaluated alerts
         raw_alerts = evaluate_history(history, ds.parcels, ds.deeds, ds.histories)
-        overall_status = compute_overall_status(raw_alerts, lang=lang)
+        overall_status, overall_status_code = compute_overall_status(raw_alerts, lang=lang)
 
         if role == "citizen":
             non_consistent = [a for a in raw_alerts if a.status != Status.CONSISTENT]
             citizen_alerts = [
                 CitizenAlertDetail(
                     status=localize_status(a.status.value, lang=lang),
+                    status_code=a.status.name,
                     message=translate(a.message_key, lang=lang),
                     recommended_next_step=translate(a.recommended_next_step, lang=lang),
                 )
@@ -469,6 +494,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                 mouza=parcel.mouza,
                 parent_id=parcel.parent_id,
                 overall_status=overall_status,
+                overall_status_code=overall_status_code,
                 survey_records=srs,
                 events=events,
                 graph=graph_data,  # type: ignore[arg-type]
@@ -482,6 +508,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                     ReviewerAlertDetail(
                         rule_id=a.rule_id,
                         status=localize_status(a.status.value, lang=lang),
+                        status_code=a.status.name,
                         message=translate(a.message_key, lang=lang),
                         recommended_next_step=translate(a.recommended_next_step, lang=lang),
                         evidence_ids=list(a.evidence_ids),
@@ -498,6 +525,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                 mouza=parcel.mouza,
                 parent_id=parcel.parent_id,
                 overall_status=overall_status,
+                overall_status_code=overall_status_code,
                 survey_records=srs,
                 events=events,
                 graph=graph_data,  # type: ignore[arg-type]
@@ -576,6 +604,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
             AlertDetail(
                 rule_id=a.rule_id,
                 status=localize_status(a.status.value, lang=active_lang),
+                status_code=a.status.name,
                 message=translate(a.message_key, lang=active_lang),
                 recommended_next_step=translate(a.recommended_next_step, lang=active_lang),
                 evidence_ids=list(a.evidence_ids),
@@ -583,6 +612,8 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
             )
             for a in sim_res.alerts
         ]
+
+        _, sim_status_code = compute_overall_status(sim_res.alerts, lang=active_lang)
 
         r1_calc_out = (
             localize_calculation(sim_res.r1_calculation, "R1", lang=active_lang)
@@ -607,6 +638,8 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
             available_after=str(sim_res.available_after),
             r1_calculation=r1_calc_out,
             alerts=formatted_alerts,
+            status_code=sim_status_code,
+            overall_status_code=sim_status_code,
         )
 
     # -----------------------------------------------------------------------
@@ -659,6 +692,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                     has_planted_case=row.has_planted_case,
                     detected=row.detected,
                     status_detected=row.status_detected,
+                    status_code=to_status_code(row.status_detected) if row.status_detected else None,
                 )
                 for row in coverage_table
             ],
@@ -844,13 +878,14 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
             disclaimer = "Demo, fictional data, not a legal ruling. JomiGraph AI is a rule-based decision-support prototype; it never certifies legal ownership."
 
         raw_alerts = evaluate_history(history, ds.parcels, ds.deeds, ds.histories)
-        overall_status = compute_overall_status(raw_alerts, lang=lang)
+        overall_status, overall_status_code = compute_overall_status(raw_alerts, lang=lang)
 
         if role == "citizen":
             non_consistent = [a for a in raw_alerts if a.status != Status.CONSISTENT]
             citizen_alerts = [
                 CitizenAlertDetail(
                     status=localize_status(a.status.value, lang=lang),
+                    status_code=a.status.name,
                     message=translate(a.message_key, lang=lang),
                     recommended_next_step=translate(a.recommended_next_step, lang=lang),
                 )
@@ -864,6 +899,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                 role=role,
                 lang=lang,
                 overall_status=overall_status,
+                overall_status_code=overall_status_code,
                 records=records_info,
                 alerts=citizen_alerts,
                 recommended_next_steps=next_steps,
@@ -879,6 +915,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                     ReviewerAlertDetail(
                         rule_id=a.rule_id,
                         status=localize_status(a.status.value, lang=lang),
+                        status_code=a.status.name,
                         message=translate(a.message_key, lang=lang),
                         recommended_next_step=translate(a.recommended_next_step, lang=lang),
                         evidence_ids=list(a.evidence_ids),
@@ -895,6 +932,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                 role=role,
                 lang=lang,
                 overall_status=overall_status,
+                overall_status_code=overall_status_code,
                 records=records_info,
                 alerts=reviewer_alerts,
                 recommended_next_steps=next_steps,
