@@ -481,6 +481,30 @@ class TestUIEndpoints:
         # Switch role retains route and language
         assert "function switchRole()" in js_text
 
+    def test_citizen_view_buyer_portion_and_events_polish(self, client: TestClient):
+        """
+        Verify Step 3 requirements in UI:
+          - Buyer input uses localized label/placeholder (proposed_buyer_label) and is readonly.
+          - Simulation payload always sends constant 'P_BUYER_SIM' as to_person.
+          - Timeline event types are localized with t("event_type_" + ...).
+          - Portion IDs are formatted with formatPortionId for citizen readability.
+        """
+        res_js = client.get("/app.js")
+        assert res_js.status_code == 200
+        js = res_js.text
+
+        # Constant P_BUYER_SIM sent to simulate, never exposing to user
+        assert 'to_person: "P_BUYER_SIM"' in js
+        assert 't("proposed_buyer_label")' in js
+
+        # Timeline event types localized with t()
+        assert 't("event_type_"' in js
+
+        # formatPortionId helper present and formats portions
+        assert "function formatPortionId" in js
+        assert "PORTION_" in js
+
+
 
 
 # ---------------------------------------------------------------------------

@@ -385,6 +385,51 @@ function formatAreaNumber(val) {
   return currentLang === "bn" ? toBanglaDigits(val) : String(val);
 }
 
+function formatPortionId(portionId, isCitizen) {
+  if (!portionId) return "";
+  if (!isCitizen) return `<code>${portionId}</code>`;
+
+  const clean = String(portionId).trim().replace(/^PORTION_/i, "");
+
+  const bnMap = {
+    "NORTH": "উত্তর অংশ",
+    "SOUTH": "দক্ষিণ অংশ",
+    "EAST": "পূর্ব অংশ",
+    "WEST": "পশ্চিম অংশ",
+    "ALPHA": "ক (আলফা)",
+    "BETA": "খ (বিটা)",
+    "GAMMA": "গ (গামা)",
+    "A": "ক",
+    "B": "খ",
+    "C": "গ",
+    "DAG": "দাগ"
+  };
+
+  const enMap = {
+    "NORTH": "North portion",
+    "SOUTH": "South portion",
+    "EAST": "East portion",
+    "WEST": "West portion",
+    "ALPHA": "Alpha",
+    "BETA": "Beta",
+    "GAMMA": "Gamma",
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "DAG": "Dag"
+  };
+
+  if (currentLang === "bn") {
+    const up = clean.toUpperCase();
+    if (bnMap[up]) return bnMap[up];
+    return clean.split("_").map(w => bnMap[w.toUpperCase()] || toBanglaDigits(w)).join(" ");
+  } else {
+    const up = clean.toUpperCase();
+    if (enMap[up]) return enMap[up];
+    return clean.split("_").map(w => enMap[w.toUpperCase()] || (w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())).join(" ");
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Global Chrome Update (Header, Disclaimer, Nav, Footer, Role Controls)
 // ---------------------------------------------------------------------------
@@ -996,11 +1041,13 @@ function renderParcelDetailContent(data) {
         <div class="stacked-records-list">
           ${data.events.map(ev => {
             const isImpacted = allImpactedEventIds.has(ev.id);
+            const eventTypeLabel = t("event_type_" + (ev.type || "").toLowerCase()) || ev.type;
+            const seqDisplay = currentLang === "bn" ? toBanglaDigits(ev.seq) : ev.seq;
             return `
               <div class="timeline-row-card ${isImpacted ? "impacted-event-row" : ""}" id="timeline-row-${ev.id}">
                 <div class="timeline-meta-row">
                   <span>
-                    <strong>#${ev.seq} [${ev.type}]</strong>
+                    <strong>#${seqDisplay} [${eventTypeLabel}]</strong>
                     ${!isCitizen ? `ID: <code>${ev.id}</code>` : ""}
                   </span>
                   <span>📅 ${ev.event_date || t("undated_label")}</span>
@@ -1015,7 +1062,7 @@ function renderParcelDetailContent(data) {
                   <div><strong>${t("col_to")}:</strong> ${ev.to_person_name || ev.to_person || "—"}</div>
                   <div><strong>${t("col_area")}:</strong> ${formatAreaNumber(ev.area)} ${t("lab_decimals_unit")}</div>
                 </div>
-                ${ev.portion_id ? `<div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.25rem;"><strong>${t("col_portion")}:</strong> ${ev.portion_id}</div>` : ""}
+                ${ev.portion_id ? `<div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.25rem;"><strong>${t("col_portion")}:</strong> ${formatPortionId(ev.portion_id, isCitizen)}</div>` : ""}
               </div>
             `;
           }).join("")}
@@ -1065,7 +1112,7 @@ function renderParcelDetailContent(data) {
 
         <div class="form-group">
           <label for="lab-to-input" class="form-label">${t("lab_to_label")}</label>
-          <input type="text" id="lab-to-input" class="form-input" value="P_BUYER_SIM" required>
+          <input type="text" id="lab-to-input" class="form-input" value="${t("proposed_buyer_label")}" placeholder="${t("proposed_buyer_label")}" readonly>
         </div>
 
         <div class="form-group">
@@ -1131,12 +1178,11 @@ function attachLabFormHandler(parcelId, isCitizen) {
     errorBox.classList.remove("visible");
 
     const fromPerson = document.getElementById("lab-from-select").value.trim();
-    const toPerson = document.getElementById("lab-to-input").value.trim();
     const areaVal = document.getElementById("lab-area-input").value.trim();
     const dateVal = document.getElementById("lab-date-input").value.trim() || null;
     const portionVal = document.getElementById("lab-portion-input").value.trim() || null;
 
-    if (!fromPerson || !toPerson || !areaVal) {
+    if (!fromPerson || !areaVal) {
       errorBox.textContent = t("error_empty_fields");
       errorBox.classList.add("visible");
       return;
@@ -1152,7 +1198,7 @@ function attachLabFormHandler(parcelId, isCitizen) {
     const payload = {
       parcel_id: parcelId,
       from_person: fromPerson,
-      to_person: toPerson,
+      to_person: "P_BUYER_SIM",
       area: areaVal,
       event_date: dateVal,
       portion_id: portionVal,
@@ -1401,7 +1447,7 @@ async function openPrintReport(parcelId) {
                 ${report.records.events.map(ev => `
                   <tr>
                     <td>${ev.event_date || "—"}</td>
-                    <td>${ev.type}</td>
+                    <td>${t("event_type_" + (ev.type || "").toLowerCase()) || ev.type}</td>
                     <td>${ev.from_person_name || ev.from_person || "—"}</td>
                     <td>${ev.to_person_name || ev.to_person || "—"}</td>
                     <td>${formatAreaNumber(ev.area)}</td>
