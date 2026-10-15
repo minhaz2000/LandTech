@@ -320,3 +320,6 @@ class BenchmarkResponse(BaseModel):
     clean_false_alarm_count: int
     coverage_table: list[CoverageRowItem]
     simulation_integrity: SimulationIntegrityResult
+    total_parcels: Optional[int] = None
+    planted_parcel_count: Optional[int] = None
+    planted_detected_count: Optional[int] = None

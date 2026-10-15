@@ -504,6 +504,45 @@ class TestUIEndpoints:
         assert "function formatPortionId" in js
         assert "PORTION_" in js
 
+    def test_benchmark_accordion_and_reviewer_title_polish(self, client: TestClient):
+        """
+        Verify Step 4 requirements:
+          - Benchmark accordion is collapsed by default (no open attribute).
+          - Benchmark metric titles are localized with t().
+          - Reviewer view replaces raw parcel ID in page title with '<mouza> Dag <dag_no> · Khatian <khatian_no>'.
+          - Raw parcel ID is kept in technical details only (<details class="technical-details-card">).
+          - GET /benchmark returns total_parcels, planted_parcel_count, and planted_detected_count.
+        """
+        res_js = client.get("/app.js")
+        assert res_js.status_code == 200
+        js = res_js.text
+
+        # Benchmark accordion collapsed by default (no 'open' attribute on details)
+        assert '<details class="benchmark-details-card">' in js
+        assert '<details class="benchmark-details-card" open>' not in js
+
+        # Localized metric titles
+        assert 't("total_parcels_label")' in js
+        assert 't("benchmark_false_alarms")' in js
+        assert 't("planted_detected_label")' in js
+        assert 't("benchmark_integrity")' in js
+
+        # Reviewer page title formatting with Mouza, Dag, and Khatian
+        assert "reviewerTitle" in js
+        assert "citizenTitle" in js
+        assert "pageTitle" in js
+        assert "tech_details_summary" in js
+        assert '<details class="technical-details-card">' in js
+
+        # Backend GET /benchmark endpoint includes total_parcels, planted counts
+        res_bm = client.get("/benchmark")
+        assert res_bm.status_code == 200
+        bm_data = res_bm.json()
+        assert bm_data.get("total_parcels") is not None
+        assert bm_data.get("planted_parcel_count") is not None
+        assert bm_data.get("planted_detected_count") is not None
+        assert bm_data["planted_detected_count"] == bm_data["planted_parcel_count"]
+
 
 
 

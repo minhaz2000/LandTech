@@ -684,6 +684,9 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
         all_srs_after = [sr for h in ds.histories for sr in h.survey_records]
         hash_after = hash_dataset(all_events_after, all_srs_after)
 
+        planted_rows = [r for r in coverage_table if r.has_planted_case]
+        planted_detected = [r for r in planted_rows if r.detected]
+
         return BenchmarkResponse(
             clean_false_alarm_count=clean_false_alarms,
             coverage_table=[
@@ -701,6 +704,9 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
                 dataset_hash_after=hash_after,
                 unchanged=(hash_before == hash_after),
             ),
+            total_parcels=len(ds.histories),
+            planted_parcel_count=len(planted_rows),
+            planted_detected_count=len(planted_detected),
         )
 
     # -----------------------------------------------------------------------

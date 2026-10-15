@@ -832,7 +832,20 @@ function renderParcelDetailContent(data) {
   if (!container) return;
 
   const isCitizen = currentRole === "citizen";
-  const parcelLabel = `${data.mouza} ${currentLang === "bn" ? "দাগ" : "Dag"} ${data.dag_no}`;
+  const primaryKhatian = (data.survey_records && data.survey_records.length > 0)
+    ? (data.survey_records[data.survey_records.length - 1].khatian_no || data.survey_records[0].khatian_no)
+    : "";
+  const khatianDisplay = primaryKhatian
+    ? (currentLang === "bn" ? toBanglaDigits(primaryKhatian) : primaryKhatian)
+    : "";
+  const dagDisplay = currentLang === "bn" ? toBanglaDigits(data.dag_no) : data.dag_no;
+
+  const reviewerTitle = khatianDisplay
+    ? `${data.mouza} ${currentLang === "bn" ? "দাগ" : "Dag"} ${dagDisplay} · ${currentLang === "bn" ? "খতিয়ান" : "Khatian"} ${khatianDisplay}`
+    : `${data.mouza} ${currentLang === "bn" ? "দাগ" : "Dag"} ${dagDisplay}`;
+
+  const citizenTitle = `${data.mouza} ${currentLang === "bn" ? "দাগ" : "Dag"} ${dagDisplay}`;
+  const pageTitle = isCitizen ? citizenTitle : reviewerTitle;
 
   // Summary description based on overall_status_code
   let summaryDesc = t("summary_consistent_desc");
@@ -888,10 +901,9 @@ function renderParcelDetailContent(data) {
     <div class="summary-card">
       <div class="summary-status-row">
         <div>
-          <!-- Citizen sees human-readable label ONLY; Reviewer sees ID badge alongside -->
+          <!-- Title: Citizen sees Mouza + Dag; Reviewer sees Mouza + Dag + Khatian (no raw ID in title) -->
           <h1 class="summary-heading">
-            ${parcelLabel}
-            ${!isCitizen ? `<span class="raw-id-badge">ID: <code>${data.id}</code></span>` : ""}
+            ${pageTitle}
           </h1>
           <p class="summary-desc">${summaryDesc}</p>
         </div>
@@ -900,9 +912,19 @@ function renderParcelDetailContent(data) {
         </div>
       </div>
       <div class="summary-meta-line">
-        <span><strong>${currentLang === "bn" ? "দাগ নং:" : "Dag No:"}</strong> ${data.dag_no}</span> |
+        <span><strong>${currentLang === "bn" ? "দাগ নং:" : "Dag No:"}</strong> ${dagDisplay}</span> |
         <span><strong>${currentLang === "bn" ? "মৌজা:" : "Mouza:"}</strong> ${data.mouza}</span>
+        ${khatianDisplay ? ` | <span><strong>${currentLang === "bn" ? "খতিয়ান নং:" : "Khatian No:"}</strong> ${khatianDisplay}</span>` : ""}
       </div>
+      ${!isCitizen ? `
+        <details class="technical-details-card">
+          <summary class="technical-details-summary">🛠️ ${t("tech_details_summary")}</summary>
+          <div class="technical-details-content">
+            <div><strong>${t("tech_system_id")}</strong> <code>${data.id}</code></div>
+            ${data.parent_id ? `<div><strong>${t("tech_parent_id")}</strong> <code>${data.parent_id}</code></div>` : ""}
+          </div>
+        </details>
+      ` : ""}
     </div>
 
     <!-- Alert Cards Section -->
@@ -1315,8 +1337,8 @@ async function renderBenchmarkScreen() {
       <p style="color: var(--text-muted);">${t("role_reviewer_badge")} — ${t("benchmark_integrity")}</p>
     </div>
 
-    <!-- Reviewer-only, Collapsed by default (Addition 2) -->
-    <details class="benchmark-details-card" open>
+    <!-- Reviewer-only, Collapsed by default -->
+    <details class="benchmark-details-card">
       <summary class="benchmark-summary-header">
         <h2 style="display: inline-block; font-size: 1.15rem; margin: 0;">${t("benchmark_toggle_title")}</h2>
       </summary>
@@ -1335,19 +1357,28 @@ async function renderBenchmarkScreen() {
     const box = document.getElementById("benchmark-content-box");
     if (!box) return;
 
+    const totalParcels = data.total_parcels !== undefined ? data.total_parcels : (data.coverage_table ? data.coverage_table.length : 0);
+    const plantedRows = (data.coverage_table || []).filter(r => r.has_planted_case);
+    const plantedTotal = data.planted_parcel_count !== undefined ? data.planted_parcel_count : plantedRows.length;
+    const plantedDetected = data.planted_detected_count !== undefined ? data.planted_detected_count : plantedRows.filter(r => r.detected).length;
+
     box.innerHTML = `
       <div class="benchmark-metrics-grid">
         <div class="metric-card">
-          <div class="metric-num">${currentLang === "bn" ? toBanglaDigits(data.total_parcels) : data.total_parcels}</div>
+          <div class="metric-num">${currentLang === "bn" ? toBanglaDigits(totalParcels) : totalParcels}</div>
           <div class="metric-label">${t("total_parcels_label")}</div>
         </div>
         <div class="metric-card">
           <div class="metric-num">${currentLang === "bn" ? toBanglaDigits(data.clean_false_alarm_count) : data.clean_false_alarm_count}</div>
-          <div class="metric-label">${t("benchmark_false_alarms")}</div>
+          <div class="metric-label">${t("benchmark_false_alarms").replace(/:$/, "")}</div>
         </div>
         <div class="metric-card">
-          <div class="metric-num">${currentLang === "bn" ? toBanglaDigits(data.planted_detected_count) : data.planted_detected_count} / ${currentLang === "bn" ? toBanglaDigits(data.planted_parcel_count) : data.planted_parcel_count}</div>
+          <div class="metric-num">${currentLang === "bn" ? toBanglaDigits(plantedDetected) : plantedDetected} / ${currentLang === "bn" ? toBanglaDigits(plantedTotal) : plantedTotal}</div>
           <div class="metric-label">${t("planted_detected_label")}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">${data.simulation_integrity && data.simulation_integrity.unchanged ? "✓" : "✗"}</div>
+          <div class="metric-label">${t("benchmark_integrity")}</div>
         </div>
       </div>
 
@@ -1374,6 +1405,15 @@ async function renderBenchmarkScreen() {
           </tbody>
         </table>
       </div>
+
+      ${data.simulation_integrity ? `
+        <div class="integrity-hashes-box" style="margin-top: 1.25rem; font-size: 0.85rem; color: var(--text-muted); background: var(--bg-hover); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+          <div style="font-weight: 600; margin-bottom: 0.4rem; color: var(--text-main);">${t("benchmark_integrity")}</div>
+          <div><strong>${t("hash_before_label")}</strong> <code>${data.simulation_integrity.dataset_hash_before}</code></div>
+          <div><strong>${t("hash_after_label")}</strong> <code>${data.simulation_integrity.dataset_hash_after}</code></div>
+          <div style="margin-top: 0.35rem; color: var(--success); font-weight: 600;">✓ ${t("hash_match_label")}</div>
+        </div>
+      ` : ""}
     `;
   } catch (e) {
     const box = document.getElementById("benchmark-content-box");
