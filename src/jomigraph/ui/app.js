@@ -1366,6 +1366,11 @@ function attachLabFormHandler(parcelId, isCitizen) {
         `;
       } else {
         // REVIEWER LAB: before/after numbers, calculation line, next step.
+        // Show the transfer arithmetic for consistent and excess cases; for other
+        // contradictions (for example R2) show that rule's own calculation.
+        const calcText = ((hasExcess || alertStatusCode === "CONSISTENT") && simRes.r1_calculation)
+          ? simRes.r1_calculation
+          : (targetAlert && targetAlert.calculation) || "";
         resultBody.innerHTML = `
           <div style="margin: 1rem 0;">
             ${formatStatusBadge(alertStatusCode)}
@@ -1386,9 +1391,9 @@ function attachLabFormHandler(parcelId, isCitizen) {
               </div>
             </div>
           </div>
-          ${targetAlert && targetAlert.calculation ? `
+          ${calcText ? `
             <div class="r1-calc-line">
-              <strong>${t("lab_calc_label")}</strong> <span>${targetAlert.calculation}</span>
+              <strong>${t("lab_calc_label")}</strong> <span>${calcText}</span>
             </div>
           ` : ""}
           ${nextStep ? `
