@@ -15,7 +15,7 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Optional, Sequence
 
-from fastapi import FastAPI, HTTPException, Query, status
+from fastapi import FastAPI, HTTPException, Query, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from jomigraph.api.graph import build_parcel_graph
@@ -101,7 +101,7 @@ def build_minimal_evidence_and_impact(
     if trigger_event is None:
         trigger_event = next((e for e in history.events if e.id in a.evidence_ids), None)
     impact_ids: list[str] = []
-    if trigger_event is not None:
+    if trigger_event is not None and a.status in (Status.CONTRADICTION, Status.REVIEW):
         impact_ids = impact_closure(trigger_event.id, history.events)
 
     if a.status != Status.CONTRADICTION or trigger_event is None:
@@ -373,6 +373,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
     @app.get("/parcel/{parcel_id}")
     def get_parcel(
         parcel_id: str,
+        response: Response,
         lang: str = Query("bn", pattern="^(bn|en)$"),
         role: str = Query("reviewer", pattern="^(citizen|reviewer)$"),
     ) -> ParcelDetailResponse | CitizenParcelDetailResponse:
@@ -380,6 +381,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
         Get parcel details, survey records, events timeline, Cytoscape graph, and evaluated alerts.
         # This is a demo role, not authentication.
         """
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
         ds: Dataset = app.state.dataset
         parcel = ds.get_parcel(parcel_id)
         if parcel is None:
@@ -740,6 +742,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
     @app.get("/report/{parcel_id}")
     def get_report(
         parcel_id: str,
+        response: Response,
         lang: str = Query("bn", pattern="^(bn|en)$"),
         role: str = Query("citizen", pattern="^(citizen|reviewer)$"),
     ) -> ReviewerReportResponse | CitizenReportResponse:
@@ -747,6 +750,7 @@ def create_app(dataset: Optional[Dataset] = None, dataset_path: Optional[Path | 
         Return structured case summary report for the parcel.
         # This is a demo role, not authentication.
         """
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
         ds: Dataset = app.state.dataset
         parcel = ds.get_parcel(parcel_id)
         if parcel is None:

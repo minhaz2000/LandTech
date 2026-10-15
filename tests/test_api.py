@@ -563,6 +563,12 @@ class TestMinimalEvidenceAndImpact:
         assert "impact_event_ids" in r1
         assert r1["impact_event_ids"] == ["E_PLANTED_R1_3"]
 
+        # Consistent alerts must carry empty impact_event_ids
+        consistent_alerts = [a for a in data["alerts"] if a["status"] == "Consistent with supplied records"]
+        assert len(consistent_alerts) > 0
+        for ca in consistent_alerts:
+            assert ca["impact_event_ids"] == [], f"Expected empty impact_event_ids for Consistent alert, got {ca['impact_event_ids']}"
+
     def test_impact_lookup_with_cyclic_or_self_referencing_terminates(self):
         """Verify impact_lookup terminates cleanly with self-referencing or cyclic events."""
         from jomigraph.engine.evidence import impact_lookup
