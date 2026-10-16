@@ -1747,26 +1747,20 @@ function initializeCytoscape(graphData) {
       currentCytoscape = null;
     }
 
+    // The API sends Cytoscape-style elements: { data: { id, label, type, ... } }.
+    const nodeColors = { parcel: "#1e40af", survey_record: "#047857", person: "#475569" };
     const elements = [];
     (graphData.nodes || []).forEach(n => {
+      const d = n.data || n;
       elements.push({
-        data: {
-          id: n.id,
-          label: n.label,
-          type: n.type,
-          color: n.color || "#475569"
-        }
+        data: { id: d.id, label: d.label, type: d.type, color: nodeColors[d.type] || "#475569" }
       });
     });
 
     (graphData.edges || []).forEach(e => {
+      const d = e.data || e;
       elements.push({
-        data: {
-          id: e.id,
-          source: e.source,
-          target: e.target,
-          label: e.label
-        }
+        data: { id: d.id, source: d.source, target: d.target, label: d.label, type: d.type }
       });
     });
 
@@ -1783,7 +1777,7 @@ function initializeCytoscape(graphData) {
             "font-size": "12px",
             "font-family": "Noto Sans Bengali, sans-serif",
             "text-valign": "bottom",
-            "text-margin-y": 5,
+            "text-margin-y": 6,
             "width": 34,
             "height": 34
           }
@@ -1799,12 +1793,18 @@ function initializeCytoscape(graphData) {
             "label": "data(label)",
             "font-size": "10px",
             "font-family": "Noto Sans Bengali, sans-serif",
-            "color": "#475569"
+            "color": "#475569",
+            "text-background-color": "#ffffff",
+            "text-background-opacity": 0.85,
+            "text-background-padding": "2px"
           }
-        }
+        },
+        { selector: 'edge[type = "SALE"], edge[type = "GIFT"], edge[type = "SUBDIVIDE"]', style: { "line-color": "#b45309", "target-arrow-color": "#b45309", "width": 3 } }
       ],
       layout: {
-        name: "cose",
+        name: "breadthfirst",
+        directed: true,
+        spacingFactor: 1.7,
         animate: false,
         padding: 20
       }

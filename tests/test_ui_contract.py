@@ -71,3 +71,11 @@ def test_every_ui_string_key_used_in_lab_exists():
                 "error_server_unreachable", "lab_area_placeholder", "error_empty_fields"):
         for locale in ("bn", "en"):
             assert strings[locale].get(key), (locale, key)
+
+
+def test_graph_code_unwraps_the_cytoscape_data_wrapper():
+    """The API sends {data: {...}} elements; reading n.id directly gave dots with no labels or edges."""
+    js = read("app.js")
+    start = js.index("function initializeCytoscape")
+    body = js[start:]
+    assert "n.data || n" in body and "e.data || e" in body
