@@ -2,11 +2,11 @@
 
 ## Before submission (Round 1 closes 18 October 2026)
 
-- [ ] Concept note, PDF, 3 pages maximum
+- [x] Concept note draft (PDF, 3 pages): fill in the highlighted team and mentor names
 - [ ] Demo video, 90 seconds maximum
 - [ ] README: scope-of-assistance paragraph and understanding statement, in the authors' own words
-- [ ] Public GitHub repository, then replace `<REPO_URL>` in the README
-- [ ] Confirm the LICENSE (MIT is in the repo as the default)
+- [ ] Push to the public GitHub repository (README already points to github.com/alm03806-dev/LandTech, confirm the name)
+- [ ] Confirm the LICENSE (MIT is in the repo as the default) and the copyright holder names
 - [ ] Check on a real phone: layout at about 375 px, Bangla and English print preview, offline reload
 - [ ] Run the quickstart once on a clean machine
 
@@ -22,4 +22,5 @@
 - [x] Phase 3: FastAPI endpoints, schemas, search, report
 - [x] Phase 4: bilingual UI, role views, lineage graph, simulation lab, print report
 - [x] Phase 5: README with quickstart, limits and third-party table
+- [x] Lineage graph fix: UI now reads the Cytoscape data wrapper, so nodes show labels and edges
 - [x] Pre-submission fixes: input validation, decimals, role-aware responses, path anchoring, field rename, font links, line endings
