@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: jomigraph-ai
+    runtime: docker
+    plan: free
+    healthCheckPath: /ui-strings
+    autoDeploy: true
