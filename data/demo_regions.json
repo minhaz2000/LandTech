@@ -1,0 +1,1228 @@
+{
+ "persons": [
+  {
+   "id": "P_BAR1_A",
+   "name": "Anwar Hossain"
+  },
+  {
+   "id": "P_BAR1_B",
+   "name": "Salma Begum"
+  },
+  {
+   "id": "P_BAR2_A",
+   "name": "Salma Begum"
+  },
+  {
+   "id": "P_BAR2_B",
+   "name": "Anwar Hossain"
+  },
+  {
+   "id": "P_BAR3_A",
+   "name": "Anwar Hossain"
+  },
+  {
+   "id": "P_BAR3_B",
+   "name": "Salma Begum"
+  },
+  {
+   "id": "P_CTG1_A",
+   "name": "Kamal Uddin"
+  },
+  {
+   "id": "P_CTG1_B",
+   "name": "Rina Akter"
+  },
+  {
+   "id": "P_CTG2_A",
+   "name": "Rina Akter"
+  },
+  {
+   "id": "P_CTG2_B",
+   "name": "Kamal Uddin"
+  },
+  {
+   "id": "P_CTG3_A",
+   "name": "Kamal Uddin"
+  },
+  {
+   "id": "P_CTG3_B",
+   "name": "Rina Akter"
+  },
+  {
+   "id": "P_KHL1_A",
+   "name": "Jahid Mia"
+  },
+  {
+   "id": "P_KHL1_B",
+   "name": "Nasima Khatun"
+  },
+  {
+   "id": "P_KHL2_A",
+   "name": "Nasima Khatun"
+  },
+  {
+   "id": "P_KHL2_B",
+   "name": "Jahid Mia"
+  },
+  {
+   "id": "P_KHL3_A",
+   "name": "Jahid Mia"
+  },
+  {
+   "id": "P_KHL3_B",
+   "name": "Nasima Khatun"
+  },
+  {
+   "id": "P_MYM1_A",
+   "name": "Habib Sarker"
+  },
+  {
+   "id": "P_MYM1_B",
+   "name": "Mahmuda Islam"
+  },
+  {
+   "id": "P_MYM2_A",
+   "name": "Mahmuda Islam"
+  },
+  {
+   "id": "P_MYM2_B",
+   "name": "Habib Sarker"
+  },
+  {
+   "id": "P_MYM3_A",
+   "name": "Habib Sarker"
+  },
+  {
+   "id": "P_MYM3_B",
+   "name": "Mahmuda Islam"
+  },
+  {
+   "id": "P_RAJ1_A",
+   "name": "Shafiq Talukder"
+  },
+  {
+   "id": "P_RAJ1_B",
+   "name": "Rokeya Sultana"
+  },
+  {
+   "id": "P_RAJ2_A",
+   "name": "Rokeya Sultana"
+  },
+  {
+   "id": "P_RAJ2_B",
+   "name": "Shafiq Talukder"
+  },
+  {
+   "id": "P_RAJ3_A",
+   "name": "Shafiq Talukder"
+  },
+  {
+   "id": "P_RAJ3_B",
+   "name": "Rokeya Sultana"
+  },
+  {
+   "id": "P_RNG1_A",
+   "name": "Mizanur Rahman"
+  },
+  {
+   "id": "P_RNG1_B",
+   "name": "Shirin Akhter"
+  },
+  {
+   "id": "P_RNG2_A",
+   "name": "Shirin Akhter"
+  },
+  {
+   "id": "P_RNG2_B",
+   "name": "Mizanur Rahman"
+  },
+  {
+   "id": "P_RNG3_A",
+   "name": "Mizanur Rahman"
+  },
+  {
+   "id": "P_RNG3_B",
+   "name": "Shirin Akhter"
+  },
+  {
+   "id": "P_SYL1_A",
+   "name": "Delwar Howlader"
+  },
+  {
+   "id": "P_SYL1_B",
+   "name": "Parvin Nahar"
+  },
+  {
+   "id": "P_SYL2_A",
+   "name": "Parvin Nahar"
+  },
+  {
+   "id": "P_SYL2_B",
+   "name": "Delwar Howlader"
+  },
+  {
+   "id": "P_SYL3_A",
+   "name": "Delwar Howlader"
+  },
+  {
+   "id": "P_SYL3_B",
+   "name": "Parvin Nahar"
+  }
+ ],
+ "parcels": [
+  {
+   "id": "PARCEL_REG_BAR_01",
+   "dag_no": "511",
+   "mouza": "Demo Mouza BAR1",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_BAR_02",
+   "dag_no": "512",
+   "mouza": "Demo Mouza BAR2",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_BAR_03",
+   "dag_no": "513",
+   "mouza": "Demo Mouza BAR3",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_CTG_01",
+   "dag_no": "521",
+   "mouza": "Demo Mouza CTG1",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_CTG_02",
+   "dag_no": "522",
+   "mouza": "Demo Mouza CTG2",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_CTG_03",
+   "dag_no": "523",
+   "mouza": "Demo Mouza CTG3",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_KHL_01",
+   "dag_no": "531",
+   "mouza": "Demo Mouza KHL1",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_KHL_02",
+   "dag_no": "532",
+   "mouza": "Demo Mouza KHL2",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_KHL_03",
+   "dag_no": "533",
+   "mouza": "Demo Mouza KHL3",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_MYM_01",
+   "dag_no": "541",
+   "mouza": "Demo Mouza MYM1",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_MYM_02",
+   "dag_no": "542",
+   "mouza": "Demo Mouza MYM2",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_MYM_03",
+   "dag_no": "543",
+   "mouza": "Demo Mouza MYM3",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_RAJ_01",
+   "dag_no": "551",
+   "mouza": "Demo Mouza RAJ1",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_RAJ_02",
+   "dag_no": "552",
+   "mouza": "Demo Mouza RAJ2",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_RAJ_03",
+   "dag_no": "553",
+   "mouza": "Demo Mouza RAJ3",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_RNG_01",
+   "dag_no": "561",
+   "mouza": "Demo Mouza RNG1",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_RNG_02",
+   "dag_no": "562",
+   "mouza": "Demo Mouza RNG2",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_RNG_03",
+   "dag_no": "563",
+   "mouza": "Demo Mouza RNG3",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_SYL_01",
+   "dag_no": "571",
+   "mouza": "Demo Mouza SYL1",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_SYL_02",
+   "dag_no": "572",
+   "mouza": "Demo Mouza SYL2",
+   "parent_id": null
+  },
+  {
+   "id": "PARCEL_REG_SYL_03",
+   "dag_no": "573",
+   "mouza": "Demo Mouza SYL3",
+   "parent_id": null
+  }
+ ],
+ "deeds": [
+  {
+   "id": "DEED_BAR1",
+   "deed_no": "D-2010-511",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_BAR2",
+   "deed_no": "D-2010-512",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_BAR3",
+   "deed_no": "D-2010-513",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_CTG1",
+   "deed_no": "D-2010-521",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_CTG2",
+   "deed_no": "D-2010-522",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_CTG3",
+   "deed_no": "D-2010-523",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_KHL1",
+   "deed_no": "D-2010-531",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_KHL2",
+   "deed_no": "D-2010-532",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_KHL3",
+   "deed_no": "D-2010-533",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_MYM1",
+   "deed_no": "D-2010-541",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_MYM2",
+   "deed_no": "D-2010-542",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_MYM3",
+   "deed_no": "D-2010-543",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_RAJ1",
+   "deed_no": "D-2010-551",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_RAJ2",
+   "deed_no": "D-2010-552",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_RAJ3",
+   "deed_no": "D-2010-553",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_RNG1",
+   "deed_no": "D-2010-561",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_RNG2",
+   "deed_no": "D-2010-562",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_RNG3",
+   "deed_no": "D-2010-563",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_SYL1",
+   "deed_no": "D-2010-571",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_SYL2",
+   "deed_no": "D-2010-572",
+   "registration_date": "2010-06-01"
+  },
+  {
+   "id": "DEED_SYL3",
+   "deed_no": "D-2010-573",
+   "registration_date": "2010-06-01"
+  }
+ ],
+ "histories": [
+  {
+   "parcel_id": "PARCEL_REG_BAR_01",
+   "baseline_record_id": "SR_BAR1",
+   "baseline_complete": true,
+   "start_record_id": "SR_BAR1",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_BAR1",
+     "parcel_id": "PARCEL_REG_BAR_01",
+     "survey": "BS",
+     "khatian_no": "5111",
+     "record_date": "2000-01-10",
+     "recorded_area": "20",
+     "holders": [
+      {
+       "person_id": "P_BAR1_A",
+       "area": "20"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_BAR1_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_BAR_01",
+     "from_person": "P_BAR1_A",
+     "to_person": "P_BAR1_B",
+     "area": "20",
+     "deed_id": "DEED_BAR1",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_BAR_02",
+   "baseline_record_id": "SR_BAR2",
+   "baseline_complete": false,
+   "start_record_id": "SR_BAR2",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_BAR2",
+     "parcel_id": "PARCEL_REG_BAR_02",
+     "survey": "BS",
+     "khatian_no": "5121",
+     "record_date": "2000-01-10",
+     "recorded_area": "12",
+     "holders": [
+      {
+       "person_id": "P_BAR2_A",
+       "area": "12"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_BAR2_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_BAR_02",
+     "from_person": "P_BAR2_B",
+     "to_person": "P_BAR2_A",
+     "area": "5",
+     "deed_id": "DEED_BAR2",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_BAR_03",
+   "baseline_record_id": "SR_BAR3",
+   "baseline_complete": true,
+   "start_record_id": "SR_BAR3",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_BAR3",
+     "parcel_id": "PARCEL_REG_BAR_03",
+     "survey": "BS",
+     "khatian_no": "5131",
+     "record_date": "2000-01-10",
+     "recorded_area": "10",
+     "holders": [
+      {
+       "person_id": "P_BAR3_A",
+       "area": "10"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_BAR3_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_BAR_03",
+     "from_person": "P_BAR3_A",
+     "to_person": "P_BAR3_B",
+     "area": "15",
+     "deed_id": "DEED_BAR3",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_CTG_01",
+   "baseline_record_id": "SR_CTG1",
+   "baseline_complete": true,
+   "start_record_id": "SR_CTG1",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_CTG1",
+     "parcel_id": "PARCEL_REG_CTG_01",
+     "survey": "BS",
+     "khatian_no": "5211",
+     "record_date": "2000-01-10",
+     "recorded_area": "20",
+     "holders": [
+      {
+       "person_id": "P_CTG1_A",
+       "area": "20"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_CTG1_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_CTG_01",
+     "from_person": "P_CTG1_A",
+     "to_person": "P_CTG1_B",
+     "area": "20",
+     "deed_id": "DEED_CTG1",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_CTG_02",
+   "baseline_record_id": "SR_CTG2",
+   "baseline_complete": false,
+   "start_record_id": "SR_CTG2",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_CTG2",
+     "parcel_id": "PARCEL_REG_CTG_02",
+     "survey": "BS",
+     "khatian_no": "5221",
+     "record_date": "2000-01-10",
+     "recorded_area": "12",
+     "holders": [
+      {
+       "person_id": "P_CTG2_A",
+       "area": "12"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_CTG2_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_CTG_02",
+     "from_person": "P_CTG2_B",
+     "to_person": "P_CTG2_A",
+     "area": "5",
+     "deed_id": "DEED_CTG2",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_CTG_03",
+   "baseline_record_id": "SR_CTG3",
+   "baseline_complete": true,
+   "start_record_id": "SR_CTG3",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_CTG3",
+     "parcel_id": "PARCEL_REG_CTG_03",
+     "survey": "BS",
+     "khatian_no": "5231",
+     "record_date": "2000-01-10",
+     "recorded_area": "10",
+     "holders": [
+      {
+       "person_id": "P_CTG3_A",
+       "area": "10"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_CTG3_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_CTG_03",
+     "from_person": "P_CTG3_A",
+     "to_person": "P_CTG3_B",
+     "area": "15",
+     "deed_id": "DEED_CTG3",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_KHL_01",
+   "baseline_record_id": "SR_KHL1",
+   "baseline_complete": true,
+   "start_record_id": "SR_KHL1",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_KHL1",
+     "parcel_id": "PARCEL_REG_KHL_01",
+     "survey": "BS",
+     "khatian_no": "5311",
+     "record_date": "2000-01-10",
+     "recorded_area": "20",
+     "holders": [
+      {
+       "person_id": "P_KHL1_A",
+       "area": "20"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_KHL1_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_KHL_01",
+     "from_person": "P_KHL1_A",
+     "to_person": "P_KHL1_B",
+     "area": "20",
+     "deed_id": "DEED_KHL1",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_KHL_02",
+   "baseline_record_id": "SR_KHL2",
+   "baseline_complete": false,
+   "start_record_id": "SR_KHL2",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_KHL2",
+     "parcel_id": "PARCEL_REG_KHL_02",
+     "survey": "BS",
+     "khatian_no": "5321",
+     "record_date": "2000-01-10",
+     "recorded_area": "12",
+     "holders": [
+      {
+       "person_id": "P_KHL2_A",
+       "area": "12"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_KHL2_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_KHL_02",
+     "from_person": "P_KHL2_B",
+     "to_person": "P_KHL2_A",
+     "area": "5",
+     "deed_id": "DEED_KHL2",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_KHL_03",
+   "baseline_record_id": "SR_KHL3",
+   "baseline_complete": true,
+   "start_record_id": "SR_KHL3",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_KHL3",
+     "parcel_id": "PARCEL_REG_KHL_03",
+     "survey": "BS",
+     "khatian_no": "5331",
+     "record_date": "2000-01-10",
+     "recorded_area": "10",
+     "holders": [
+      {
+       "person_id": "P_KHL3_A",
+       "area": "10"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_KHL3_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_KHL_03",
+     "from_person": "P_KHL3_A",
+     "to_person": "P_KHL3_B",
+     "area": "15",
+     "deed_id": "DEED_KHL3",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_MYM_01",
+   "baseline_record_id": "SR_MYM1",
+   "baseline_complete": true,
+   "start_record_id": "SR_MYM1",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_MYM1",
+     "parcel_id": "PARCEL_REG_MYM_01",
+     "survey": "BS",
+     "khatian_no": "5411",
+     "record_date": "2000-01-10",
+     "recorded_area": "20",
+     "holders": [
+      {
+       "person_id": "P_MYM1_A",
+       "area": "20"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_MYM1_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_MYM_01",
+     "from_person": "P_MYM1_A",
+     "to_person": "P_MYM1_B",
+     "area": "20",
+     "deed_id": "DEED_MYM1",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_MYM_02",
+   "baseline_record_id": "SR_MYM2",
+   "baseline_complete": false,
+   "start_record_id": "SR_MYM2",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_MYM2",
+     "parcel_id": "PARCEL_REG_MYM_02",
+     "survey": "BS",
+     "khatian_no": "5421",
+     "record_date": "2000-01-10",
+     "recorded_area": "12",
+     "holders": [
+      {
+       "person_id": "P_MYM2_A",
+       "area": "12"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_MYM2_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_MYM_02",
+     "from_person": "P_MYM2_B",
+     "to_person": "P_MYM2_A",
+     "area": "5",
+     "deed_id": "DEED_MYM2",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_MYM_03",
+   "baseline_record_id": "SR_MYM3",
+   "baseline_complete": true,
+   "start_record_id": "SR_MYM3",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_MYM3",
+     "parcel_id": "PARCEL_REG_MYM_03",
+     "survey": "BS",
+     "khatian_no": "5431",
+     "record_date": "2000-01-10",
+     "recorded_area": "10",
+     "holders": [
+      {
+       "person_id": "P_MYM3_A",
+       "area": "10"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_MYM3_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_MYM_03",
+     "from_person": "P_MYM3_A",
+     "to_person": "P_MYM3_B",
+     "area": "15",
+     "deed_id": "DEED_MYM3",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_RAJ_01",
+   "baseline_record_id": "SR_RAJ1",
+   "baseline_complete": true,
+   "start_record_id": "SR_RAJ1",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_RAJ1",
+     "parcel_id": "PARCEL_REG_RAJ_01",
+     "survey": "BS",
+     "khatian_no": "5511",
+     "record_date": "2000-01-10",
+     "recorded_area": "20",
+     "holders": [
+      {
+       "person_id": "P_RAJ1_A",
+       "area": "20"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_RAJ1_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_RAJ_01",
+     "from_person": "P_RAJ1_A",
+     "to_person": "P_RAJ1_B",
+     "area": "20",
+     "deed_id": "DEED_RAJ1",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_RAJ_02",
+   "baseline_record_id": "SR_RAJ2",
+   "baseline_complete": false,
+   "start_record_id": "SR_RAJ2",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_RAJ2",
+     "parcel_id": "PARCEL_REG_RAJ_02",
+     "survey": "BS",
+     "khatian_no": "5521",
+     "record_date": "2000-01-10",
+     "recorded_area": "12",
+     "holders": [
+      {
+       "person_id": "P_RAJ2_A",
+       "area": "12"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_RAJ2_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_RAJ_02",
+     "from_person": "P_RAJ2_B",
+     "to_person": "P_RAJ2_A",
+     "area": "5",
+     "deed_id": "DEED_RAJ2",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_RAJ_03",
+   "baseline_record_id": "SR_RAJ3",
+   "baseline_complete": true,
+   "start_record_id": "SR_RAJ3",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_RAJ3",
+     "parcel_id": "PARCEL_REG_RAJ_03",
+     "survey": "BS",
+     "khatian_no": "5531",
+     "record_date": "2000-01-10",
+     "recorded_area": "10",
+     "holders": [
+      {
+       "person_id": "P_RAJ3_A",
+       "area": "10"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_RAJ3_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_RAJ_03",
+     "from_person": "P_RAJ3_A",
+     "to_person": "P_RAJ3_B",
+     "area": "15",
+     "deed_id": "DEED_RAJ3",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_RNG_01",
+   "baseline_record_id": "SR_RNG1",
+   "baseline_complete": true,
+   "start_record_id": "SR_RNG1",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_RNG1",
+     "parcel_id": "PARCEL_REG_RNG_01",
+     "survey": "BS",
+     "khatian_no": "5611",
+     "record_date": "2000-01-10",
+     "recorded_area": "20",
+     "holders": [
+      {
+       "person_id": "P_RNG1_A",
+       "area": "20"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_RNG1_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_RNG_01",
+     "from_person": "P_RNG1_A",
+     "to_person": "P_RNG1_B",
+     "area": "20",
+     "deed_id": "DEED_RNG1",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_RNG_02",
+   "baseline_record_id": "SR_RNG2",
+   "baseline_complete": false,
+   "start_record_id": "SR_RNG2",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_RNG2",
+     "parcel_id": "PARCEL_REG_RNG_02",
+     "survey": "BS",
+     "khatian_no": "5621",
+     "record_date": "2000-01-10",
+     "recorded_area": "12",
+     "holders": [
+      {
+       "person_id": "P_RNG2_A",
+       "area": "12"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_RNG2_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_RNG_02",
+     "from_person": "P_RNG2_B",
+     "to_person": "P_RNG2_A",
+     "area": "5",
+     "deed_id": "DEED_RNG2",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_RNG_03",
+   "baseline_record_id": "SR_RNG3",
+   "baseline_complete": true,
+   "start_record_id": "SR_RNG3",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_RNG3",
+     "parcel_id": "PARCEL_REG_RNG_03",
+     "survey": "BS",
+     "khatian_no": "5631",
+     "record_date": "2000-01-10",
+     "recorded_area": "10",
+     "holders": [
+      {
+       "person_id": "P_RNG3_A",
+       "area": "10"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_RNG3_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_RNG_03",
+     "from_person": "P_RNG3_A",
+     "to_person": "P_RNG3_B",
+     "area": "15",
+     "deed_id": "DEED_RNG3",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_SYL_01",
+   "baseline_record_id": "SR_SYL1",
+   "baseline_complete": true,
+   "start_record_id": "SR_SYL1",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_SYL1",
+     "parcel_id": "PARCEL_REG_SYL_01",
+     "survey": "BS",
+     "khatian_no": "5711",
+     "record_date": "2000-01-10",
+     "recorded_area": "20",
+     "holders": [
+      {
+       "person_id": "P_SYL1_A",
+       "area": "20"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_SYL1_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_SYL_01",
+     "from_person": "P_SYL1_A",
+     "to_person": "P_SYL1_B",
+     "area": "20",
+     "deed_id": "DEED_SYL1",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_SYL_02",
+   "baseline_record_id": "SR_SYL2",
+   "baseline_complete": false,
+   "start_record_id": "SR_SYL2",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_SYL2",
+     "parcel_id": "PARCEL_REG_SYL_02",
+     "survey": "BS",
+     "khatian_no": "5721",
+     "record_date": "2000-01-10",
+     "recorded_area": "12",
+     "holders": [
+      {
+       "person_id": "P_SYL2_A",
+       "area": "12"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_SYL2_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_SYL_02",
+     "from_person": "P_SYL2_B",
+     "to_person": "P_SYL2_A",
+     "area": "5",
+     "deed_id": "DEED_SYL2",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  },
+  {
+   "parcel_id": "PARCEL_REG_SYL_03",
+   "baseline_record_id": "SR_SYL3",
+   "baseline_complete": true,
+   "start_record_id": "SR_SYL3",
+   "end_date": "2025-12-31",
+   "survey_records": [
+    {
+     "id": "SR_SYL3",
+     "parcel_id": "PARCEL_REG_SYL_03",
+     "survey": "BS",
+     "khatian_no": "5731",
+     "record_date": "2000-01-10",
+     "recorded_area": "10",
+     "holders": [
+      {
+       "person_id": "P_SYL3_A",
+       "area": "10"
+      }
+     ]
+    }
+   ],
+   "events": [
+    {
+     "id": "E_SYL3_1",
+     "type": "SALE",
+     "seq": 1,
+     "event_date": "2010-06-01",
+     "parcel_id": "PARCEL_REG_SYL_03",
+     "from_person": "P_SYL3_A",
+     "to_person": "P_SYL3_B",
+     "area": "15",
+     "deed_id": "DEED_SYL3",
+     "portion_id": null,
+     "linked_event_id": null,
+     "source_record_id": null
+    }
+   ]
+  }
+ ]
+}

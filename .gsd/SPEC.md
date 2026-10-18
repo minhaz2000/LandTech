@@ -1,4 +1,4 @@
-﻿# SPEC.md — JomiGraph AI
+# SPEC.md — JomiGraph AI
 
 > **Status**: `FINALIZED`
 
@@ -98,3 +98,50 @@ Fixed random seed, one main story family across 4 generations (CS, SA, RS, BS), 
 - Simulations never mutate the baseline (hash verification).
 - README states all assumptions and limits honestly.
 - benchmark.md covers all required evaluation dimensions.
+
+---
+
+## v1.1 Additions
+
+### Invariants (Non-negotiable)
+- **Fractions only** for any area or share. No float in rules or in new fields (`load_fraction` stays the boundary).
+- **Exactly three statuses**: `Consistent with supplied records`, `Contradiction Found`, `Review Required`. Never output "safe", "valid", "legal", "verified owner", "fraud", "forged", "scam" or "you will be cheated" in any user-visible string.
+- **Missing or ambiguous input -> Review Required first.** Only then apply `baseline_complete` and rule logic. A new rule returns Contradiction only when the condition is explicit and all inputs are present.
+- **Every Alert has non-empty evidence_ids**; every alert has bilingual `message_key` and `recommended_next_step` keys in both `locales/bn.json` and `locales/en.json`.
+- **Synthetic data only.** No real names, NIDs, phone numbers, bank names or case numbers. Fictional dummy IDs (`DUMMY-ID-0001`, `DEMO-CASE-0001`).
+- **No new network calls at runtime, no ML, no blockchain, no scraping, no external API.** Pure offline capability.
+- **Back-compat:** All existing v1.0 data loads unchanged. New model fields are optional with defaults. Existing API schemas and dataset SHA-256 hashes remain identical.
+- **Role separation:** Citizen response contains no rule IDs, calculations, evidence IDs or staging fields; Reviewer sees complete audit evidence.
+- **Pure simulation & Shared dispatch:** `simulate()` stays pure. All rules evaluate through a single shared rule dispatcher across `evaluate()`, `evaluate_history()`, and simulation.
+
+### Rules R8–R15
+- **R8 Unaccounted heir declaration:** Consistency check of declared heirs in `heir_declaration`. When next khatian or deed lacks declared heir without release/gift/sale deed -> Review Required; Contradiction Found only if complete=true and dates/docs explicit.
+- **R9 Mortgage active at sale:** Event types `MORTGAGE` and `MORTGAGE_RELEASE`. Sale/gift during active mortgage -> Contradiction Found; second mortgage on same portion -> Contradiction Found; ambiguous release -> Review Required. Replay treats as non-transferring.
+- **R10 Power of attorney:** Event types `POA_GRANT` and `POA_REVOKE`. Sale via POA (`via_poa_id`) requires valid grant and no prior revocation -> Contradiction Found if revoked/missing; Review Required if dates/scope ambiguous. Replay treats as non-transferring.
+- **R11 Government / court lock:** Parcel flags `is_khas`, `under_acquisition`, `court_case_no`, `injunction`. Sale after flag date -> Contradiction Found; pending case or injunction -> Review Required.
+- **R12 Deed integrity:** Canonical SHA-256 `content_hash` on Deed. Verification endpoint `POST /verify-deed`. Mismatch -> Contradiction Found; missing on file/claimed -> Review Required; match -> Consistent. Client-side QR code.
+- **R13 Deed number reused:** Same `deed_no` on multiple parcels/events with different parties/dates/area -> Review Required only (never Contradiction).
+- **R14 Dummy identity numbers:** Optional `dummy_id` on Person (`DUMMY-ID-0001`). Disambiguates persons with identical names in search, graph, and evidence.
+- **R15 Structured boundary / portion sold twice:** Structured `portion` and `boundary` descriptors on Event. Overlapping or duplicate physical boundary via lineage -> Contradiction Found.
+
+### Extended Model Fields & Types
+- `Deed.content_hash: Optional[str] = None`
+- `Person.dummy_id: Optional[str] = None`
+- `Event.portion: Optional[dict] = None`
+- `Event.boundary: Optional[str | dict] = None`
+- `Event.via_poa_id: Optional[str] = None`
+- `Parcel.is_khas: bool = False`
+- `Parcel.under_acquisition: bool = False`
+- `Parcel.flag_date: Optional[date] = None`
+- `Parcel.court_case_no: Optional[str] = None`
+- `Parcel.case_status: Optional[str] = None`
+- `Parcel.injunction: bool = False`
+- `EventType`: `MORTGAGE`, `MORTGAGE_RELEASE`, `POA_GRANT`, `POA_REVOKE`
+- `ParcelHistory.heir_declaration: Optional[dict | list] = None`
+
+### Endpoints (v1.1)
+- `POST /verify-deed`
+- `POST /assistant` (Offline deterministic guidance)
+- `GET /geo/tree`, `GET /geo/parcels`, `POST /check-my-land` (Administrative navigation and citizen check)
+- `GET /benchmark` (Extended additive coverage)
+

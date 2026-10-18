@@ -56,7 +56,11 @@ def parse_dataset_dict(data: dict[str, Any]) -> Dataset:
     """Parse a dictionary into a validated Dataset instance."""
     # 1. Persons
     persons = tuple(
-        Person(id=p["id"], name=p["name"])
+        Person(
+            id=p["id"],
+            name=p["name"],
+            dummy_id=p.get("dummy_id"),
+        )
         for p in data.get("persons", [])
     )
 
@@ -67,6 +71,12 @@ def parse_dataset_dict(data: dict[str, Any]) -> Dataset:
             dag_no=p["dag_no"],
             mouza=p["mouza"],
             parent_id=p.get("parent_id"),
+            is_khas=bool(p.get("is_khas", False)),
+            under_acquisition=bool(p.get("under_acquisition", False)),
+            flag_date=_parse_date(p.get("flag_date")),
+            court_case_no=p.get("court_case_no"),
+            case_status=p.get("case_status"),
+            injunction=bool(p.get("injunction", False)),
         )
         for p in data.get("parcels", [])
     )
@@ -77,6 +87,7 @@ def parse_dataset_dict(data: dict[str, Any]) -> Dataset:
             id=d["id"],
             deed_no=d["deed_no"],
             registration_date=date.fromisoformat(d["registration_date"]),
+            content_hash=d.get("content_hash"),
         )
         for d in data.get("deeds", [])
     )
@@ -114,6 +125,9 @@ def parse_dataset_dict(data: dict[str, Any]) -> Dataset:
                 portion_id=e.get("portion_id"),
                 linked_event_id=e.get("linked_event_id"),
                 source_record_id=e.get("source_record_id"),
+                portion=e.get("portion"),
+                boundary=e.get("boundary"),
+                via_poa_id=e.get("via_poa_id"),
             )
             for e in h.get("events", [])
         )
@@ -127,6 +141,7 @@ def parse_dataset_dict(data: dict[str, Any]) -> Dataset:
                 end_date=_parse_date(h.get("end_date")),
                 survey_records=survey_records,
                 events=events,
+                heir_declaration=h.get("heir_declaration"),
             )
         )
 
@@ -152,70 +167,99 @@ def load_dataset(file_path: str | Path) -> Dataset:
 
 def dataset_to_dict(dataset: Dataset) -> dict[str, Any]:
     """Serialize a Dataset instance into a JSON-compatible dictionary."""
+    def _person_dict(p: Person) -> dict[str, Any]:
+        d = {"id": p.id, "name": p.name}
+        if p.dummy_id is not None:
+            d["dummy_id"] = p.dummy_id
+        return d
+
+    def _parcel_dict(p: Parcel) -> dict[str, Any]:
+        d = {
+            "id": p.id,
+            "dag_no": p.dag_no,
+            "mouza": p.mouza,
+            "parent_id": p.parent_id,
+        }
+        if p.is_khas:
+            d["is_khas"] = True
+        if p.under_acquisition:
+            d["under_acquisition"] = True
+        if p.flag_date:
+            d["flag_date"] = p.flag_date.isoformat()
+        if p.court_case_no:
+            d["court_case_no"] = p.court_case_no
+        if p.case_status:
+            d["case_status"] = p.case_status
+        if p.injunction:
+            d["injunction"] = True
+        return d
+
+    def _deed_dict(d: Deed) -> dict[str, Any]:
+        res = {
+            "id": d.id,
+            "deed_no": d.deed_no,
+            "registration_date": d.registration_date.isoformat(),
+        }
+        if d.content_hash is not None:
+            res["content_hash"] = d.content_hash
+        return res
+
+    def _event_dict(e: Event) -> dict[str, Any]:
+        res = {
+            "id": e.id,
+            "type": e.type.value,
+            "seq": e.seq,
+            "event_date": e.event_date.isoformat() if e.event_date else None,
+            "parcel_id": e.parcel_id,
+            "from_person": e.from_person,
+            "to_person": e.to_person,
+            "area": str(e.area) if e.area is not None else None,
+            "deed_id": e.deed_id,
+            "portion_id": e.portion_id,
+            "linked_event_id": e.linked_event_id,
+            "source_record_id": e.source_record_id,
+        }
+        if e.portion is not None:
+            res["portion"] = e.portion
+        if e.boundary is not None:
+            res["boundary"] = e.boundary
+        if e.via_poa_id is not None:
+            res["via_poa_id"] = e.via_poa_id
+        return res
+
+    def _history_dict(h: ParcelHistory) -> dict[str, Any]:
+        res = {
+            "parcel_id": h.parcel_id,
+            "baseline_record_id": h.baseline_record_id,
+            "baseline_complete": h.baseline_complete,
+            "start_record_id": h.start_record_id,
+            "end_date": h.end_date.isoformat() if h.end_date else None,
+            "survey_records": [
+                {
+                    "id": sr.id,
+                    "parcel_id": sr.parcel_id,
+                    "survey": sr.survey,
+                    "khatian_no": sr.khatian_no,
+                    "record_date": sr.record_date.isoformat(),
+                    "recorded_area": str(sr.recorded_area),
+                    "holders": [
+                        {"person_id": holder[0], "area": str(holder[1])}
+                        for holder in sr.holders
+                    ],
+                }
+                for sr in h.survey_records
+            ],
+            "events": [_event_dict(e) for e in h.events],
+        }
+        if h.heir_declaration is not None:
+            res["heir_declaration"] = h.heir_declaration
+        return res
+
     return {
-        "persons": [
-            {"id": p.id, "name": p.name}
-            for p in dataset.persons
-        ],
-        "parcels": [
-            {
-                "id": p.id,
-                "dag_no": p.dag_no,
-                "mouza": p.mouza,
-                "parent_id": p.parent_id,
-            }
-            for p in dataset.parcels
-        ],
-        "deeds": [
-            {
-                "id": d.id,
-                "deed_no": d.deed_no,
-                "registration_date": d.registration_date.isoformat(),
-            }
-            for d in dataset.deeds
-        ],
-        "histories": [
-            {
-                "parcel_id": h.parcel_id,
-                "baseline_record_id": h.baseline_record_id,
-                "baseline_complete": h.baseline_complete,
-                "start_record_id": h.start_record_id,
-                "end_date": h.end_date.isoformat() if h.end_date else None,
-                "survey_records": [
-                    {
-                        "id": sr.id,
-                        "parcel_id": sr.parcel_id,
-                        "survey": sr.survey,
-                        "khatian_no": sr.khatian_no,
-                        "record_date": sr.record_date.isoformat(),
-                        "recorded_area": str(sr.recorded_area),
-                        "holders": [
-                            {"person_id": holder[0], "area": str(holder[1])}
-                            for holder in sr.holders
-                        ],
-                    }
-                    for sr in h.survey_records
-                ],
-                "events": [
-                    {
-                        "id": e.id,
-                        "type": e.type.value,
-                        "seq": e.seq,
-                        "event_date": e.event_date.isoformat() if e.event_date else None,
-                        "parcel_id": e.parcel_id,
-                        "from_person": e.from_person,
-                        "to_person": e.to_person,
-                        "area": str(e.area) if e.area is not None else None,
-                        "deed_id": e.deed_id,
-                        "portion_id": e.portion_id,
-                        "linked_event_id": e.linked_event_id,
-                        "source_record_id": e.source_record_id,
-                    }
-                    for e in h.events
-                ],
-            }
-            for h in dataset.histories
-        ],
+        "persons": [_person_dict(p) for p in dataset.persons],
+        "parcels": [_parcel_dict(p) for p in dataset.parcels],
+        "deeds": [_deed_dict(d) for d in dataset.deeds],
+        "histories": [_history_dict(h) for h in dataset.histories],
     }
 
 

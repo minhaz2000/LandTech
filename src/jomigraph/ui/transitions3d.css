@@ -1,0 +1,154 @@
+/* JomiGraph AI — Accessible 3D Transitions (Phase 15) */
+
+/* 1. Perspective Container for 3D View Transitions */
+.view-3d-stage {
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+  .view-3d-stage {
+    perspective: 900px;
+  }
+}
+
+/* 2. Slide Transition Classes */
+.view-3d-slide-out-forward {
+  animation: slideOutForward 0.45s cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes slideOutForward {
+  from {
+    opacity: 1;
+    transform: translateZ(0) rotateY(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: translateZ(-160px) rotateY(-14deg) translateX(-30px);
+  }
+}
+
+.view-3d-slide-in-forward {
+  animation: slideInForward 0.45s cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes slideInForward {
+  from {
+    opacity: 0;
+    transform: translateZ(-160px) rotateY(14deg) translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0) rotateY(0deg) translateX(0);
+  }
+}
+
+.view-3d-slide-out-back {
+  animation: slideOutBack 0.45s cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes slideOutBack {
+  from {
+    opacity: 1;
+    transform: translateZ(0) rotateY(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: translateZ(-160px) rotateY(14deg) translateX(30px);
+  }
+}
+
+.view-3d-slide-in-back {
+  animation: slideInBack 0.45s cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes slideInBack {
+  from {
+    opacity: 0;
+    transform: translateZ(-160px) rotateY(-14deg) translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0) rotateY(0deg) translateX(0);
+  }
+}
+
+/* 3. Flip Transition (for role & language switches) */
+.view-3d-flip-out {
+  animation: flipOut 0.5s cubic-bezier(0.2, 0.85, 0.4, 1.2) forwards;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+@keyframes flipOut {
+  from {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: rotateY(90deg);
+  }
+}
+
+.view-3d-flip-in {
+  animation: flipIn 0.5s cubic-bezier(0.2, 0.85, 0.4, 1.2) forwards;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+@keyframes flipIn {
+  from {
+    opacity: 0;
+    transform: rotateY(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
+
+/* 4. Zoom Transition (card to detail) */
+.view-3d-zoom-in {
+  animation: zoomIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateZ(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+}
+
+/* 5. Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .view-3d-slide-out-forward,
+  .view-3d-slide-in-forward,
+  .view-3d-slide-out-back,
+  .view-3d-slide-in-back,
+  .view-3d-flip-out,
+  .view-3d-flip-in,
+  .view-3d-zoom-in {
+    animation-duration: 0.001ms !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+body.reduce-motion .view-3d-slide-out-forward,
+body.reduce-motion .view-3d-slide-in-forward,
+body.reduce-motion .view-3d-slide-out-back,
+body.reduce-motion .view-3d-slide-in-back,
+body.reduce-motion .view-3d-flip-out,
+body.reduce-motion .view-3d-flip-in,
+body.reduce-motion .view-3d-zoom-in {
+  animation-duration: 0.001ms !important;
+  transform: none !important;
+  opacity: 1 !important;
+}

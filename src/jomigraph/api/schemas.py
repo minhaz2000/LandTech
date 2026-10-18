@@ -28,6 +28,11 @@ class ParcelListItem(BaseModel):
     # Staging fields: present for the reviewer role only (see GET /parcels).
     planted: Optional[bool] = None
     category: Optional[str] = None
+    is_khas: Optional[bool] = None
+    under_acquisition: Optional[bool] = None
+    court_case_no: Optional[str] = None
+    injunction: Optional[bool] = None
+    is_locked: Optional[bool] = None
 
 
 # ---------------------------------------------------------------------------
@@ -41,6 +46,8 @@ class GraphNodeData(BaseModel):
     survey: Optional[str] = None
     record_date: Optional[str] = None
     recorded_area: Optional[str] = None
+    dummy_id: Optional[str] = None
+    is_locked: Optional[bool] = None
 
 
 class GraphNode(BaseModel):
@@ -73,6 +80,17 @@ class HolderDetail(BaseModel):
     person_id: str
     person_name: str
     area: str
+    share_fraction: Optional[str] = None
+    traditional_share: Optional[str] = None
+
+
+class CoownerQuotaDetail(BaseModel):
+    person_id: str
+    person_name: str
+    recorded_area: str
+    quota_limit: str
+    share_fraction: str
+    traditional_share: str
 
 
 class SurveyRecordDetail(BaseModel):
@@ -100,6 +118,7 @@ class EventDetail(BaseModel):
     portion_id: Optional[str]
     linked_event_id: Optional[str]
     source_record_id: Optional[str]
+    via_poa_id: Optional[str] = None
 
 
 class CitizenAlertDetail(BaseModel):
@@ -137,6 +156,19 @@ class CitizenParcelDetailResponse(BaseModel):
     events: list[EventDetail]
     graph: GraphResponse
     alerts: list[CitizenAlertDetail]
+    coowner_quotas: Optional[list[CoownerQuotaDetail]] = None
+    traditional_share_disclaimer: Optional[str] = None
+    is_khas: Optional[bool] = None
+    under_acquisition: Optional[bool] = None
+    flag_date: Optional[str] = None
+    court_case_no: Optional[str] = None
+    case_status: Optional[str] = None
+    injunction: Optional[bool] = None
+    is_locked: Optional[bool] = None
+    attention_score: Optional[int] = 0
+    traffic_light: Optional[str] = "green"
+    score_summary: Optional[str] = None
+    score_disclaimer: Optional[str] = None
 
 
 class ParcelDetailResponse(BaseModel):
@@ -150,6 +182,19 @@ class ParcelDetailResponse(BaseModel):
     events: list[EventDetail]
     graph: GraphResponse
     alerts: list[ReviewerAlertDetail]
+    coowner_quotas: Optional[list[CoownerQuotaDetail]] = None
+    traditional_share_disclaimer: Optional[str] = None
+    is_khas: Optional[bool] = None
+    under_acquisition: Optional[bool] = None
+    flag_date: Optional[str] = None
+    court_case_no: Optional[str] = None
+    case_status: Optional[str] = None
+    injunction: Optional[bool] = None
+    is_locked: Optional[bool] = None
+    attention_score: Optional[int] = 0
+    traffic_light: Optional[str] = "green"
+    score_factors: Optional[list[dict[str, Any]]] = None
+    score_disclaimer: Optional[str] = None
 
 
 ReviewerParcelDetailResponse = ParcelDetailResponse
@@ -166,6 +211,9 @@ class SearchResultItem(BaseModel):
     mouza: str
     label: str
     matched_on: str
+    holder_name: Optional[str] = None
+    dummy_id: Optional[str] = None
+    person_id: Optional[str] = None
 
 
 # ---------------------------------------------------------------------------
@@ -197,6 +245,11 @@ class CitizenReportResponse(BaseModel):
     recommended_next_steps: list[str]
     disclaimer: str
     dataset_hash: str
+    attention_score: Optional[int] = 0
+    traffic_light: Optional[str] = "green"
+    score_summary: Optional[str] = None
+    score_disclaimer: Optional[str] = None
+    certificate_qr_payload: Optional[str] = None
 
 
 class ReviewerReportResponse(BaseModel):
@@ -211,6 +264,11 @@ class ReviewerReportResponse(BaseModel):
     recommended_next_steps: list[str]
     disclaimer: str
     dataset_hash: str
+    attention_score: Optional[int] = 0
+    traffic_light: Optional[str] = "green"
+    score_factors: Optional[list[dict[str, Any]]] = None
+    score_disclaimer: Optional[str] = None
+    certificate_qr_payload: Optional[str] = None
 
 
 ReportResponse = ReviewerReportResponse
@@ -228,6 +286,15 @@ class SimulateRequest(BaseModel):
     portion_id: Optional[str] = None
     deed_id: Optional[str] = None
     date: Optional[str] = None
+    sub_dag: Optional[str] = None
+    boundary_north: Optional[str] = None
+    boundary_south: Optional[str] = None
+    boundary_east: Optional[str] = None
+    boundary_west: Optional[str] = None
+    boundary: Optional[Any] = None
+    portion: Optional[dict[str, Any]] = None
+    portion_area: Optional[str] = None
+    via_poa_id: Optional[str] = None
     lang: str = "bn"
 
     @field_validator("area", mode="before")
@@ -274,6 +341,9 @@ class ProposedEventDetail(BaseModel):
     area: str
     deed_id: Optional[str] = None
     portion_id: Optional[str] = None
+    boundary: Optional[Any] = None
+    portion: Optional[Any] = None
+    via_poa_id: Optional[str] = None
 
 
 class SimulateResponse(BaseModel):
@@ -290,6 +360,10 @@ class SimulateResponse(BaseModel):
     alerts: list[AlertDetail]
     status_code: Optional[str] = "CONSISTENT"
     overall_status_code: Optional[str] = "CONSISTENT"
+    attention_score: Optional[int] = 0
+    traffic_light: Optional[str] = "green"
+    score_factors: Optional[list[dict[str, Any]]] = None
+    score_disclaimer: Optional[str] = None
 
 
 class CitizenSimulateResponse(BaseModel):
@@ -304,6 +378,10 @@ class CitizenSimulateResponse(BaseModel):
     alerts: list[CitizenAlertDetail]
     status_code: Optional[str] = "CONSISTENT"
     overall_status_code: Optional[str] = "CONSISTENT"
+    attention_score: Optional[int] = 0
+    traffic_light: Optional[str] = "green"
+    score_summary: Optional[str] = None
+    score_disclaimer: Optional[str] = None
 
 
 # ---------------------------------------------------------------------------
@@ -324,6 +402,36 @@ class SimulationIntegrityResult(BaseModel):
     unchanged: bool
 
 
+class Phase10BenchmarkDetail(BaseModel):
+    rule_id: str = "R8"
+    planted_detected: bool
+    clean_passed: bool
+    tricky_clean_passed: bool
+
+
+class Phase11FeaturesBenchmarkDetail(BaseModel):
+    attention_scoring_verified: bool = True
+    bangla_voice_verified: bool = True
+    next_step_guide_verified: bool = True
+    ussd_simulator_verified: bool = True
+    vetting_certificate_verified: bool = True
+
+
+class ExtendedBenchmarkResponse(BaseModel):
+    dataset_name: str
+    total_parcels: int
+    clean_parcel_count: int
+    clean_false_alarm_count: int
+    planted_parcel_count: int
+    planted_case_count: int
+    planted_detected_count: int
+    coverage_table: list[CoverageRowItem]
+    phase10_heir_declaration: Optional[Phase10BenchmarkDetail] = None
+    phase11_features: Optional[Phase11FeaturesBenchmarkDetail] = None
+    simulation_integrity: Optional[SimulationIntegrityResult] = None
+    disclaimer: str
+
+
 class BenchmarkResponse(BaseModel):
     clean_false_alarm_count: int
     coverage_table: list[CoverageRowItem]
@@ -331,3 +439,74 @@ class BenchmarkResponse(BaseModel):
     total_parcels: Optional[int] = None
     planted_case_count: Optional[int] = None
     planted_detected_count: Optional[int] = None
+    extended: Optional[ExtendedBenchmarkResponse] = None
+
+
+
+# ---------------------------------------------------------------------------
+# Deed Verification Schemas (POST /verify-deed)
+# ---------------------------------------------------------------------------
+
+class VerifyDeedRequest(BaseModel):
+    deed_no: str = Field(min_length=1, max_length=50)
+    registration_date: str = Field(min_length=1, max_length=20)
+    parcel_id: str = Field(min_length=1, max_length=60)
+    seller: str = Field(min_length=1, max_length=100)
+    buyer: str = Field(min_length=1, max_length=100)
+    area: str = Field(min_length=1, max_length=40)
+    claimed_hash: Optional[str] = Field(default=None, max_length=128)
+    lang: str = Field(default="bn", pattern="^(bn|en)$")
+    role: str = Field(default="reviewer", pattern="^(citizen|reviewer)$")
+
+    @field_validator("registration_date")
+    @classmethod
+    def validate_date(cls, v: str) -> str:
+        try:
+            date.fromisoformat(v.strip())
+        except Exception as exc:
+            raise ValueError(f"Invalid ISO date '{v}': {exc}")
+        return v.strip()
+
+    @field_validator("area")
+    @classmethod
+    def validate_area_field(cls, v: str) -> str:
+        try:
+            fr = parse_area(v)
+            if fr <= 0:
+                raise ValueError("Area must be strictly greater than zero.")
+        except Exception as exc:
+            raise ValueError(f"Invalid area '{v}': {exc}")
+        return v.strip()
+
+
+class VerifyDeedResponse(BaseModel):
+    status: str
+    status_code: str
+    rule_id: Optional[str] = None
+    computed_hash: str
+    recorded_hash: Optional[str] = None
+    claimed_hash: Optional[str] = None
+    matches_registry: bool
+    message: str
+    recommended_next_step: str
+    qr_payload: str
+    disclaimer: str
+
+
+# ---------------------------------------------------------------------------
+# USSD Feature-Phone Simulator Schemas (POST /ussd)
+# ---------------------------------------------------------------------------
+
+class USSDRequest(BaseModel):
+    text: str = ""
+    phone_number: Optional[str] = "01700000000"
+    session_id: Optional[str] = "USSD_SESSION_01"
+
+
+class USSDResponse(BaseModel):
+    message: str
+    action: str
+    character_count: int
+    screen: str
+    lang: str
+

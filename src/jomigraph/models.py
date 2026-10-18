@@ -1,4 +1,4 @@
-﻿"""
+"""
 JomiGraph AI — Data Models
 ==========================
 All area and share fields use fractions.Fraction.  Floats are rejected at
@@ -47,6 +47,7 @@ def load_fraction(value) -> Fraction:
 class Person:
     id: str
     name: str
+    dummy_id: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -55,6 +56,12 @@ class Parcel:
     dag_no: str
     mouza: str
     parent_id: Optional[str] = None   # None for root parcels
+    is_khas: bool = False
+    under_acquisition: bool = False
+    flag_date: Optional[date] = None
+    court_case_no: Optional[str] = None
+    case_status: Optional[str] = None   # "pending" | "disposed"
+    injunction: bool = False
 
 
 @dataclass(frozen=True)
@@ -76,12 +83,17 @@ class SurveyRecord:
 
 
 class EventType(str, Enum):
-    SALE      = "SALE"
-    GIFT      = "GIFT"
-    SUBDIVIDE = "SUBDIVIDE"
-    MUTATION  = "MUTATION"
-    CANCEL    = "CANCEL"
-    CORRECT   = "CORRECT"
+    SALE              = "SALE"
+    GIFT              = "GIFT"
+    SUBDIVIDE         = "SUBDIVIDE"
+    MUTATION          = "MUTATION"
+    CANCEL            = "CANCEL"
+    CORRECT           = "CORRECT"
+    MORTGAGE          = "MORTGAGE"
+    MORTGAGE_RELEASE  = "MORTGAGE_RELEASE"
+    POA_GRANT         = "POA_GRANT"
+    POA_REVOKE        = "POA_REVOKE"
+    RELEASE           = "RELEASE"
 
 
 @dataclass(frozen=True)
@@ -89,6 +101,7 @@ class Deed:
     id: str
     deed_no: str
     registration_date: date
+    content_hash: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -132,6 +145,9 @@ class Event:
     portion_id: Optional[str]
     linked_event_id: Optional[str]   # CANCEL: event being reversed
     source_record_id: Optional[str]  # CORRECT: required documentary evidence
+    portion: Optional[dict] = None   # structured portion {portion_id, boundary, portion_area}
+    boundary: Optional[str | dict] = None
+    via_poa_id: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -156,3 +172,5 @@ class ParcelHistory:
     end_date: Optional[date]
     survey_records: tuple[SurveyRecord, ...]
     events: tuple[Event, ...]
+    heir_declaration: Optional[dict | list] = None
+

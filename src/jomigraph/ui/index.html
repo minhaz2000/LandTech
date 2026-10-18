@@ -8,6 +8,11 @@
   <!-- Noto Sans Bengali is bundled locally (no external font request, works offline) -->
   <link rel="stylesheet" href="/vendor/noto-sans-bengali.css">
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/motion.css">
+  <link rel="stylesheet" href="/assistant.css">
+  <link rel="stylesheet" href="/transitions3d.css">
+  <meta name="theme-color" content="#15803d">
   
   <!-- Local Cytoscape.js with CDN fallback -->
   <script src="/vendor/cytoscape.min.js"></script>
@@ -16,8 +21,13 @@
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"><\/script>');
     }
   </script>
+  <script src="/vendor/three.min.js"></script>
+  <script src="/vendor/OrbitControls.js"></script>
+  <script src="/vendor/qrcode.js"></script>
 </head>
 <body>
+  <a href="#app-root" class="skip-link" id="skip-link">মূল বিষয়বস্তুতে যান / Skip to content</a>
+  <div id="a11y-status" role="status" aria-live="polite" class="sr-only"></div>
   <header class="app-header">
     <div class="header-container">
       <div class="brand">
@@ -48,9 +58,17 @@
   <footer class="app-footer">
     <div class="footer-container">
       <p id="footer-text"></p>
+      <div class="motion-toggle-wrap" id="motion-toggle-wrap">
+        <button id="motion-toggle-btn" class="motion-toggle-btn" type="button" aria-pressed="false">গতিবিধি: চালু / Motion: On</button>
+      </div>
     </div>
   </footer>
 
   <script src="/app.js"></script>
+  <script src="/extras.js"></script>
+  <script src="/myland.js"></script>
+  <script src="/motion.js"></script>
+  <script src="/transitions3d.js"></script>
+  <script src="/assistant.js"></script>
 </body>
 </html>

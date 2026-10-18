@@ -27,6 +27,15 @@ def build_parcel_graph(history: ParcelHistory, dataset: Dataset, lang: str = "bn
     parcel = dataset.get_parcel(history.parcel_id)
     parcel_node_id = f"parcel_{history.parcel_id}"
     parcel_label = f"{parcel.mouza} Dag {parcel.dag_no}" if parcel else history.parcel_id
+    is_locked = bool(
+        parcel
+        and (
+            parcel.is_khas
+            or parcel.under_acquisition
+            or parcel.injunction
+            or (parcel.court_case_no and parcel.case_status == "pending")
+        )
+    )
 
     # 1. Parcel node
     nodes.append({
@@ -34,6 +43,7 @@ def build_parcel_graph(history: ParcelHistory, dataset: Dataset, lang: str = "bn
             "id": parcel_node_id,
             "label": parcel_label,
             "type": "parcel",
+            "is_locked": is_locked,
         }
     })
     seen_nodes.add(parcel_node_id)
@@ -42,14 +52,18 @@ def build_parcel_graph(history: ParcelHistory, dataset: Dataset, lang: str = "bn
     def add_person_node(pid: str) -> None:
         if pid not in seen_nodes:
             person = dataset.get_person(pid)
-            label = person.name if person else pid
-            nodes.append({
-                "data": {
-                    "id": pid,
-                    "label": label,
-                    "type": "person",
-                }
-            })
+            if person and person.dummy_id:
+                label = f"{person.name} [{person.dummy_id}]"
+            else:
+                label = person.name if person else pid
+            node_data: dict[str, Any] = {
+                "id": pid,
+                "label": label,
+                "type": "person",
+            }
+            if person and person.dummy_id:
+                node_data["dummy_id"] = person.dummy_id
+            nodes.append({"data": node_data})
             seen_nodes.add(pid)
 
     # 2. Survey records & holders
@@ -151,6 +165,22 @@ def build_parcel_graph(history: ParcelHistory, dataset: Dataset, lang: str = "bn
                         "target": parcel_node_id,
                         "label": f"CANCEL {e.linked_event_id}",
                         "type": "CANCEL",
+                        "date": date_str,
+                    }
+                })
+
+        elif e.type in (EventType.MORTGAGE, EventType.MORTGAGE_RELEASE, EventType.POA_GRANT, EventType.POA_REVOKE):
+            if e.from_person and e.to_person:
+                add_person_node(e.from_person)
+                add_person_node(e.to_person)
+                label = f"{e.type.value}: {area_str}" if area_str else e.type.value
+                edges.append({
+                    "data": {
+                        "id": e.id,
+                        "source": e.from_person,
+                        "target": e.to_person,
+                        "label": label,
+                        "type": e.type.value,
                         "date": date_str,
                     }
                 })

@@ -1671,3 +1671,203 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   color: var(--text-muted);
 }
 
+/* Phase 11 UX & Decision Support Styles */
+.attention-score-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--border-color);
+  background: var(--bg-hover, #f8fafc);
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+.score-badge.score-green { background: #dcfce7; color: #166534; }
+.score-badge.score-yellow { background: #fef9c3; color: #854d0e; }
+.score-badge.score-red { background: #fee2e2; color: #991b1b; }
+
+.traffic-indicator {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.traffic-indicator.traffic-green { background: #16a34a; }
+.traffic-indicator.traffic-yellow { background: #eab308; }
+.traffic-indicator.traffic-red { background: #dc2626; }
+
+.btn-voice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+.btn-voice:hover {
+  background: var(--bg-hover);
+}
+
+.voice-feedback {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 0.3rem 0.6rem;
+  background: var(--bg-hover);
+  border-radius: 4px;
+}
+
+.actionable-checks-box {
+  margin-top: 0.5rem;
+  padding: 0.65rem;
+  background: var(--bg-hover, #f8fafc);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+.actionable-checks-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem 0;
+  color: var(--text-main);
+}
+.actionable-checks-list {
+  margin: 0 0 0.35rem 1.25rem;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.actionable-disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* Feature-Phone / USSD Simulator Mockup */
+.ussd-wrapper {
+  max-width: 420px;
+  margin: 2rem auto;
+  text-align: center;
+}
+.ussd-phone-mockup {
+  border: 12px solid #334155;
+  border-radius: 36px;
+  background: #0f172a;
+  padding: 24px 16px 20px;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+  color: #f8fafc;
+}
+.ussd-speaker {
+  width: 50px;
+  height: 5px;
+  background: #475569;
+  border-radius: 3px;
+  margin: 0 auto 16px;
+}
+.ussd-screen {
+  background: #0f380f;
+  color: #8bac0f;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.35;
+  border-radius: 8px;
+  padding: 12px;
+  min-height: 160px;
+  max-height: 220px;
+  overflow-y: auto;
+  text-align: left;
+  border: 2px solid #306230;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+.ussd-char-counter {
+  text-align: right;
+  font-size: 11px;
+  color: #8bac0f;
+  margin-bottom: 6px;
+  font-family: monospace;
+}
+.ussd-screen-text {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+  font-size: inherit;
+}
+.ussd-input-group {
+  margin-top: 14px;
+}
+.ussd-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #475569;
+  background: #1e293b;
+  color: #f8fafc;
+  font-family: monospace;
+  font-size: 14px;
+  text-align: center;
+}
+.ussd-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ussd-btn-row button {
+  flex: 1;
+  padding: 8px 6px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.ussd-keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+}
+.ussd-key {
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #1e293b;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.ussd-key:hover {
+  background: #334155;
+}
+
+/* Digital Vetting Certificate in Print */
+.print-certificate-banner {
+  border: 2px solid #000;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  background: #fff;
+}
+.certificate-qr-box {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border: 1px dashed #888;
+  border-radius: 4px;
+}
+.certificate-qr-svg svg {
+  width: 110px;
+  height: 110px;
+}
+

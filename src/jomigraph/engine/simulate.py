@@ -27,9 +27,12 @@ from jomigraph.engine.rules import (
     check_r4,
     check_r6,
     check_r7,
+    check_r8,
+    check_r15,
+    dispatch_event_rules,
     run_rule,
 )
-from jomigraph.models import Deed, Event, EventType, ParcelHistory, SurveyRecord
+from jomigraph.models import Deed, Event, EventType, Parcel, ParcelHistory, SurveyRecord
 
 
 @dataclass(frozen=True)
@@ -59,7 +62,7 @@ def hash_dataset(events: Sequence[Event], survey_records: Sequence[SurveyRecord]
             "holders": [(h[0], str(h[1])) for h in sr.holders],
         })
     for e in events:
-        items.append({
+        ev_item = {
             "type": "EVENT",
             "id": e.id,
             "event_type": e.type.value,
@@ -73,7 +76,14 @@ def hash_dataset(events: Sequence[Event], survey_records: Sequence[SurveyRecord]
             "portion_id": e.portion_id,
             "linked_event_id": e.linked_event_id,
             "source_record_id": e.source_record_id,
-        })
+        }
+        if e.portion is not None:
+            ev_item["portion"] = e.portion
+        if e.boundary is not None:
+            ev_item["boundary"] = e.boundary
+        if e.via_poa_id is not None:
+            ev_item["via_poa_id"] = e.via_poa_id
+        items.append(ev_item)
     payload = json.dumps(items, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
 
@@ -83,12 +93,13 @@ def evaluate(
     parcel_history: ParcelHistory,
     target_event: Optional[Event] = None,
     deeds: Sequence[Deed] = (),
+    parcel: Optional[Parcel] = None,
 ) -> tuple[dict[str, Fraction], list[Alert]]:
     """
     Pure evaluation function returning (holder_state, alerts).
 
     Evaluates rules for target_event (or the last event in events if target_event is None)
-    in the context of the supplied events list.
+    in the context of the supplied events list using the shared dispatch_event_rules.
     """
     baseline = parcel_history.survey_records[0]
     state, _ = compute_state(events, baseline)
@@ -97,46 +108,21 @@ def evaluate(
         return state, []
 
     eval_target = target_event if target_event is not None else events[-1]
-    alerts: list[Alert] = []
-
-    # Map deeds by deed_id
     deeds_by_id = {d.id: d for d in deeds}
-    target_deed = deeds_by_id.get(eval_target.deed_id) if eval_target.deed_id else None
+    alerts = dispatch_event_rules(
+        event=eval_target,
+        parcel_history=parcel_history,
+        events=events,
+        baseline_record=baseline,
+        deeds_by_id=deeds_by_id,
+        parcel=parcel,
+    )
 
-    # Evaluate applicable rules for the target event
-    if eval_target.type in (EventType.SALE, EventType.GIFT):
-        # R3: Seller's recorded interest
-        alert_r3 = run_rule(check_r3, eval_target, parcel_history, events)
-        alerts.append(alert_r3)
-
-        # R1: Excess transfer (evaluates share if seller is recorded)
-        alert_r1 = run_rule(check_r1, eval_target, parcel_history, events)
-        alerts.append(alert_r1)
-
-        # R2: Duplicate allocation (evaluated if portion_id or linked_event_id present)
-        if eval_target.portion_id or eval_target.linked_event_id:
-            alert_r2 = run_rule(check_r2, eval_target, events, baseline)
-            alerts.append(alert_r2)
-
-    elif eval_target.type == EventType.SUBDIVIDE:
-        # R4: Subdivision reconciliation
-        child_records = [
-            sr for sr in parcel_history.survey_records
-            if sr.parcel_id != eval_target.parcel_id
-        ]
-        alert_r4 = run_rule(check_r4, eval_target, child_records, events, baseline)
-        alerts.append(alert_r4)
-
-    elif eval_target.type == EventType.MUTATION:
-        # R6: Deed-mutation reconciliation
-        alert_r6 = run_rule(check_r6, eval_target, target_deed, events, baseline)
-        alerts.append(alert_r6)
-
-        # R7: Chronological consistency
-        alert_r7 = run_rule(check_r7, eval_target, target_deed, events, baseline)
-        alerts.append(alert_r7)
+    if parcel_history.heir_declaration:
+        alerts.append(run_rule(check_r8, parcel_history, events, deeds, baseline, target_event=eval_target))
 
     return state, alerts
+
 
 
 def simulate(
@@ -144,6 +130,7 @@ def simulate(
     proposed: Event,
     parcel_history: ParcelHistory,
     deeds: Sequence[Deed] = (),
+    parcel: Optional[Parcel] = None,
 ) -> SimulationResult:
     """
     Pure simulation function:
@@ -186,6 +173,7 @@ def simulate(
         parcel_history=sim_history,
         target_event=sim_proposed,
         deeds=deeds,
+        parcel=parcel,
     )
 
     # 6. Available area AFTER the proposed event

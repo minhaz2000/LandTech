@@ -1,0 +1,3460 @@
+{
+ "PARCEL_REG_BAR_01": {
+  "division": "Barishal",
+  "district": "Barguna",
+  "upazila": "Amtali"
+ },
+ "PARCEL_REG_BAR_02": {
+  "division": "Barishal",
+  "district": "Barguna",
+  "upazila": "Bamna"
+ },
+ "PARCEL_REG_BAR_03": {
+  "division": "Barishal",
+  "district": "Barguna",
+  "upazila": "Amtali"
+ },
+ "PARCEL_REG_CTG_01": {
+  "division": "Chattogram",
+  "district": "Bandarban",
+  "upazila": "Ali Kadam"
+ },
+ "PARCEL_REG_CTG_02": {
+  "division": "Chattogram",
+  "district": "Bandarban",
+  "upazila": "Bandarban Sadar"
+ },
+ "PARCEL_REG_CTG_03": {
+  "division": "Chattogram",
+  "district": "Bandarban",
+  "upazila": "Ali Kadam"
+ },
+ "PARCEL_REG_KHL_01": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Bagerhat Sadar"
+ },
+ "PARCEL_REG_KHL_02": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Chitalmari"
+ },
+ "PARCEL_REG_KHL_03": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Bagerhat Sadar"
+ },
+ "PARCEL_REG_MYM_01": {
+  "division": "Mymensingh",
+  "district": "Jamalpur",
+  "upazila": "Bakshiganj"
+ },
+ "PARCEL_REG_MYM_02": {
+  "division": "Mymensingh",
+  "district": "Jamalpur",
+  "upazila": "Dewanganj"
+ },
+ "PARCEL_REG_MYM_03": {
+  "division": "Mymensingh",
+  "district": "Jamalpur",
+  "upazila": "Bakshiganj"
+ },
+ "PARCEL_REG_RAJ_01": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Adamdighi"
+ },
+ "PARCEL_REG_RAJ_02": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Bogura Sadar"
+ },
+ "PARCEL_REG_RAJ_03": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Adamdighi"
+ },
+ "PARCEL_REG_RNG_01": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Biral"
+ },
+ "PARCEL_REG_RNG_02": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Birampur"
+ },
+ "PARCEL_REG_RNG_03": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Biral"
+ },
+ "PARCEL_REG_SYL_01": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Ajmiriganj"
+ },
+ "PARCEL_REG_SYL_02": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Bahubal"
+ },
+ "PARCEL_REG_SYL_03": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Ajmiriganj"
+ },
+ "PARCEL_UPA_BAR_BARGUNA_BETAGI": {
+  "division": "Barishal",
+  "district": "Barguna",
+  "upazila": "Betagi",
+  "upazila_bn": "বেতাগী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARGUNA_PATHARGHATA": {
+  "division": "Barishal",
+  "district": "Barguna",
+  "upazila": "Patharghata",
+  "upazila_bn": "পাথরঘাটা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARGUNA_TALTALI": {
+  "division": "Barishal",
+  "district": "Barguna",
+  "upazila": "Taltali",
+  "upazila_bn": "তালতলি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_AGAILJHARA": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Agailjhara",
+  "upazila_bn": "আগৈলঝাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_BABUGANJ": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Babuganj",
+  "upazila_bn": "বাবুগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_BAKERGANJ": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Bakerganj",
+  "upazila_bn": "বাকেরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_BANARIPARA": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Banaripara",
+  "upazila_bn": "বানারীপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_BARISHAL_SADAR": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Barishal Sadar",
+  "upazila_bn": "বরিশাল সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_GOURNADI": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Gournadi",
+  "upazila_bn": "গৌরনদী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_HIZLA": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Hizla",
+  "upazila_bn": "হিজলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_MEHENDIGANJ": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Mehendiganj",
+  "upazila_bn": "মেহেন্দিগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_MULADI": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Muladi",
+  "upazila_bn": "মুলাদী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BARISHAL_WAZIRPUR": {
+  "division": "Barishal",
+  "district": "Barishal",
+  "upazila": "Wazirpur",
+  "upazila_bn": "ওয়াজিরপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BHOLA_BHOLA_SADAR": {
+  "division": "Barishal",
+  "district": "Bhola",
+  "upazila": "Bhola Sadar",
+  "upazila_bn": "ভোলা সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BHOLA_BURHANUDDIN": {
+  "division": "Barishal",
+  "district": "Bhola",
+  "upazila": "Burhanuddin",
+  "upazila_bn": "বুরহানউদ্দিন",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BHOLA_CHAR_FASSON": {
+  "division": "Barishal",
+  "district": "Bhola",
+  "upazila": "Char Fasson",
+  "upazila_bn": "চর ফ্যাশন",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BHOLA_DAULATKHAN": {
+  "division": "Barishal",
+  "district": "Bhola",
+  "upazila": "Daulatkhan",
+  "upazila_bn": "দৌলতখান",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BHOLA_LALMOHAN": {
+  "division": "Barishal",
+  "district": "Bhola",
+  "upazila": "Lalmohan",
+  "upazila_bn": "লালমোহন",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BHOLA_MANPURA": {
+  "division": "Barishal",
+  "district": "Bhola",
+  "upazila": "Manpura",
+  "upazila_bn": "মনপুরা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_BHOLA_TAZUMUDDIN": {
+  "division": "Barishal",
+  "district": "Bhola",
+  "upazila": "Tazumuddin",
+  "upazila_bn": "তাজুমুদ্দিন",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_JHALOKATHI_JHALOKATHI_SADAR": {
+  "division": "Barishal",
+  "district": "Jhalokathi",
+  "upazila": "Jhalokathi Sadar",
+  "upazila_bn": "ঝালকাঠি সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_JHALOKATHI_KATHALIA": {
+  "division": "Barishal",
+  "district": "Jhalokathi",
+  "upazila": "Kathalia",
+  "upazila_bn": "কাঠালিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_JHALOKATHI_NALCHITY": {
+  "division": "Barishal",
+  "district": "Jhalokathi",
+  "upazila": "Nalchity",
+  "upazila_bn": "নলছিটি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_JHALOKATHI_RAJAPUR": {
+  "division": "Barishal",
+  "district": "Jhalokathi",
+  "upazila": "Rajapur",
+  "upazila_bn": "রাজাপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PATUAKHALI_BAUPHAL": {
+  "division": "Barishal",
+  "district": "Patuakhali",
+  "upazila": "Bauphal",
+  "upazila_bn": "বাউফল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PATUAKHALI_DASHMINA": {
+  "division": "Barishal",
+  "district": "Patuakhali",
+  "upazila": "Dashmina",
+  "upazila_bn": "দশমিনা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PATUAKHALI_DUMKI": {
+  "division": "Barishal",
+  "district": "Patuakhali",
+  "upazila": "Dumki",
+  "upazila_bn": "দুমকি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PATUAKHALI_GALACHIPA": {
+  "division": "Barishal",
+  "district": "Patuakhali",
+  "upazila": "Galachipa",
+  "upazila_bn": "গলাচিপা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PATUAKHALI_KALAPARA": {
+  "division": "Barishal",
+  "district": "Patuakhali",
+  "upazila": "Kalapara",
+  "upazila_bn": "কলাপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PATUAKHALI_MIRZAGANJ": {
+  "division": "Barishal",
+  "district": "Patuakhali",
+  "upazila": "Mirzaganj",
+  "upazila_bn": "মির্জাগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PATUAKHALI_PATUAKHALI_SADAR": {
+  "division": "Barishal",
+  "district": "Patuakhali",
+  "upazila": "Patuakhali Sadar",
+  "upazila_bn": "পটুয়াখালী সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PATUAKHALI_RANGABALI": {
+  "division": "Barishal",
+  "district": "Patuakhali",
+  "upazila": "Rangabali",
+  "upazila_bn": "রাঙ্গাবালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PIROJPUR_BHANDARIA": {
+  "division": "Barishal",
+  "district": "Pirojpur",
+  "upazila": "Bhandaria",
+  "upazila_bn": "ভান্ডারিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PIROJPUR_KAWKHALI": {
+  "division": "Barishal",
+  "district": "Pirojpur",
+  "upazila": "Kawkhali",
+  "upazila_bn": "কাউখালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PIROJPUR_MATHBARIA": {
+  "division": "Barishal",
+  "district": "Pirojpur",
+  "upazila": "Mathbaria",
+  "upazila_bn": "মঠবাড়িয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PIROJPUR_NAZIRPUR": {
+  "division": "Barishal",
+  "district": "Pirojpur",
+  "upazila": "Nazirpur",
+  "upazila_bn": "নাজিরপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PIROJPUR_NESARABAD": {
+  "division": "Barishal",
+  "district": "Pirojpur",
+  "upazila": "Nesarabad",
+  "upazila_bn": "নেছারাবাদ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PIROJPUR_PIROJPUR_SADAR": {
+  "division": "Barishal",
+  "district": "Pirojpur",
+  "upazila": "Pirojpur Sadar",
+  "upazila_bn": "পিরোজপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_BAR_PIROJPUR_ZIANAGAR": {
+  "division": "Barishal",
+  "district": "Pirojpur",
+  "upazila": "Zianagar",
+  "upazila_bn": "জিয়ানগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BANDARBAN_LAMA": {
+  "division": "Chattogram",
+  "district": "Bandarban",
+  "upazila": "Lama",
+  "upazila_bn": "লামা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BANDARBAN_NAIKHONGCHHARI": {
+  "division": "Chattogram",
+  "district": "Bandarban",
+  "upazila": "Naikhongchhari",
+  "upazila_bn": "নাইক্ষ্যংছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BANDARBAN_ROWANGCHHARI": {
+  "division": "Chattogram",
+  "district": "Bandarban",
+  "upazila": "Rowangchhari",
+  "upazila_bn": "রোয়াংছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BANDARBAN_RUMA": {
+  "division": "Chattogram",
+  "district": "Bandarban",
+  "upazila": "Ruma",
+  "upazila_bn": "রুমা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BANDARBAN_THANCHI": {
+  "division": "Chattogram",
+  "district": "Bandarban",
+  "upazila": "Thanchi",
+  "upazila_bn": "থানচি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_AKHAURA": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Akhaura",
+  "upazila_bn": "আখাউড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_ASHUGANJ": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Ashuganj",
+  "upazila_bn": "আশুগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_BANCHARAMPUR": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Bancharampur",
+  "upazila_bn": "বাঞ্ছারামপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_BIJOYNAGAR": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Bijoynagar",
+  "upazila_bn": "বিজয়নগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_BRAHMANBARIA_SADAR": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Brahmanbaria Sadar",
+  "upazila_bn": "ব্রাহ্মণবাড়িয়া সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_KASBA": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Kasba",
+  "upazila_bn": "কসবা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_NABINAGAR": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Nabinagar",
+  "upazila_bn": "নবীনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_NASIRNAGAR": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Nasirnagar",
+  "upazila_bn": "নাসিরনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_BRAHMANBARIA_SARAIL": {
+  "division": "Chattogram",
+  "district": "Brahmanbaria",
+  "upazila": "Sarail",
+  "upazila_bn": "সরাইল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHANDPUR_CHANDPUR_SADAR": {
+  "division": "Chattogram",
+  "district": "Chandpur",
+  "upazila": "Chandpur Sadar",
+  "upazila_bn": "চাঁদপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHANDPUR_FARIDGANJ": {
+  "division": "Chattogram",
+  "district": "Chandpur",
+  "upazila": "Faridganj",
+  "upazila_bn": "ফরিদগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHANDPUR_HAIMCHAR": {
+  "division": "Chattogram",
+  "district": "Chandpur",
+  "upazila": "Haimchar",
+  "upazila_bn": "হাইমচর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHANDPUR_HAZIGANJ": {
+  "division": "Chattogram",
+  "district": "Chandpur",
+  "upazila": "Haziganj",
+  "upazila_bn": "হাজীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHANDPUR_KACHUA": {
+  "division": "Chattogram",
+  "district": "Chandpur",
+  "upazila": "Kachua",
+  "upazila_bn": "কচুয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHANDPUR_MATLAB_DAKSHIN": {
+  "division": "Chattogram",
+  "district": "Chandpur",
+  "upazila": "Matlab Dakshin",
+  "upazila_bn": "মতলব দক্ষিণ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHANDPUR_MATLAB_UTTAR": {
+  "division": "Chattogram",
+  "district": "Chandpur",
+  "upazila": "Matlab Uttar",
+  "upazila_bn": "মতলব উত্তর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHANDPUR_SHAHRASTI": {
+  "division": "Chattogram",
+  "district": "Chandpur",
+  "upazila": "Shahrasti",
+  "upazila_bn": "শাহরাস্তি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_ANWARA": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Anwara",
+  "upazila_bn": "আনোয়ারা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_BANSHKHALI": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Banshkhali",
+  "upazila_bn": "বাঁশখালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_BOALKHALI": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Boalkhali",
+  "upazila_bn": "বোয়ালখালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_CHANDANAISH": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Chandanaish",
+  "upazila_bn": "চন্দনাইশ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_FATIKCHHARI": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Fatikchhari",
+  "upazila_bn": "ফটিকছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_HATHAZARI": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Hathazari",
+  "upazila_bn": "হাটহাজারী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_LOHAGARA": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Lohagara",
+  "upazila_bn": "লোহাগাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_MIRSHARAI": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Mirsharai",
+  "upazila_bn": "মীরসরাই",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_PATIYA": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Patiya",
+  "upazila_bn": "পটিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_RANGUNIA": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Rangunia",
+  "upazila_bn": "রাঙ্গুনিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_RAOZAN": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Raozan",
+  "upazila_bn": "রাউজান",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_SANDWIP": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Sandwip",
+  "upazila_bn": "সন্দ্বীপ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_SATKANIA": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Satkania",
+  "upazila_bn": "সাতকানিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CHATTOGRAM_SITAKUNDA": {
+  "division": "Chattogram",
+  "district": "Chattogram",
+  "upazila": "Sitakunda",
+  "upazila_bn": "সীতাকুণ্ড",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_CHAKARIA": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Chakaria",
+  "upazila_bn": "চকরিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_COX_S_BAZAR_SADAR": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Cox's Bazar Sadar",
+  "upazila_bn": "কক্সবাজার সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_EIDGAON": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Eidgaon",
+  "upazila_bn": "ঈদগাঁও",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_KUTUBDIA": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Kutubdia",
+  "upazila_bn": "কুতুবদিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_MAHESHKHALI": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Maheshkhali",
+  "upazila_bn": "মহেশখালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_PEKUA": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Pekua",
+  "upazila_bn": "পেকুয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_RAMU": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Ramu",
+  "upazila_bn": "রামু",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_TEKNAF": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Teknaf",
+  "upazila_bn": "টেকনাফ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_COX_S_BAZAR_UKHIA": {
+  "division": "Chattogram",
+  "district": "Cox's Bazar",
+  "upazila": "Ukhia",
+  "upazila_bn": "উখিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_BARURA": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Barura",
+  "upazila_bn": "বরুড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_BRAHMANPARA": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Brahmanpara",
+  "upazila_bn": "ব্রাহ্মণপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_BURICHANG": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Burichang",
+  "upazila_bn": "বুড়িচং",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_CHANDINA": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Chandina",
+  "upazila_bn": "চান্দিনা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_CHAUDDAGRAM": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Chauddagram",
+  "upazila_bn": "চৌদ্দগ্রাম",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_CUMILLA_SADAR": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Cumilla Sadar",
+  "upazila_bn": "কুমিল্লা সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_CUMILLA_SADAR_DAKSHIN": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Cumilla Sadar Dakshin",
+  "upazila_bn": "কুমিল্লা সদর দক্ষিণ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_DAUDKANDI": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Daudkandi",
+  "upazila_bn": "দাউদকান্দি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_DEBIDWAR": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Debidwar",
+  "upazila_bn": "দেবিদ্বার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_HOMNA": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Homna",
+  "upazila_bn": "হোমনা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_LAKSAM": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Laksam",
+  "upazila_bn": "লাকসাম",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_LALMAI": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Lalmai",
+  "upazila_bn": "লালমাই",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_MEGHNA": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Meghna",
+  "upazila_bn": "মেঘনা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_MONOHORGONJ": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Monohorgonj",
+  "upazila_bn": "মনোহরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_MURADNAGAR": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Muradnagar",
+  "upazila_bn": "মুরাদনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_NANGALKOT": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Nangalkot",
+  "upazila_bn": "নাঙ্গলকোট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_CUMILLA_TITAS": {
+  "division": "Chattogram",
+  "district": "Cumilla",
+  "upazila": "Titas",
+  "upazila_bn": "তিতাস",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_FENI_CHHAGALNAIYA": {
+  "division": "Chattogram",
+  "district": "Feni",
+  "upazila": "Chhagalnaiya",
+  "upazila_bn": "ছাগলনাইয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_FENI_DAGANBHUIYAN": {
+  "division": "Chattogram",
+  "district": "Feni",
+  "upazila": "Daganbhuiyan",
+  "upazila_bn": "দাগনভূঞা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_FENI_FENI_SADAR": {
+  "division": "Chattogram",
+  "district": "Feni",
+  "upazila": "Feni Sadar",
+  "upazila_bn": "ফেনী সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_FENI_FULGAZI": {
+  "division": "Chattogram",
+  "district": "Feni",
+  "upazila": "Fulgazi",
+  "upazila_bn": "ফুলগাজী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_FENI_PARSHURAM": {
+  "division": "Chattogram",
+  "district": "Feni",
+  "upazila": "Parshuram",
+  "upazila_bn": "পরশুরাম",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_FENI_SONAGAZI": {
+  "division": "Chattogram",
+  "district": "Feni",
+  "upazila": "Sonagazi",
+  "upazila_bn": "সোনাগাজী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_DIGHINALA": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Dighinala",
+  "upazila_bn": "দিঘীনালা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_GUIMARA": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Guimara",
+  "upazila_bn": "গুইমারা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_KHAGRACHHARI_SADAR": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Khagrachhari Sadar",
+  "upazila_bn": "খাগড়াছড়ি সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_LAKSHMICHHARI": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Lakshmichhari",
+  "upazila_bn": "লক্ষ্মীছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_MAHALCHHARI": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Mahalchhari",
+  "upazila_bn": "মহালছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_MANIKCHHARI": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Manikchhari",
+  "upazila_bn": "মানিকছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_MATIRANGA": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Matiranga",
+  "upazila_bn": "মাটিরাঙ্গা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_PANCHHARI": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Panchhari",
+  "upazila_bn": "পানছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_KHAGRACHHARI_RAMGARH": {
+  "division": "Chattogram",
+  "district": "Khagrachhari",
+  "upazila": "Ramgarh",
+  "upazila_bn": "রামগড়",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_LAKSHMIPUR_KAMALNAGAR": {
+  "division": "Chattogram",
+  "district": "Lakshmipur",
+  "upazila": "Kamalnagar",
+  "upazila_bn": "কমলনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_LAKSHMIPUR_LAKSHMIPUR_SADAR": {
+  "division": "Chattogram",
+  "district": "Lakshmipur",
+  "upazila": "Lakshmipur Sadar",
+  "upazila_bn": "লক্ষ্মীপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_LAKSHMIPUR_RAIPUR": {
+  "division": "Chattogram",
+  "district": "Lakshmipur",
+  "upazila": "Raipur",
+  "upazila_bn": "রায়পুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_LAKSHMIPUR_RAMGANJ": {
+  "division": "Chattogram",
+  "district": "Lakshmipur",
+  "upazila": "Ramganj",
+  "upazila_bn": "রামগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_LAKSHMIPUR_RAMGATI": {
+  "division": "Chattogram",
+  "district": "Lakshmipur",
+  "upazila": "Ramgati",
+  "upazila_bn": "রামগতি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_BEGUMGANJ": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Begumganj",
+  "upazila_bn": "বেগমগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_CHATKHIL": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Chatkhil",
+  "upazila_bn": "চাটখিল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_COMPANIGANJ": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Companiganj",
+  "upazila_bn": "কোম্পানীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_HATIYA": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Hatiya",
+  "upazila_bn": "হাতিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_KABIRHAT": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Kabirhat",
+  "upazila_bn": "কবিরহাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_NOAKHALI_SADAR": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Noakhali Sadar",
+  "upazila_bn": "নোয়াখালী সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_SENBAGH": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Senbagh",
+  "upazila_bn": "সেনবাগ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_SONAIMURI": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Sonaimuri",
+  "upazila_bn": "সোনাইমুড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_NOAKHALI_SUBARNACHAR": {
+  "division": "Chattogram",
+  "district": "Noakhali",
+  "upazila": "Subarnachar",
+  "upazila_bn": "সুবর্ণচর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_BAGHAICHHARI": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Baghaichhari",
+  "upazila_bn": "বাঘাইছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_BARKAL": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Barkal",
+  "upazila_bn": "বরকল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_BELAICHHARI": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Belaichhari",
+  "upazila_bn": "বিলাইছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_JURAICHHARI": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Juraichhari",
+  "upazila_bn": "জুরাছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_KAPTAI": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Kaptai",
+  "upazila_bn": "কাপ্তাই",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_KAWKHALI": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Kawkhali",
+  "upazila_bn": "কাউখালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_LANGADU": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Langadu",
+  "upazila_bn": "লাঙ্গাডু",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_NANIARCHAR": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Naniarchar",
+  "upazila_bn": "নানিয়ারচর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_RAJASTHALI": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Rajasthali",
+  "upazila_bn": "রাজস্থলী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_CTG_RANGAMATI_RANGAMATI_SADAR": {
+  "division": "Chattogram",
+  "district": "Rangamati",
+  "upazila": "Rangamati Sadar",
+  "upazila_bn": "রাঙ্গামাটি সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_DHAKA_DHAMRAI": {
+  "division": "Dhaka",
+  "district": "Dhaka",
+  "upazila": "Dhamrai",
+  "upazila_bn": "ধামরাই",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_DHAKA_DOHAR": {
+  "division": "Dhaka",
+  "district": "Dhaka",
+  "upazila": "Dohar",
+  "upazila_bn": "দোহার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_DHAKA_KERANIGANJ": {
+  "division": "Dhaka",
+  "district": "Dhaka",
+  "upazila": "Keraniganj",
+  "upazila_bn": "কেরানীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_DHAKA_NAWABGANJ": {
+  "division": "Dhaka",
+  "district": "Dhaka",
+  "upazila": "Nawabganj",
+  "upazila_bn": "নবাবগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_DHAKA_SAVAR": {
+  "division": "Dhaka",
+  "district": "Dhaka",
+  "upazila": "Savar",
+  "upazila_bn": "সাভার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_ALFADANGA": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Alfadanga",
+  "upazila_bn": "আলফাডাঙ্গা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_BHANGA": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Bhanga",
+  "upazila_bn": "ভাঙ্গা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_BOALMARI": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Boalmari",
+  "upazila_bn": "বোয়ালমারী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_CHARBHADRASAN": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Charbhadrasan",
+  "upazila_bn": "চরভদ্রাসন",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_FARIDPUR_SADAR": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Faridpur Sadar",
+  "upazila_bn": "ফরিদপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_MADHUKHALI": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Madhukhali",
+  "upazila_bn": "মধুখালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_NAGARKANDA": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Nagarkanda",
+  "upazila_bn": "নগরকান্দা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_SADARPUR": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Sadarpur",
+  "upazila_bn": "সদরপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_FARIDPUR_SALTHA": {
+  "division": "Dhaka",
+  "district": "Faridpur",
+  "upazila": "Saltha",
+  "upazila_bn": "সালথা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GAZIPUR_GAZIPUR_SADAR": {
+  "division": "Dhaka",
+  "district": "Gazipur",
+  "upazila": "Gazipur Sadar",
+  "upazila_bn": "গাজীপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GAZIPUR_KALIAKAIR": {
+  "division": "Dhaka",
+  "district": "Gazipur",
+  "upazila": "Kaliakair",
+  "upazila_bn": "কালিয়াকৈর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GAZIPUR_KALIGANJ": {
+  "division": "Dhaka",
+  "district": "Gazipur",
+  "upazila": "Kaliganj",
+  "upazila_bn": "কালীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GAZIPUR_KAPASIA": {
+  "division": "Dhaka",
+  "district": "Gazipur",
+  "upazila": "Kapasia",
+  "upazila_bn": "কাপাসিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GAZIPUR_SREEPUR": {
+  "division": "Dhaka",
+  "district": "Gazipur",
+  "upazila": "Sreepur",
+  "upazila_bn": "শ্রীপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GOPALGANJ_GOPALGANJ_SADAR": {
+  "division": "Dhaka",
+  "district": "Gopalganj",
+  "upazila": "Gopalganj Sadar",
+  "upazila_bn": "গোপালগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GOPALGANJ_KASHIANI": {
+  "division": "Dhaka",
+  "district": "Gopalganj",
+  "upazila": "Kashiani",
+  "upazila_bn": "কাশিয়ানী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GOPALGANJ_KOTALIPARA": {
+  "division": "Dhaka",
+  "district": "Gopalganj",
+  "upazila": "Kotalipara",
+  "upazila_bn": "কোটালীপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GOPALGANJ_MUKSUDPUR": {
+  "division": "Dhaka",
+  "district": "Gopalganj",
+  "upazila": "Muksudpur",
+  "upazila_bn": "মুকসুদপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_GOPALGANJ_TUNGIPARA": {
+  "division": "Dhaka",
+  "district": "Gopalganj",
+  "upazila": "Tungipara",
+  "upazila_bn": "টুঙ্গীপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_AUSTAGRAM": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Austagram",
+  "upazila_bn": "অষ্টগ্রাম",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_BAJITPUR": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Bajitpur",
+  "upazila_bn": "বাজিতপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_BHAIRAB": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Bhairab",
+  "upazila_bn": "ভৈরব",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_HOSSAINPUR": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Hossainpur",
+  "upazila_bn": "হোসেনপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_ITNA": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Itna",
+  "upazila_bn": "ইটনা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_KARIMGANJ": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Karimganj",
+  "upazila_bn": "করিমগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_KATIADI": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Katiadi",
+  "upazila_bn": "কটিয়াদী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_KISHOREGANJ_SADAR": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Kishoreganj Sadar",
+  "upazila_bn": "কিশোরগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_KULIARCHAR": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Kuliarchar",
+  "upazila_bn": "কুলিয়ারচর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_MITHAMAIN": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Mithamain",
+  "upazila_bn": "মিঠামইন",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_NIKLI": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Nikli",
+  "upazila_bn": "নিকলী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_PAKUNDIA": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Pakundia",
+  "upazila_bn": "পাকুন্দিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_KISHOREGANJ_TARAIL": {
+  "division": "Dhaka",
+  "district": "Kishoreganj",
+  "upazila": "Tarail",
+  "upazila_bn": "তাড়াইল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MADARIPUR_DASAR": {
+  "division": "Dhaka",
+  "district": "Madaripur",
+  "upazila": "Dasar",
+  "upazila_bn": "দাসার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MADARIPUR_KALKINI": {
+  "division": "Dhaka",
+  "district": "Madaripur",
+  "upazila": "Kalkini",
+  "upazila_bn": "কালকিনি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MADARIPUR_MADARIPUR_SADAR": {
+  "division": "Dhaka",
+  "district": "Madaripur",
+  "upazila": "Madaripur Sadar",
+  "upazila_bn": "মাদারীপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MADARIPUR_RAJOIR": {
+  "division": "Dhaka",
+  "district": "Madaripur",
+  "upazila": "Rajoir",
+  "upazila_bn": "রাজৈর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MADARIPUR_SHIBCHAR": {
+  "division": "Dhaka",
+  "district": "Madaripur",
+  "upazila": "Shibchar",
+  "upazila_bn": "শিবচর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MANIKGANJ_DAULATPUR": {
+  "division": "Dhaka",
+  "district": "Manikganj",
+  "upazila": "Daulatpur",
+  "upazila_bn": "দৌলতপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MANIKGANJ_GHIOR": {
+  "division": "Dhaka",
+  "district": "Manikganj",
+  "upazila": "Ghior",
+  "upazila_bn": "ঘিওর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MANIKGANJ_HARIRAMPUR": {
+  "division": "Dhaka",
+  "district": "Manikganj",
+  "upazila": "Harirampur",
+  "upazila_bn": "হরিরামপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MANIKGANJ_MANIKGANJ_SADAR": {
+  "division": "Dhaka",
+  "district": "Manikganj",
+  "upazila": "Manikganj Sadar",
+  "upazila_bn": "মানিকগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MANIKGANJ_SATURIA": {
+  "division": "Dhaka",
+  "district": "Manikganj",
+  "upazila": "Saturia",
+  "upazila_bn": "সাটুরিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MANIKGANJ_SHIVALAYA": {
+  "division": "Dhaka",
+  "district": "Manikganj",
+  "upazila": "Shivalaya",
+  "upazila_bn": "শিবালয়",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MANIKGANJ_SINGAIR": {
+  "division": "Dhaka",
+  "district": "Manikganj",
+  "upazila": "Singair",
+  "upazila_bn": "সিংগাইর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MUNSHIGANJ_GAZARIA": {
+  "division": "Dhaka",
+  "district": "Munshiganj",
+  "upazila": "Gazaria",
+  "upazila_bn": "গজারিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MUNSHIGANJ_LOHAJANG": {
+  "division": "Dhaka",
+  "district": "Munshiganj",
+  "upazila": "Lohajang",
+  "upazila_bn": "লৌহজং",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MUNSHIGANJ_MUNSHIGANJ_SADAR": {
+  "division": "Dhaka",
+  "district": "Munshiganj",
+  "upazila": "Munshiganj Sadar",
+  "upazila_bn": "মুন্সিগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MUNSHIGANJ_SERAJDIKHAN": {
+  "division": "Dhaka",
+  "district": "Munshiganj",
+  "upazila": "Serajdikhan",
+  "upazila_bn": "সিরাজদিখান",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MUNSHIGANJ_SREENAGAR": {
+  "division": "Dhaka",
+  "district": "Munshiganj",
+  "upazila": "Sreenagar",
+  "upazila_bn": "শ্রীনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_MUNSHIGANJ_TONGIBARI": {
+  "division": "Dhaka",
+  "district": "Munshiganj",
+  "upazila": "Tongibari",
+  "upazila_bn": "টংগীবাড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NARAYANGANJ_ARAIHAZAR": {
+  "division": "Dhaka",
+  "district": "Narayanganj",
+  "upazila": "Araihazar",
+  "upazila_bn": "আড়াইহাজার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NARAYANGANJ_BANDAR": {
+  "division": "Dhaka",
+  "district": "Narayanganj",
+  "upazila": "Bandar",
+  "upazila_bn": "বন্দর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NARAYANGANJ_NARAYANGANJ_SADAR": {
+  "division": "Dhaka",
+  "district": "Narayanganj",
+  "upazila": "Narayanganj Sadar",
+  "upazila_bn": "নারায়ণগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NARAYANGANJ_RUPGANJ": {
+  "division": "Dhaka",
+  "district": "Narayanganj",
+  "upazila": "Rupganj",
+  "upazila_bn": "রূপগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NARAYANGANJ_SONARGAON": {
+  "division": "Dhaka",
+  "district": "Narayanganj",
+  "upazila": "Sonargaon",
+  "upazila_bn": "সোনারগাঁ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NORSINGDI_BELABO": {
+  "division": "Dhaka",
+  "district": "Norsingdi",
+  "upazila": "Belabo",
+  "upazila_bn": "বেলাবো",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NORSINGDI_MONOHARDI": {
+  "division": "Dhaka",
+  "district": "Norsingdi",
+  "upazila": "Monohardi",
+  "upazila_bn": "মনোহরদী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NORSINGDI_NORSINGDI_SADAR": {
+  "division": "Dhaka",
+  "district": "Norsingdi",
+  "upazila": "Norsingdi Sadar",
+  "upazila_bn": "নরসিংদী সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NORSINGDI_PALASH": {
+  "division": "Dhaka",
+  "district": "Norsingdi",
+  "upazila": "Palash",
+  "upazila_bn": "পলাশ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NORSINGDI_RAIPURA": {
+  "division": "Dhaka",
+  "district": "Norsingdi",
+  "upazila": "Raipura",
+  "upazila_bn": "রায়পুরা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_NORSINGDI_SHIBPUR": {
+  "division": "Dhaka",
+  "district": "Norsingdi",
+  "upazila": "Shibpur",
+  "upazila_bn": "শিবপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_RAJBARI_BALIAKANDI": {
+  "division": "Dhaka",
+  "district": "Rajbari",
+  "upazila": "Baliakandi",
+  "upazila_bn": "বালিয়াকান্দি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_RAJBARI_GOALANDAGHAT": {
+  "division": "Dhaka",
+  "district": "Rajbari",
+  "upazila": "Goalandaghat",
+  "upazila_bn": "গোয়ালন্দ ঘাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_RAJBARI_KALUKHALI": {
+  "division": "Dhaka",
+  "district": "Rajbari",
+  "upazila": "Kalukhali",
+  "upazila_bn": "কালুখালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_RAJBARI_PANGSHA": {
+  "division": "Dhaka",
+  "district": "Rajbari",
+  "upazila": "Pangsha",
+  "upazila_bn": "পাংশা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_RAJBARI_RAJBARI_SADAR": {
+  "division": "Dhaka",
+  "district": "Rajbari",
+  "upazila": "Rajbari Sadar",
+  "upazila_bn": "রাজবাড়ী সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_SHARIATPUR_BHEDARGANJ": {
+  "division": "Dhaka",
+  "district": "Shariatpur",
+  "upazila": "Bhedarganj",
+  "upazila_bn": "ভেদরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_SHARIATPUR_DAMUDYA": {
+  "division": "Dhaka",
+  "district": "Shariatpur",
+  "upazila": "Damudya",
+  "upazila_bn": "ডামুড্যা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_SHARIATPUR_GOSAIRHAT": {
+  "division": "Dhaka",
+  "district": "Shariatpur",
+  "upazila": "Gosairhat",
+  "upazila_bn": "গোসাইরহাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_SHARIATPUR_NARIA": {
+  "division": "Dhaka",
+  "district": "Shariatpur",
+  "upazila": "Naria",
+  "upazila_bn": "নড়িয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_SHARIATPUR_SHAKHIPUR": {
+  "division": "Dhaka",
+  "district": "Shariatpur",
+  "upazila": "Shakhipur",
+  "upazila_bn": "শাখিপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_SHARIATPUR_SHARIATPUR_SADAR": {
+  "division": "Dhaka",
+  "district": "Shariatpur",
+  "upazila": "Shariatpur Sadar",
+  "upazila_bn": "শরীয়তপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_SHARIATPUR_ZAJIRA": {
+  "division": "Dhaka",
+  "district": "Shariatpur",
+  "upazila": "Zajira",
+  "upazila_bn": "জাজিরা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_BASAIL": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Basail",
+  "upazila_bn": "বাসাইল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_BHUAPUR": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Bhuapur",
+  "upazila_bn": "ভূয়াপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_DELDUAR": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Delduar",
+  "upazila_bn": "দেলদুয়ার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_DHANBARI": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Dhanbari",
+  "upazila_bn": "ধনবাড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_GHATAIL": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Ghatail",
+  "upazila_bn": "ঘাটাইল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_GOPALPUR": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Gopalpur",
+  "upazila_bn": "গোপালপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_KALIHATI": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Kalihati",
+  "upazila_bn": "কালিহাতী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_MADHUPUR": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Madhupur",
+  "upazila_bn": "মধুপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_MIRZAPUR": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Mirzapur",
+  "upazila_bn": "মির্জাপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_NAGARPUR": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Nagarpur",
+  "upazila_bn": "নাগরপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_SAKHIPUR": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Sakhipur",
+  "upazila_bn": "সখিপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_DHA_TANGAIL_TANGAIL_SADAR": {
+  "division": "Dhaka",
+  "district": "Tangail",
+  "upazila": "Tangail Sadar",
+  "upazila_bn": "টাঙ্গাইল সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_BAGERHAT_FAKIRHAT": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Fakirhat",
+  "upazila_bn": "ফকিরহাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_BAGERHAT_KACHUA": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Kachua",
+  "upazila_bn": "কচুয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_BAGERHAT_MOLLAHAT": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Mollahat",
+  "upazila_bn": "মোল্লাহাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_BAGERHAT_MONGLA": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Mongla",
+  "upazila_bn": "মংলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_BAGERHAT_MORRELGANJ": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Morrelganj",
+  "upazila_bn": "মোড়েলগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_BAGERHAT_RAMPAL": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Rampal",
+  "upazila_bn": "রামপাল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_BAGERHAT_SARANKHOLA": {
+  "division": "Khulna",
+  "district": "Bagerhat",
+  "upazila": "Sarankhola",
+  "upazila_bn": "শরণখোলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_CHUADANGA_ALAMDANGA": {
+  "division": "Khulna",
+  "district": "Chuadanga",
+  "upazila": "Alamdanga",
+  "upazila_bn": "আলমডাঙ্গা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_CHUADANGA_CHUADANGA_SADAR": {
+  "division": "Khulna",
+  "district": "Chuadanga",
+  "upazila": "Chuadanga Sadar",
+  "upazila_bn": "চুয়াডাঙ্গা সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_CHUADANGA_DAMURHUDA": {
+  "division": "Khulna",
+  "district": "Chuadanga",
+  "upazila": "Damurhuda",
+  "upazila_bn": "দামুড়হুদা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_CHUADANGA_JIBANNAGAR": {
+  "division": "Khulna",
+  "district": "Chuadanga",
+  "upazila": "Jibannagar",
+  "upazila_bn": "জীবননগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JASHORE_ABHAYNAGAR": {
+  "division": "Khulna",
+  "district": "Jashore",
+  "upazila": "Abhaynagar",
+  "upazila_bn": "অভয়নগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JASHORE_BAGHERPARA": {
+  "division": "Khulna",
+  "district": "Jashore",
+  "upazila": "Bagherpara",
+  "upazila_bn": "বাঘারপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JASHORE_CHAUGACHHA": {
+  "division": "Khulna",
+  "district": "Jashore",
+  "upazila": "Chaugachha",
+  "upazila_bn": "চৌগাছা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JASHORE_JASHORE_SADAR": {
+  "division": "Khulna",
+  "district": "Jashore",
+  "upazila": "Jashore Sadar",
+  "upazila_bn": "যশোর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JASHORE_JHIKARGACHHA": {
+  "division": "Khulna",
+  "district": "Jashore",
+  "upazila": "Jhikargachha",
+  "upazila_bn": "ঝিকরগাছা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JASHORE_KESHABPUR": {
+  "division": "Khulna",
+  "district": "Jashore",
+  "upazila": "Keshabpur",
+  "upazila_bn": "কেশবপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JASHORE_MANIRAMPUR": {
+  "division": "Khulna",
+  "district": "Jashore",
+  "upazila": "Manirampur",
+  "upazila_bn": "মণিরামপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JASHORE_SHARSHA": {
+  "division": "Khulna",
+  "district": "Jashore",
+  "upazila": "Sharsha",
+  "upazila_bn": "শার্শা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JHENAIDAH_HARINAKUNDA": {
+  "division": "Khulna",
+  "district": "Jhenaidah",
+  "upazila": "Harinakunda",
+  "upazila_bn": "হরিণাকুন্ডু",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JHENAIDAH_JHENAIDAH_SADAR": {
+  "division": "Khulna",
+  "district": "Jhenaidah",
+  "upazila": "Jhenaidah Sadar",
+  "upazila_bn": "ঝিনাইদহ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JHENAIDAH_KALIGANJ": {
+  "division": "Khulna",
+  "district": "Jhenaidah",
+  "upazila": "Kaliganj",
+  "upazila_bn": "কালীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JHENAIDAH_KOTCHANDPUR": {
+  "division": "Khulna",
+  "district": "Jhenaidah",
+  "upazila": "Kotchandpur",
+  "upazila_bn": "কোটচাঁদপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JHENAIDAH_MAHESHPUR": {
+  "division": "Khulna",
+  "district": "Jhenaidah",
+  "upazila": "Maheshpur",
+  "upazila_bn": "মহেশপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_JHENAIDAH_SHAILKUPA": {
+  "division": "Khulna",
+  "district": "Jhenaidah",
+  "upazila": "Shailkupa",
+  "upazila_bn": "শৈলকুপা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_BATIAGHATA": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Batiaghata",
+  "upazila_bn": "বটিয়াঘাটা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_DACOPE": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Dacope",
+  "upazila_bn": "ডাকোপ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_DIGHALIA": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Dighalia",
+  "upazila_bn": "দিঘলিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_DUMURIA": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Dumuria",
+  "upazila_bn": "দুমুরিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_KOYRA": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Koyra",
+  "upazila_bn": "কয়রা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_PAIKGACHHA": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Paikgachha",
+  "upazila_bn": "পাইকগাছা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_PHULTALA": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Phultala",
+  "upazila_bn": "ফুলতলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_RUPSA": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Rupsa",
+  "upazila_bn": "রূপসা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KHULNA_TEROKHADA": {
+  "division": "Khulna",
+  "district": "Khulna",
+  "upazila": "Terokhada",
+  "upazila_bn": "তেরখাদা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KUSHTIA_BHERAMARA": {
+  "division": "Khulna",
+  "district": "Kushtia",
+  "upazila": "Bheramara",
+  "upazila_bn": "ভেড়ামারা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KUSHTIA_DAULATPUR": {
+  "division": "Khulna",
+  "district": "Kushtia",
+  "upazila": "Daulatpur",
+  "upazila_bn": "দৌলতপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KUSHTIA_KHOKSA": {
+  "division": "Khulna",
+  "district": "Kushtia",
+  "upazila": "Khoksa",
+  "upazila_bn": "খোকসা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KUSHTIA_KUMARKHALI": {
+  "division": "Khulna",
+  "district": "Kushtia",
+  "upazila": "Kumarkhali",
+  "upazila_bn": "কুমারখালী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KUSHTIA_KUSHTIA_SADAR": {
+  "division": "Khulna",
+  "district": "Kushtia",
+  "upazila": "Kushtia Sadar",
+  "upazila_bn": "কুষ্টিয়া সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_KUSHTIA_MIRPUR": {
+  "division": "Khulna",
+  "district": "Kushtia",
+  "upazila": "Mirpur",
+  "upazila_bn": "মিরপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_MAGURA_MAGURA_SADAR": {
+  "division": "Khulna",
+  "district": "Magura",
+  "upazila": "Magura Sadar",
+  "upazila_bn": "মাগুরা সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_MAGURA_MOHAMMADPUR": {
+  "division": "Khulna",
+  "district": "Magura",
+  "upazila": "Mohammadpur",
+  "upazila_bn": "মোহাম্মদপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_MAGURA_SHALIKHA": {
+  "division": "Khulna",
+  "district": "Magura",
+  "upazila": "Shalikha",
+  "upazila_bn": "শালিখা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_MAGURA_SREEPUR": {
+  "division": "Khulna",
+  "district": "Magura",
+  "upazila": "Sreepur",
+  "upazila_bn": "শ্রীপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_MEHERPUR_GANGNI": {
+  "division": "Khulna",
+  "district": "Meherpur",
+  "upazila": "Gangni",
+  "upazila_bn": "গাংনী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_MEHERPUR_MEHERPUR_SADAR": {
+  "division": "Khulna",
+  "district": "Meherpur",
+  "upazila": "Meherpur Sadar",
+  "upazila_bn": "মেহেরপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_MEHERPUR_MUJIBNAGAR": {
+  "division": "Khulna",
+  "district": "Meherpur",
+  "upazila": "Mujibnagar",
+  "upazila_bn": "মুজিবনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_NARAIL_KALIA": {
+  "division": "Khulna",
+  "district": "Narail",
+  "upazila": "Kalia",
+  "upazila_bn": "কালিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_NARAIL_LOHAGARA": {
+  "division": "Khulna",
+  "district": "Narail",
+  "upazila": "Lohagara",
+  "upazila_bn": "লোহাগড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_NARAIL_NARAIL_SADAR": {
+  "division": "Khulna",
+  "district": "Narail",
+  "upazila": "Narail Sadar",
+  "upazila_bn": "নড়াইল সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_SATKHIRA_ASSASUNI": {
+  "division": "Khulna",
+  "district": "Satkhira",
+  "upazila": "Assasuni",
+  "upazila_bn": "আশাশুনি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_SATKHIRA_DEBHATA": {
+  "division": "Khulna",
+  "district": "Satkhira",
+  "upazila": "Debhata",
+  "upazila_bn": "দেবহাটা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_SATKHIRA_KALAROA": {
+  "division": "Khulna",
+  "district": "Satkhira",
+  "upazila": "Kalaroa",
+  "upazila_bn": "কলারোয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_SATKHIRA_KALIGANJ": {
+  "division": "Khulna",
+  "district": "Satkhira",
+  "upazila": "Kaliganj",
+  "upazila_bn": "কালিগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_SATKHIRA_SATKHIRA_SADAR": {
+  "division": "Khulna",
+  "district": "Satkhira",
+  "upazila": "Satkhira Sadar",
+  "upazila_bn": "সাতক্ষীরা সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_SATKHIRA_SHYAMNAGAR": {
+  "division": "Khulna",
+  "district": "Satkhira",
+  "upazila": "Shyamnagar",
+  "upazila_bn": "শ্যামনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_KHL_SATKHIRA_TALA": {
+  "division": "Khulna",
+  "district": "Satkhira",
+  "upazila": "Tala",
+  "upazila_bn": "তালা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_JAMALPUR_ISLAMPUR": {
+  "division": "Mymensingh",
+  "district": "Jamalpur",
+  "upazila": "Islampur",
+  "upazila_bn": "ইসলামপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_JAMALPUR_JAMALPUR_SADAR": {
+  "division": "Mymensingh",
+  "district": "Jamalpur",
+  "upazila": "Jamalpur Sadar",
+  "upazila_bn": "জামালপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_JAMALPUR_MADARGANJ": {
+  "division": "Mymensingh",
+  "district": "Jamalpur",
+  "upazila": "Madarganj",
+  "upazila_bn": "মাদারগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_JAMALPUR_MELANDAHA": {
+  "division": "Mymensingh",
+  "district": "Jamalpur",
+  "upazila": "Melandaha",
+  "upazila_bn": "মেলান্দহ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_JAMALPUR_SARISHABARI": {
+  "division": "Mymensingh",
+  "district": "Jamalpur",
+  "upazila": "Sarishabari",
+  "upazila_bn": "সরিষাবাড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_BHALUKA": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Bhaluka",
+  "upazila_bn": "ভালুকা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_DHOBAURA": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Dhobaura",
+  "upazila_bn": "ধোবাউড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_FULBARIA": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Fulbaria",
+  "upazila_bn": "ফুলবাড়িয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_GAFFARGAON": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Gaffargaon",
+  "upazila_bn": "গফরগাঁও",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_GAURIPUR": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Gauripur",
+  "upazila_bn": "গৌরীপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_HALUAGHAT": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Haluaghat",
+  "upazila_bn": "হালুয়াঘাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_ISHWARGANJ": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Ishwarganj",
+  "upazila_bn": "ঈশ্বরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_MUKTAGACHHA": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Muktagachha",
+  "upazila_bn": "মুক্তাগাছা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_MYMENSINGH_SADAR": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Mymensingh Sadar",
+  "upazila_bn": "ময়মনসিংহ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_NANDAIL": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Nandail",
+  "upazila_bn": "নান্দাইল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_PHULPUR": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Phulpur",
+  "upazila_bn": "ফুলপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_MYMENSINGH_TRISHAL": {
+  "division": "Mymensingh",
+  "district": "Mymensingh",
+  "upazila": "Trishal",
+  "upazila_bn": "ত্রিশাল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_ATPARA": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Atpara",
+  "upazila_bn": "আটপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_BARHATTA": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Barhatta",
+  "upazila_bn": "বরহাট্টা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_DURGAPUR": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Durgapur",
+  "upazila_bn": "দুর্গাপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_KALMAKANDA": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Kalmakanda",
+  "upazila_bn": "কলমাকান্দা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_KENDUA": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Kendua",
+  "upazila_bn": "কেন্দুয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_KHALIAJURI": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Khaliajuri",
+  "upazila_bn": "খালিয়াজুরী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_MADAN": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Madan",
+  "upazila_bn": "মদন",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_MOHANGANJ": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Mohanganj",
+  "upazila_bn": "মোহনগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_NETRAKONA_SADAR": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Netrakona Sadar",
+  "upazila_bn": "নেত্রকোণা সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_NETRAKONA_PURBADHALA": {
+  "division": "Mymensingh",
+  "district": "Netrakona",
+  "upazila": "Purbadhala",
+  "upazila_bn": "পূর্বধলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_SHERPUR_JHENAIGATI": {
+  "division": "Mymensingh",
+  "district": "Sherpur",
+  "upazila": "Jhenaigati",
+  "upazila_bn": "ঝিনাইগাতী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_SHERPUR_NAKLA": {
+  "division": "Mymensingh",
+  "district": "Sherpur",
+  "upazila": "Nakla",
+  "upazila_bn": "নকলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_SHERPUR_NALITABARI": {
+  "division": "Mymensingh",
+  "district": "Sherpur",
+  "upazila": "Nalitabari",
+  "upazila_bn": "নালিতাবাড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_SHERPUR_SHERPUR_SADAR": {
+  "division": "Mymensingh",
+  "district": "Sherpur",
+  "upazila": "Sherpur Sadar",
+  "upazila_bn": "শেরপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_MYM_SHERPUR_SREEBARDI": {
+  "division": "Mymensingh",
+  "district": "Sherpur",
+  "upazila": "Sreebardi",
+  "upazila_bn": "শ্রীবর্দী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_DHUNAT": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Dhunat",
+  "upazila_bn": "ধুনট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_DHUPCHANCHIA": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Dhupchanchia",
+  "upazila_bn": "দুপচাঁচিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_GABTALI": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Gabtali",
+  "upazila_bn": "গাবতলী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_KAHALOO": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Kahaloo",
+  "upazila_bn": "কাহালু",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_NANDIGRAM": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Nandigram",
+  "upazila_bn": "নন্দিগ্রাম",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_SARIAKANDI": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Sariakandi",
+  "upazila_bn": "সারিয়াকান্দি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_SHAJAHANPUR": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Shajahanpur",
+  "upazila_bn": "শাজাহানপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_SHERPUR": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Sherpur",
+  "upazila_bn": "শেরপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_SHIBGANJ": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Shibganj",
+  "upazila_bn": "শিবগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_BOGURA_SONATOLA": {
+  "division": "Rajshahi",
+  "district": "Bogura",
+  "upazila": "Sonatola",
+  "upazila_bn": "সোনাতলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_JOYPURHAT_AKKELPUR": {
+  "division": "Rajshahi",
+  "district": "Joypurhat",
+  "upazila": "Akkelpur",
+  "upazila_bn": "আক্কেলপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_JOYPURHAT_JOYPURHAT_SADAR": {
+  "division": "Rajshahi",
+  "district": "Joypurhat",
+  "upazila": "Joypurhat Sadar",
+  "upazila_bn": "জয়পুরহাট সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_JOYPURHAT_KALAI": {
+  "division": "Rajshahi",
+  "district": "Joypurhat",
+  "upazila": "Kalai",
+  "upazila_bn": "কালাই",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_JOYPURHAT_KHETLAL": {
+  "division": "Rajshahi",
+  "district": "Joypurhat",
+  "upazila": "Khetlal",
+  "upazila_bn": "ক্ষেতলাল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_JOYPURHAT_PANCHBIBI": {
+  "division": "Rajshahi",
+  "district": "Joypurhat",
+  "upazila": "Panchbibi",
+  "upazila_bn": "পাঁচবিবি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_ATRAI": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Atrai",
+  "upazila_bn": "আত্রাই",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_BADALGACHHI": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Badalgachhi",
+  "upazila_bn": "বদলগাছী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_DHAMOIRHAT": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Dhamoirhat",
+  "upazila_bn": "ধামইরহাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_MANDA": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Manda",
+  "upazila_bn": "মান্দা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_MOHADEVPUR": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Mohadevpur",
+  "upazila_bn": "মহাদেবপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_NAOGAON_SADAR": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Naogaon Sadar",
+  "upazila_bn": "নওগাঁ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_NIAMATPUR": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Niamatpur",
+  "upazila_bn": "নিয়ামতপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_PATNITALA": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Patnitala",
+  "upazila_bn": "পত্নিতলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_PORSHA": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Porsha",
+  "upazila_bn": "পোরশা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_RANINAGAR": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Raninagar",
+  "upazila_bn": "রাণীনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAOGAON_SAPAHAR": {
+  "division": "Rajshahi",
+  "district": "Naogaon",
+  "upazila": "Sapahar",
+  "upazila_bn": "সাপাহার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NATORE_BAGATIPARA": {
+  "division": "Rajshahi",
+  "district": "Natore",
+  "upazila": "Bagatipara",
+  "upazila_bn": "বাগাতিপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NATORE_BARAIGRAM": {
+  "division": "Rajshahi",
+  "district": "Natore",
+  "upazila": "Baraigram",
+  "upazila_bn": "বড়াইগ্রাম",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NATORE_GURUDASPUR": {
+  "division": "Rajshahi",
+  "district": "Natore",
+  "upazila": "Gurudaspur",
+  "upazila_bn": "গুরুদাসপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NATORE_LALPUR": {
+  "division": "Rajshahi",
+  "district": "Natore",
+  "upazila": "Lalpur",
+  "upazila_bn": "লালপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NATORE_NALDANGA": {
+  "division": "Rajshahi",
+  "district": "Natore",
+  "upazila": "Naldanga",
+  "upazila_bn": "নলডাঙ্গা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NATORE_NATORE_SADAR": {
+  "division": "Rajshahi",
+  "district": "Natore",
+  "upazila": "Natore Sadar",
+  "upazila_bn": "নাটোর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NATORE_SINGRA": {
+  "division": "Rajshahi",
+  "district": "Natore",
+  "upazila": "Singra",
+  "upazila_bn": "সিংড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAWABGANJ_BHOLAHAT": {
+  "division": "Rajshahi",
+  "district": "Nawabganj",
+  "upazila": "Bholahat",
+  "upazila_bn": "ভোলাহাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAWABGANJ_GOMASTAPUR": {
+  "division": "Rajshahi",
+  "district": "Nawabganj",
+  "upazila": "Gomastapur",
+  "upazila_bn": "গোমস্তাপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAWABGANJ_NACHOLE": {
+  "division": "Rajshahi",
+  "district": "Nawabganj",
+  "upazila": "Nachole",
+  "upazila_bn": "নাচোল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAWABGANJ_NAWABGANJ_SADAR": {
+  "division": "Rajshahi",
+  "district": "Nawabganj",
+  "upazila": "Nawabganj Sadar",
+  "upazila_bn": "নবাবগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_NAWABGANJ_SHIBGANJ": {
+  "division": "Rajshahi",
+  "district": "Nawabganj",
+  "upazila": "Shibganj",
+  "upazila_bn": "শিবগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_ATGHARIA": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Atgharia",
+  "upazila_bn": "আটঘরিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_BERA": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Bera",
+  "upazila_bn": "বেড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_BHANGURA": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Bhangura",
+  "upazila_bn": "ভাঙ্গুড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_CHATMOHAR": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Chatmohar",
+  "upazila_bn": "চাটমোহর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_FARIDPUR": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Faridpur",
+  "upazila_bn": "ফরিদপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_ISHWARDI": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Ishwardi",
+  "upazila_bn": "ঈশ্বরদী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_PABNA_SADAR": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Pabna Sadar",
+  "upazila_bn": "পাবনা সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_SANTHIA": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Santhia",
+  "upazila_bn": "সাঁথিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_PABNA_SUJANAGAR": {
+  "division": "Rajshahi",
+  "district": "Pabna",
+  "upazila": "Sujanagar",
+  "upazila_bn": "সুজানগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_BAGHA": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Bagha",
+  "upazila_bn": "বাঘা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_BAGMARA": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Bagmara",
+  "upazila_bn": "বাগমারা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_CHARGHAT": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Charghat",
+  "upazila_bn": "চারঘাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_DURGAPUR": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Durgapur",
+  "upazila_bn": "দুর্গাপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_GODAGARI": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Godagari",
+  "upazila_bn": "গোদাগাড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_MOHANPUR": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Mohanpur",
+  "upazila_bn": "মোহনপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_PABA": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Paba",
+  "upazila_bn": "পবা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_PUTHIA": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Puthia",
+  "upazila_bn": "পুঠিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_RAJSHAHI_TANORE": {
+  "division": "Rajshahi",
+  "district": "Rajshahi",
+  "upazila": "Tanore",
+  "upazila_bn": "তানোর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_BELKUCHI": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Belkuchi",
+  "upazila_bn": "বেলকুচি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_CHAUHALI": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Chauhali",
+  "upazila_bn": "চৌহালি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_KAMARKHAND": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Kamarkhand",
+  "upazila_bn": "কামারখন্ড",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_KAZIPUR": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Kazipur",
+  "upazila_bn": "কাজীপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_RAIGANJ": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Raiganj",
+  "upazila_bn": "রায়গঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_SHAHJADPUR": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Shahjadpur",
+  "upazila_bn": "শাহজাদপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_SIRAJGANJ_SADAR": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Sirajganj Sadar",
+  "upazila_bn": "সিরাজগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_TARASH": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Tarash",
+  "upazila_bn": "তাড়াশ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RAJ_SIRAJGANJ_ULLAHPARA": {
+  "division": "Rajshahi",
+  "district": "Sirajganj",
+  "upazila": "Ullahpara",
+  "upazila_bn": "উল্লাপাড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_BIRGANJ": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Birganj",
+  "upazila_bn": "বীরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_BOCHAGANJ": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Bochaganj",
+  "upazila_bn": "বোচাগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_CHIRIRBANDAR": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Chirirbandar",
+  "upazila_bn": "চিরিরবন্দর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_DINAJPUR_SADAR": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Dinajpur Sadar",
+  "upazila_bn": "দিনাজপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_GHORAGHAT": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Ghoraghat",
+  "upazila_bn": "ঘোড়াঘাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_HAKIMPUR": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Hakimpur",
+  "upazila_bn": "হাকিমপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_KAHAROLE": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Kaharole",
+  "upazila_bn": "কাহারোল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_KHANSAMA": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Khansama",
+  "upazila_bn": "খানসামা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_NAWABGANJ": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Nawabganj",
+  "upazila_bn": "নবাবগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_PARBATIPUR": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Parbatipur",
+  "upazila_bn": "পার্বতীপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_DINAJPUR_PHULBARI": {
+  "division": "Rangpur",
+  "district": "Dinajpur",
+  "upazila": "Phulbari",
+  "upazila_bn": "ফুলবাড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_GAIBANDHA_GAIBANDHA_SADAR": {
+  "division": "Rangpur",
+  "district": "Gaibandha",
+  "upazila": "Gaibandha Sadar",
+  "upazila_bn": "গাইবান্ধা সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_GAIBANDHA_GOBINDAGANJ": {
+  "division": "Rangpur",
+  "district": "Gaibandha",
+  "upazila": "Gobindaganj",
+  "upazila_bn": "গোবিন্দগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_GAIBANDHA_PALASHBARI": {
+  "division": "Rangpur",
+  "district": "Gaibandha",
+  "upazila": "Palashbari",
+  "upazila_bn": "পলাশবাড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_GAIBANDHA_PHULCHHARI": {
+  "division": "Rangpur",
+  "district": "Gaibandha",
+  "upazila": "Phulchhari",
+  "upazila_bn": "ফুলছড়ি",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_GAIBANDHA_SADULLAPUR": {
+  "division": "Rangpur",
+  "district": "Gaibandha",
+  "upazila": "Sadullapur",
+  "upazila_bn": "সাদুল্লাপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_GAIBANDHA_SUGHATTA": {
+  "division": "Rangpur",
+  "district": "Gaibandha",
+  "upazila": "Sughatta",
+  "upazila_bn": "সুঘাটা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_GAIBANDHA_SUNDARGANJ": {
+  "division": "Rangpur",
+  "district": "Gaibandha",
+  "upazila": "Sundarganj",
+  "upazila_bn": "সুন্দরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_BHURUNGAMARI": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Bhurungamari",
+  "upazila_bn": "ভুরুঙ্গামারী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_CHAR_RAJIBPUR": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Char Rajibpur",
+  "upazila_bn": "চর রাজিবপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_CHILMARI": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Chilmari",
+  "upazila_bn": "চিলমারী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_KURIGRAM_SADAR": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Kurigram Sadar",
+  "upazila_bn": "কুড়িগ্রাম সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_NAGESHWARI": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Nageshwari",
+  "upazila_bn": "নাগেশ্বরী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_PHULBARI": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Phulbari",
+  "upazila_bn": "ফুলবাড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_RAJARHAT": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Rajarhat",
+  "upazila_bn": "রাজারহাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_RAOMARI": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Raomari",
+  "upazila_bn": "রৌমারী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_KURIGRAM_ULIPUR": {
+  "division": "Rangpur",
+  "district": "Kurigram",
+  "upazila": "Ulipur",
+  "upazila_bn": "উলিপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_LALMONIRHAT_ADITMARI": {
+  "division": "Rangpur",
+  "district": "Lalmonirhat",
+  "upazila": "Aditmari",
+  "upazila_bn": "আদিতমারী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_LALMONIRHAT_HATIBANDHA": {
+  "division": "Rangpur",
+  "district": "Lalmonirhat",
+  "upazila": "Hatibandha",
+  "upazila_bn": "হাতীবান্ধা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_LALMONIRHAT_KALIGANJ": {
+  "division": "Rangpur",
+  "district": "Lalmonirhat",
+  "upazila": "Kaliganj",
+  "upazila_bn": "কালীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_LALMONIRHAT_LALMONIRHAT_SADAR": {
+  "division": "Rangpur",
+  "district": "Lalmonirhat",
+  "upazila": "Lalmonirhat Sadar",
+  "upazila_bn": "লালমনিরহাট সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_LALMONIRHAT_PATGRAM": {
+  "division": "Rangpur",
+  "district": "Lalmonirhat",
+  "upazila": "Patgram",
+  "upazila_bn": "পাটগ্রাম",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_NILPHAMARI_DIMLA": {
+  "division": "Rangpur",
+  "district": "Nilphamari",
+  "upazila": "Dimla",
+  "upazila_bn": "ডিমলা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_NILPHAMARI_DOMAR": {
+  "division": "Rangpur",
+  "district": "Nilphamari",
+  "upazila": "Domar",
+  "upazila_bn": "ডোমার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_NILPHAMARI_JALDHAKA": {
+  "division": "Rangpur",
+  "district": "Nilphamari",
+  "upazila": "Jaldhaka",
+  "upazila_bn": "জলঢাকা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_NILPHAMARI_KISHOREGANJ": {
+  "division": "Rangpur",
+  "district": "Nilphamari",
+  "upazila": "Kishoreganj",
+  "upazila_bn": "কিশোরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_NILPHAMARI_NILPHAMARI_SADAR": {
+  "division": "Rangpur",
+  "district": "Nilphamari",
+  "upazila": "Nilphamari Sadar",
+  "upazila_bn": "নীলফামারী সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_NILPHAMARI_SAIDPUR": {
+  "division": "Rangpur",
+  "district": "Nilphamari",
+  "upazila": "Saidpur",
+  "upazila_bn": "সৈয়দপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_PANCHAGARH_ATWARI": {
+  "division": "Rangpur",
+  "district": "Panchagarh",
+  "upazila": "Atwari",
+  "upazila_bn": "আটোয়ারী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_PANCHAGARH_BODA": {
+  "division": "Rangpur",
+  "district": "Panchagarh",
+  "upazila": "Boda",
+  "upazila_bn": "বোদা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_PANCHAGARH_DEBIGANJ": {
+  "division": "Rangpur",
+  "district": "Panchagarh",
+  "upazila": "Debiganj",
+  "upazila_bn": "দেবীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_PANCHAGARH_PANCHAGARH_SADAR": {
+  "division": "Rangpur",
+  "district": "Panchagarh",
+  "upazila": "Panchagarh Sadar",
+  "upazila_bn": "পঞ্চগড় সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_PANCHAGARH_TETULIA": {
+  "division": "Rangpur",
+  "district": "Panchagarh",
+  "upazila": "Tetulia",
+  "upazila_bn": "তেতুলিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_RANGPUR_BADARGANJ": {
+  "division": "Rangpur",
+  "district": "Rangpur",
+  "upazila": "Badarganj",
+  "upazila_bn": "বদরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_RANGPUR_GANGACHARA": {
+  "division": "Rangpur",
+  "district": "Rangpur",
+  "upazila": "Gangachara",
+  "upazila_bn": "গঙ্গাচড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_RANGPUR_KAUNIA": {
+  "division": "Rangpur",
+  "district": "Rangpur",
+  "upazila": "Kaunia",
+  "upazila_bn": "কাউনিয়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_RANGPUR_MITHAPUKUR": {
+  "division": "Rangpur",
+  "district": "Rangpur",
+  "upazila": "Mithapukur",
+  "upazila_bn": "মিঠাপুকুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_RANGPUR_PIRGACHHA": {
+  "division": "Rangpur",
+  "district": "Rangpur",
+  "upazila": "Pirgachha",
+  "upazila_bn": "পীরগাছা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_RANGPUR_PIRGANJ": {
+  "division": "Rangpur",
+  "district": "Rangpur",
+  "upazila": "Pirganj",
+  "upazila_bn": "পীরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_RANGPUR_RANGPUR_SADAR": {
+  "division": "Rangpur",
+  "district": "Rangpur",
+  "upazila": "Rangpur Sadar",
+  "upazila_bn": "রংপুর সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_RANGPUR_TARAGANJ": {
+  "division": "Rangpur",
+  "district": "Rangpur",
+  "upazila": "Taraganj",
+  "upazila_bn": "তারাগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_THAKURGAON_BALIADANGI": {
+  "division": "Rangpur",
+  "district": "Thakurgaon",
+  "upazila": "Baliadangi",
+  "upazila_bn": "বালিয়াডাঙ্গী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_THAKURGAON_HARIPUR": {
+  "division": "Rangpur",
+  "district": "Thakurgaon",
+  "upazila": "Haripur",
+  "upazila_bn": "হরিপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_THAKURGAON_PIRGANJ": {
+  "division": "Rangpur",
+  "district": "Thakurgaon",
+  "upazila": "Pirganj",
+  "upazila_bn": "পীরগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_THAKURGAON_RANISANKAIL": {
+  "division": "Rangpur",
+  "district": "Thakurgaon",
+  "upazila": "Ranisankail",
+  "upazila_bn": "রাণীশংকৈল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_RNG_THAKURGAON_THAKURGAON_SADAR": {
+  "division": "Rangpur",
+  "district": "Thakurgaon",
+  "upazila": "Thakurgaon Sadar",
+  "upazila_bn": "ঠাকুরগাঁও সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_HABIGANJ_BANIACHONG": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Baniachong",
+  "upazila_bn": "বানিয়াচং",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_HABIGANJ_CHUNARUGHAT": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Chunarughat",
+  "upazila_bn": "চুনারুঘাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_HABIGANJ_HABIGANJ_SADAR": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Habiganj Sadar",
+  "upazila_bn": "হবিগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_HABIGANJ_LAKHAI": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Lakhai",
+  "upazila_bn": "লাখাই",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_HABIGANJ_MADHABPUR": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Madhabpur",
+  "upazila_bn": "মাধবপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_HABIGANJ_NABIGANJ": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Nabiganj",
+  "upazila_bn": "নবীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_HABIGANJ_SHAISTAGONJ": {
+  "division": "Sylhet",
+  "district": "Habiganj",
+  "upazila": "Shaistagonj",
+  "upazila_bn": "শায়েস্তাগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_MOULVIBAZAR_BARLEKHA": {
+  "division": "Sylhet",
+  "district": "Moulvibazar",
+  "upazila": "Barlekha",
+  "upazila_bn": "বড়লেখা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_MOULVIBAZAR_JURI": {
+  "division": "Sylhet",
+  "district": "Moulvibazar",
+  "upazila": "Juri",
+  "upazila_bn": "জুড়ী",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_MOULVIBAZAR_KAMALGANJ": {
+  "division": "Sylhet",
+  "district": "Moulvibazar",
+  "upazila": "Kamalganj",
+  "upazila_bn": "কমলগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_MOULVIBAZAR_KULAURA": {
+  "division": "Sylhet",
+  "district": "Moulvibazar",
+  "upazila": "Kulaura",
+  "upazila_bn": "কুলাউড়া",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_MOULVIBAZAR_MOULVIBAZAR_SADAR": {
+  "division": "Sylhet",
+  "district": "Moulvibazar",
+  "upazila": "Moulvibazar Sadar",
+  "upazila_bn": "মৌলভীবাজার সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_MOULVIBAZAR_RAJNAGAR": {
+  "division": "Sylhet",
+  "district": "Moulvibazar",
+  "upazila": "Rajnagar",
+  "upazila_bn": "রাজনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_MOULVIBAZAR_SREEMANGAL": {
+  "division": "Sylhet",
+  "district": "Moulvibazar",
+  "upazila": "Sreemangal",
+  "upazila_bn": "শ্রীমঙ্গল",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_BISHWAMVARPUR": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Bishwamvarpur",
+  "upazila_bn": "বিশ্বম্ভরপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_CHHATAK": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Chhatak",
+  "upazila_bn": "ছাতক",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_DERAI": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Derai",
+  "upazila_bn": "দিরাই",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_DHARAMAPASHA": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Dharamapasha",
+  "upazila_bn": "ধর্মপাশা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_DOWARABAZAR": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Dowarabazar",
+  "upazila_bn": "দোয়ারাবাজার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_JAGANNATHPUR": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Jagannathpur",
+  "upazila_bn": "জগন্নাথপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_JAMALGANJ": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Jamalganj",
+  "upazila_bn": "জামালগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_MADHYANAGAR": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Madhyanagar",
+  "upazila_bn": "মধ্যনগর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_SHANTIGANJ": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Shantiganj",
+  "upazila_bn": "শান্তিগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_SOUTH_SUNAMGANJ": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "South Sunamganj",
+  "upazila_bn": "দক্ষিণ সুনামগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_SULLA": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Sulla",
+  "upazila_bn": "সুল্লা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_SUNAMGANJ_SADAR": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Sunamganj Sadar",
+  "upazila_bn": "সুনামগঞ্জ সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SUNAMGANJ_TAHIRPUR": {
+  "division": "Sylhet",
+  "district": "Sunamganj",
+  "upazila": "Tahirpur",
+  "upazila_bn": "তাহিরপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_BALAGANJ": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Balaganj",
+  "upazila_bn": "বালাগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_BEANIBAZAR": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Beanibazar",
+  "upazila_bn": "বিয়ানীবাজার",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_BISHWANATH": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Bishwanath",
+  "upazila_bn": "বিশ্বনাথ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_COMPANIGANJ": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Companiganj",
+  "upazila_bn": "কোম্পানীগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_DAKSHIN_SURMA": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Dakshin Surma",
+  "upazila_bn": "দক্ষিণ সুরমা",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_FENCHUGANJ": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Fenchuganj",
+  "upazila_bn": "ফেঞ্চুগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_GOLAPGANJ": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Golapganj",
+  "upazila_bn": "গোলাপগঞ্জ",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_GOWAINGHAT": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Gowainghat",
+  "upazila_bn": "গোয়াইনঘাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_JAINTIAPUR": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Jaintiapur",
+  "upazila_bn": "জৈন্তাপুর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_KANAIGHAT": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Kanaighat",
+  "upazila_bn": "কানাইঘাট",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_SYLHET_SADAR": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Sylhet Sadar",
+  "upazila_bn": "সিলেট সদর",
+  "is_synthetic_demo": true
+ },
+ "PARCEL_UPA_SYL_SYLHET_ZAKIGANJ": {
+  "division": "Sylhet",
+  "district": "Sylhet",
+  "upazila": "Zakiganj",
+  "upazila_bn": "জকিগঞ্জ",
+  "is_synthetic_demo": true
+ }
+}

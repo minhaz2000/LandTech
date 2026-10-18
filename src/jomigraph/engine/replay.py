@@ -243,7 +243,7 @@ def compute_state(
 
     for event in dated:
 
-        if event.type in (EventType.SALE, EventType.GIFT):
+        if event.type in (EventType.SALE, EventType.GIFT, EventType.RELEASE):
             if event.from_person is None or event.to_person is None or event.area is None:
                 # Incomplete event — rule layer will detect missing fields
                 continue
@@ -257,6 +257,14 @@ def compute_state(
 
         elif event.type == EventType.MUTATION:
             pass  # no state change; reconciliation is R6/R7
+
+        elif event.type in (
+            EventType.MORTGAGE,
+            EventType.MORTGAGE_RELEASE,
+            EventType.POA_GRANT,
+            EventType.POA_REVOKE,
+        ):
+            pass  # non-transferring encumbrance/authorization events; no state change
 
         elif event.type == EventType.CANCEL:
             err = _validate_cancel(event, events_by_id, cancelled_event_ids)

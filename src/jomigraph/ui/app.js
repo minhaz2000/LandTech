@@ -165,7 +165,70 @@ const ui_strings = {
     "print_dag_no_label": "দাগ নং:",
     "print_overall_status_label": "সার্বিক স্থিতি:",
     "print_disclaimer_label": "আইনি সতর্কবার্তা:",
-    "proposed_buyer_label": "প্রস্তাবিত ক্রেতা"
+    "proposed_buyer_label": "প্রস্তাবিত ক্রেতা",
+    "nav_verify_deed": "দলিল যাচাই",
+    "verify_screen_title": "দলিলের অনুলিপি ও ফিঙ্গারপ্রিন্ট যাচাই",
+    "verify_screen_desc": "উপস্থাপিত দলিলের তথ্যাদি প্রবেশ করিয়ে রেজিস্ট্রি-সংরক্ষিত ফিঙ্গারপ্রিন্ট ও কিউআর যাচাই করুন।",
+    "verify_disclaimer_notice": "এটি একটি গাণিতিক হ্যাশ যাচাইকরণ, কোনো আইনি ডিজিটাল স্বাক্ষর বা সরকারি নিবন্ধন সনদ নয়।",
+    "verify_deed_no_label": "দলিল নম্বর:",
+    "verify_reg_date_label": "নিবন্ধন তারিখ (YYYY-MM-DD):",
+    "verify_parcel_id_label": "দাগ / প্লট আইডি:",
+    "verify_seller_label": "বিক্রেতা:",
+    "verify_buyer_label": "ক্রেতা:",
+    "verify_area_label": "জমির পরিমাণ (শতক):",
+    "verify_claimed_hash_label": "দাবি করা হ্যাশ / ফিঙ্গারপ্রিন্ট (ঐচ্ছিক):",
+    "verify_btn_submit": "দলিল যাচাই করুন",
+    "verify_qr_heading": "দলিল যাচাইকরণ কিউআর কোড",
+    "verify_result_heading": "যাচাইকরণের ফলাফল",
+    "verify_computed_hash_label": "গণনাকৃত ফিঙ্গারপ্রিন্ট (SHA-256):",
+    "verify_recorded_hash_label": "সংরক্ষিত রেজিস্ট্রি ফিঙ্গারপ্রিন্ট:",
+    "verify_loading": "দলিল যাচাই করা হচ্ছে...",
+    "verify_error": "যাচাইকরণে ত্রুটি দেখা দিয়েছে। তথ্যের সঠিকতা পরীক্ষা করুন।",
+    "lab_subdag_label": "উপ-দাগ বা খতিয়ান অংশ (ঐচ্ছিক):",
+    "lab_boundary_legend": "চৌহদ্দি বা সীমানা নির্দেশক (ঐচ্ছিক)",
+    "lab_boundary_north_label": "উত্তর সীমানা:",
+    "lab_boundary_north_placeholder": "উত্তরে রাস্তা/নদী/দাগ...",
+    "lab_boundary_south_label": "দক্ষিণ সীমানা:",
+    "lab_boundary_south_placeholder": "দক্ষিণে দাগ/সীমানা...",
+    "lab_boundary_east_label": "পূর্ব সীমানা:",
+    "lab_boundary_east_placeholder": "পূর্বে দাগ/সীমানা...",
+    "lab_boundary_west_label": "পশ্চিম সীমানা:",
+    "lab_boundary_west_placeholder": "পশ্চিমে দাগ/সীমানা...",
+    "coowner_quota_title": "এজমালি দাগের অংশীদারী হিস্যা ও কোটা",
+    "traditional_share_disclaimer": "ঐতিহ্যবাহী হিস্যা একক (১৬ আনা = ১ সম্পূর্ণ অংশ)। রূপান্তর সারণি আইন উপদেষ্টার সাথে যাচাই সাপেক্ষ। এটি শুধুমাত্র প্রদর্শনের জন্য; স্বত্ব বা মালিকানার আইনি সনদ নয়।",
+    "parcel_locked_badge": "লকড / সরকারি জমি",
+    "parcel_lock_warning": "এই দাগে সরকারি বা আদালতের নিষেধাজ্ঞা রয়েছে। নতুন কোনো হস্তান্তর ব্লক করা হয়েছে।",
+    "lab_locked_blocked_warning": "সতর্কতা: এই দাগে সরকারি বা আদালতের নিষেধাজ্ঞা রয়েছে। প্রস্তাবিত হস্তান্তর নিবন্ধনের জন্য অনুপযোগী।",
+    "filter_khas": "খাস জমি",
+    "filter_acquisition": "অধিগ্রহণাধীন",
+    "filter_court": "আদালতের মামলা",
+    "lab_poa_label": "আমমোক্তারনামা দলিল আইডি (প্রযোজ্য ক্ষেত্রে):",
+    "lab_poa_placeholder": "উদা: E_V11_1001",
+    "attention_score_label": "মনোযোগ স্কোর:",
+    "traffic_light_label": "ঝুঁকির মাত্রা:",
+    "score_factors_title": "মনোযোগ স্কোরে প্রভাব বিস্তারকারী বিষয়সমূহ:",
+    "score_clean_expl": "০ স্কোর মানে সরবরাহকৃত রেকর্ডে কোনো ফ্ল্যাগ পাওয়া যায়নি; এটি জমি সম্পর্কে কোনো চূড়ান্ত নিশ্চয়তা নয়।",
+    "voice_listen_btn": "ফলাফল শুনুন",
+    "voice_stop_btn": "শব্দ থামান",
+    "voice_fallback_msg": "এই ডিভাইসে বাংলা ভয়েস পাওয়া যায়নি; অনুগ্রহ করে স্ক্রিনের লেখাটি পড়ুন।",
+    "voice_playing_msg": "বাংলায় পাঠ করা হচ্ছে...",
+    "next_steps_guide_title": "কার্যকরী যাচাই ও পরবর্তী পদক্ষেপ:",
+    "law_mentor_review_disclaimer": "যেকোনো আর্থিক বা প্রশাসনিক পদক্ষেপ নেওয়ার আগে একজন উপযুক্ত আইন বিশেষজ্ঞ বা ভূমি কর্মকর্তার পরামর্শ নিন।",
+    "nav_ussd": "ফিচার-ফোন (USSD)",
+    "ussd_simulator_title": "USSD / ফিচার-ফোন সিমুলেটর (*123*45#)",
+    "ussd_simulator_desc": "ইন্টারনেটবিহীন সাধারণ মোবাইলের জন্য প্রদর্শনী সিমুলেটর। এটি কোনো প্রকৃত টেলিকম সেবা নয়।",
+    "ussd_phone_frame_title": "মোবাইল স্ক্রিন (সর্বোচ্চ ১৬০ অক্ষর)",
+    "ussd_send_btn": "পাঠান",
+    "ussd_cancel_btn": "বাতিল",
+    "ussd_reset_btn": "পুনরায় শুরু",
+    "ussd_dial_placeholder": "পছন্দ বা ইনপুট লিখুন...",
+    "nav_certificate": "যাচাইকরণ সনদ",
+    "certificate_title": "ভূমির রেকর্ড পরামর্শমূলক যাচাইকরণ প্রত্যয়নপত্র",
+    "certificate_subtitle": "সরবরাহকৃত ভূমি রেকর্ডের অনানুষ্ঠানিক পরামর্শমূলক সারসংক্ষেপ",
+    "certificate_print_btn": "সনদ প্রিন্ট করুন",
+    "certificate_advisory_notice": "এই প্রত্যয়নপত্রটি সরবরাহকৃত রেকর্ডের গাণিতিক ও নিয়মভিত্তিক সারসংক্ষেপ। এটি কোনো চূড়ান্ত মালিকানার নিশ্চয়তা দেয় না এবং সরকারি খতিয়ান বা দলিলের বিকল্প নয়।",
+    "certificate_record_hash": "রেকর্ড যাচাইকরণ ফিঙ্গারপ্রিন্ট (SHA-256):",
+    "certificate_qr_caption": "দলিল/রেকর্ড সঙ্গতি যাচাই করতে কিউআর কোড স্ক্যান করুন"
   },
   "en": {
     "app_title": "JomiGraph AI",
@@ -324,7 +387,70 @@ const ui_strings = {
     "print_dag_no_label": "Dag No:",
     "print_overall_status_label": "Overall Status:",
     "print_disclaimer_label": "Disclaimer:",
-    "proposed_buyer_label": "Proposed buyer"
+    "proposed_buyer_label": "Proposed buyer",
+    "nav_verify_deed": "Verify Deed",
+    "verify_screen_title": "Deed Copy & Fingerprint Verification",
+    "verify_screen_desc": "Enter presented deed details to verify against registry-recorded cryptographic fingerprint and QR.",
+    "verify_disclaimer_notice": "This is a mathematical hash comparison, not a legal digital signature or government title guarantee.",
+    "verify_deed_no_label": "Deed Number:",
+    "verify_reg_date_label": "Registration Date (YYYY-MM-DD):",
+    "verify_parcel_id_label": "Parcel ID:",
+    "verify_seller_label": "Seller:",
+    "verify_buyer_label": "Buyer:",
+    "verify_area_label": "Area (decimals):",
+    "verify_claimed_hash_label": "Claimed Hash / Fingerprint (Optional):",
+    "verify_btn_submit": "Verify Deed Copy",
+    "verify_qr_heading": "Deed Verification QR Code",
+    "verify_result_heading": "Verification Result",
+    "verify_computed_hash_label": "Computed Fingerprint (SHA-256):",
+    "verify_recorded_hash_label": "Recorded Registry Fingerprint:",
+    "verify_loading": "Verifying deed copy...",
+    "verify_error": "Verification encountered an error. Please inspect supplied fields.",
+    "lab_subdag_label": "Sub-dag or Lineage Portion (Optional):",
+    "lab_boundary_legend": "Structured Boundary Descriptors (Optional)",
+    "lab_boundary_north_label": "North Boundary:",
+    "lab_boundary_north_placeholder": "Road / River / Dag to North...",
+    "lab_boundary_south_label": "South Boundary:",
+    "lab_boundary_south_placeholder": "Dag / Boundary to South...",
+    "lab_boundary_east_label": "East Boundary:",
+    "lab_boundary_east_placeholder": "Dag / Boundary to East...",
+    "lab_boundary_west_label": "West Boundary:",
+    "lab_boundary_west_placeholder": "Dag / Boundary to West...",
+    "coowner_quota_title": "Ejmali Dag Co-Owner Share Breakdown & Quota",
+    "traditional_share_disclaimer": "Traditional share units (16 Ana = 1 whole). Conversion table should be confirmed with the Law mentor. Display only; does not constitute legal proof of title.",
+    "parcel_locked_badge": "Locked / Gov Land",
+    "parcel_lock_warning": "This parcel is subject to government or court lock. New transactions are blocked.",
+    "lab_locked_blocked_warning": "Warning: This parcel has a recorded government or court lock. Proposed transactions are blocked.",
+    "filter_khas": "Khas Land",
+    "filter_acquisition": "Under Acquisition",
+    "filter_court": "Court Case",
+    "lab_poa_label": "Power of Attorney ID (if applicable):",
+    "lab_poa_placeholder": "e.g. E_V11_1001",
+    "attention_score_label": "Attention Score:",
+    "traffic_light_label": "Attention Level:",
+    "score_factors_title": "Contributing Factors to Attention Score:",
+    "score_clean_expl": "A score of 0 means no flags were found in the supplied records; it is not a guarantee about the land.",
+    "voice_listen_btn": "Listen to Result",
+    "voice_stop_btn": "Stop Audio",
+    "voice_fallback_msg": "Bangla voice is not available on this device; please read the on-screen text.",
+    "voice_playing_msg": "Playing Bangla speech...",
+    "next_steps_guide_title": "Actionable Checks & Verification Steps:",
+    "law_mentor_review_disclaimer": "Consult a law specialist or land administration officer before taking financial or administrative action.",
+    "nav_ussd": "Feature-Phone (USSD)",
+    "ussd_simulator_title": "USSD / Feature-Phone Simulator (*123*45#)",
+    "ussd_simulator_desc": "Demonstration simulator for basic mobile devices without internet. Not a real telecom carrier service.",
+    "ussd_phone_frame_title": "Mobile Screen (Max 160 Characters)",
+    "ussd_send_btn": "Send",
+    "ussd_cancel_btn": "Cancel",
+    "ussd_reset_btn": "Restart",
+    "ussd_dial_placeholder": "Enter choice or input...",
+    "nav_certificate": "Vetting Certificate",
+    "certificate_title": "Land Record Advisory Vetting Certificate",
+    "certificate_subtitle": "Non-judicial advisory summary of supplied land records",
+    "certificate_print_btn": "Print Certificate",
+    "certificate_advisory_notice": "This document is a mathematical and rule-based summary generated from supplied records. It does not certify ownership or title, nor does it substitute for government deed registration or official record inquiry.",
+    "certificate_record_hash": "Record Verification Fingerprint (SHA-256):",
+    "certificate_qr_caption": "Scan QR code to verify deed/record consistency"
   }
 };
 
@@ -594,9 +720,14 @@ function formatStatusBadge(statusCode) {
 function renderCurrentRoute() {
   const hash = window.location.hash || "#/";
   updateGlobalChrome();
+  if (window.extraChrome) window.extraChrome(hash);
 
   if (!currentRole) {
     renderRoleSelectScreen();
+    return;
+  }
+
+  if (window.extraRoute && window.extraRoute(hash)) {
     return;
   }
 
@@ -838,6 +969,7 @@ function displayParcels(parcels) {
         ${currentRole === "reviewer" ? `<div class="parcel-info-meta"><span>ID: <code>${p.id}</code></span></div>` : ""}
       </div>
       <div class="parcel-actions">
+        ${p.is_locked ? `<span class="badge" style="background:#581c87; color:#f3e8ff;" title="${t("parcel_locked_badge")}">🔒 ${t("parcel_locked_badge")}</span>` : ""}
         ${formatStatusBadge(p.status_code || p.status_summary_code)}
         <a href="#/parcel/${p.id}" class="btn-secondary btn-sm">${t("view_details")} →</a>
       </div>
@@ -851,12 +983,89 @@ function displayParcels(parcels) {
 
 let currentCytoscape = null;
 
+function speakResult(textToSpeak) {
+  const feedbackEl = document.getElementById("voice-feedback-area");
+  if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') {
+    if (feedbackEl) {
+      feedbackEl.textContent = t("voice_fallback_msg");
+      feedbackEl.style.display = "block";
+    }
+    return;
+  }
+
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    const btn = document.getElementById("btn-voice-read");
+    if (btn) btn.innerHTML = `🔊 ${t("voice_listen_btn")}`;
+    if (feedbackEl) feedbackEl.style.display = "none";
+    return;
+  }
+
+  const voices = (window.speechSynthesis.getVoices && window.speechSynthesis.getVoices()) || [];
+  let selectedVoice = null;
+  if (currentLang === "bn") {
+    selectedVoice = voices.find(v => v.lang === "bn-BD" || (v.lang && v.lang.toLowerCase() === "bn-bd")) ||
+                    voices.find(v => v.lang === "bn-IN" || (v.lang && v.lang.toLowerCase() === "bn-in")) ||
+                    voices.find(v => v.lang && v.lang.toLowerCase().startsWith("bn"));
+  } else {
+    selectedVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("en"));
+  }
+
+  if (currentLang === "bn" && !selectedVoice) {
+    if (feedbackEl) {
+      feedbackEl.textContent = t("voice_fallback_msg");
+      feedbackEl.style.display = "block";
+    }
+    return;
+  }
+
+  try {
+    const utter = new SpeechSynthesisUtterance(textToSpeak);
+    if (selectedVoice) {
+      utter.voice = selectedVoice;
+      utter.lang = selectedVoice.lang;
+    } else {
+      utter.lang = currentLang === "bn" ? "bn-BD" : "en-US";
+    }
+
+    const btn = document.getElementById("btn-voice-read");
+    utter.onstart = () => {
+      if (btn) btn.innerHTML = `⏹️ ${t("voice_stop_btn")}`;
+      if (feedbackEl) {
+        feedbackEl.textContent = t("voice_playing_msg");
+        feedbackEl.style.display = "block";
+      }
+    };
+    utter.onend = () => {
+      if (btn) btn.innerHTML = `🔊 ${t("voice_listen_btn")}`;
+      if (feedbackEl) feedbackEl.style.display = "none";
+    };
+    utter.onerror = () => {
+      if (btn) btn.innerHTML = `🔊 ${t("voice_listen_btn")}`;
+      if (feedbackEl) {
+        feedbackEl.textContent = t("voice_fallback_msg");
+        feedbackEl.style.display = "block";
+      }
+    };
+
+    window.speechSynthesis.speak(utter);
+  } catch (e) {
+    if (feedbackEl) {
+      feedbackEl.textContent = t("voice_fallback_msg");
+      feedbackEl.style.display = "block";
+    }
+  }
+}
+
 async function renderParcelDetailScreen(parcelId) {
   const root = document.getElementById("app-root");
   root.innerHTML = `
     <div class="detail-top-nav">
       <a href="#/parcels" class="back-link">${t("back_to_parcels")}</a>
       <div class="detail-top-actions">
+        <button type="button" class="btn-print" id="print-cert-btn" aria-label="${t("certificate_print_btn")}">
+          📜 ${t("certificate_print_btn")}
+        </button>
         <button type="button" class="btn-print" id="print-report-btn">
           🖨️ ${t("print_report_btn")}
         </button>
@@ -868,6 +1077,9 @@ async function renderParcelDetailScreen(parcelId) {
   `;
 
   document.getElementById("print-report-btn")?.addEventListener("click", () => {
+    openPrintReport(parcelId);
+  });
+  document.getElementById("print-cert-btn")?.addEventListener("click", () => {
     openPrintReport(parcelId);
   });
 
@@ -992,6 +1204,51 @@ function renderParcelDetailContent(data) {
           </div>
         </details>
       ` : ""}
+      ${data.is_locked ? `
+        <div class="parcel-lock-banner" role="alert" style="background: rgba(107, 33, 168, 0.12); border-left: 4px solid #6b21a8; padding: 1rem; margin-top: 1rem; border-radius: 4px;">
+          <strong style="color: #6b21a8;">🔒 ${t("parcel_locked_badge")}:</strong>
+          <span>${t("parcel_lock_warning")}</span>
+        </div>
+      ` : ""}
+
+      <!-- X2: Offline Voice Control -->
+      <div class="summary-voice-row" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+        <button type="button" class="btn-voice" id="btn-voice-read" aria-label="${t("voice_listen_btn")}">
+          🔊 ${t("voice_listen_btn")}
+        </button>
+        <div id="voice-feedback-area" class="voice-feedback" aria-live="polite" style="display: none;"></div>
+      </div>
+
+      <!-- F18: Deterministic Attention Score Card -->
+      <div class="attention-score-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-weight: 600; font-size: 1rem;">${t("attention_score_label")}</span>
+            <span class="score-badge score-${data.traffic_light || 'green'}">
+              ${currentLang === "bn" ? toBanglaDigits(data.attention_score ?? 0) : (data.attention_score ?? 0)}/100
+            </span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.4rem;">
+            <span style="font-size: 0.85rem; color: var(--text-muted);">${t("traffic_light_label")}</span>
+            <span class="traffic-indicator traffic-${data.traffic_light || 'green'}" title="${data.traffic_light}"></span>
+            <strong style="text-transform: capitalize; font-size: 0.9rem; color: ${data.traffic_light === 'red' ? '#dc2626' : data.traffic_light === 'yellow' ? '#ca8a04' : '#16a34a'};">${data.traffic_light || 'green'}</strong>
+          </div>
+        </div>
+
+        ${isCitizen ? `
+          <p class="score-citizen-sentence" style="margin: 0.5rem 0; font-size: 0.95rem; line-height: 1.5;">${esc(data.score_summary || t("score_clean_expl"))}</p>
+        ` : `
+          <div class="score-reviewer-factors" style="margin: 0.5rem 0;">
+            <h4 style="margin: 0 0 0.35rem 0; font-size: 0.95rem; font-weight: 600;">${t("score_factors_title")}</h4>
+            ${(data.score_factors && data.score_factors.length > 0) ? `
+              <ul style="margin: 0 0 0.5rem 1.25rem; padding: 0; font-size: 0.9rem;">
+                ${data.score_factors.map(f => `<li>${esc(f)}</li>`).join("")}
+              </ul>
+            ` : `<p style="margin: 0; font-size: 0.9rem;">${t("score_clean_expl")}</p>`}
+          </div>
+        `}
+        <p class="score-disclaimer" style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--text-muted);"><small>ℹ️ ${esc(data.score_disclaimer || t("score_clean_expl"))}</small></p>
+      </div>
     </div>
 
     <!-- Alert Cards Section -->
@@ -1021,6 +1278,15 @@ function renderParcelDetailContent(data) {
               <div class="alert-next-step">
                 <strong>${t("next_step_label")}</strong> ${alert.recommended_next_step}
               </div>
+              ${alert.actionable_checks && alert.actionable_checks.length > 0 ? `
+                <div class="actionable-checks-box">
+                  <div class="actionable-checks-title">${t("next_steps_guide_title")}</div>
+                  <ul class="actionable-checks-list">
+                    ${alert.actionable_checks.map(c => `<li>${esc(c)}</li>`).join("")}
+                  </ul>
+                  <div class="actionable-disclaimer">ℹ️ ${t("law_mentor_review_disclaimer")}</div>
+                </div>
+              ` : ""}
               <div class="alert-rule-disclaimer">ℹ️ ${t("rule_disclaimer")}</div>
             </div>
           `;
@@ -1039,6 +1305,15 @@ function renderParcelDetailContent(data) {
               <div class="alert-next-step">
                 <strong>${t("next_step_label")}</strong> ${alert.recommended_next_step}
               </div>
+              ${alert.actionable_checks && alert.actionable_checks.length > 0 ? `
+                <div class="actionable-checks-box">
+                  <div class="actionable-checks-title">${t("next_steps_guide_title")}</div>
+                  <ul class="actionable-checks-list">
+                    ${alert.actionable_checks.map(c => `<li>${esc(c)}</li>`).join("")}
+                  </ul>
+                  <div class="actionable-disclaimer">ℹ️ ${t("law_mentor_review_disclaimer")}</div>
+                </div>
+              ` : ""}
 
               <!-- Technical reviewer audit details -->
               <div class="reviewer-audit-box">
@@ -1152,6 +1427,13 @@ function renderParcelDetailContent(data) {
                   <div><strong>${t("col_area")}:</strong> ${formatAreaNumber(ev.area)} ${t("lab_decimals_unit")}</div>
                 </div>
                 ${ev.portion_id ? `<div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.25rem;"><strong>${t("col_portion")}:</strong> ${formatPortionId(ev.portion_id, isCitizen)}</div>` : ""}
+                ${ev.deed_id ? `
+                  <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <a href="#/verify-deed?deed_no=${encodeURIComponent(ev.deed_id)}&parcel_id=${encodeURIComponent(data.id)}&area=${encodeURIComponent(ev.area || '')}&seller=${encodeURIComponent(ev.from_person_name || ev.from_person || '')}&buyer=${encodeURIComponent(ev.to_person_name || ev.to_person || '')}&date=${encodeURIComponent(ev.event_date || '')}" style="font-size: 0.85rem; text-decoration: none; color: #0369a1; font-weight: 500; display: inline-flex; align-items: center; gap: 0.25rem;">
+                      📜 ${currentLang === 'bn' ? 'দলিল যাচাই ও কিউআর →' : 'Verify Deed & QR →'}
+                    </a>
+                  </div>
+                ` : ""}
               </div>
             `;
           }).join("")}
@@ -1176,12 +1458,36 @@ function renderParcelDetailContent(data) {
             <div style="margin-top: 0.5rem; font-size: 0.9rem;">
               <strong>${t("holders_label")}</strong>
               <ul style="margin: 0.25rem 0 0 1.25rem; padding: 0;">
-                ${sr.holders.map(h => `<li>${h.person_name} ${!isCitizen ? `(${h.person_id})` : ""} — ${formatAreaNumber(h.area)} ${t("lab_decimals_unit")}</li>`).join("")}
+                ${sr.holders.map(h => `<li>${h.person_name} ${!isCitizen ? `(${h.person_id})` : ""} — ${formatAreaNumber(h.area)} ${t("lab_decimals_unit")}${h.traditional_share ? ` <span class="share-badge" style="color:var(--text-muted); font-size:0.85em;">[${h.traditional_share}]</span>` : ""}</li>`).join("")}
               </ul>
             </div>
           </div>
         `).join("")}
       </div>
+      ${(!isCitizen && data.coowner_quotas && data.coowner_quotas.length > 1) ? `
+        <div class="coowner-quota-card" style="margin-top: 1rem; padding: 1rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+          <h3 style="margin-top:0; margin-bottom: 0.5rem; font-size: 1rem; color: var(--primary);">${t("coowner_quota_title")}</h3>
+          <table class="data-table" style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border-color); text-align: left;">
+                <th style="padding: 0.4rem;">${t("col_from")}</th>
+                <th style="padding: 0.4rem;">${t("col_area")}</th>
+                <th style="padding: 0.4rem;">${t("col_portion")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${data.coowner_quotas.map(cq => `
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 0.4rem;"><strong>${cq.person_name || cq.person_id}</strong> (<code>${cq.person_id}</code>)</td>
+                  <td style="padding: 0.4rem;">${formatAreaNumber(cq.quota_limit)} ${t("lab_decimals_unit")}</td>
+                  <td style="padding: 0.4rem;">${cq.traditional_share}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+          ${data.traditional_share_disclaimer ? `<p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 0;">ℹ️ ${data.traditional_share_disclaimer}</p>` : ""}
+        </div>
+      ` : ""}
     </div>
 
     <!-- Simulation Lab Section -->
@@ -1192,6 +1498,12 @@ function renderParcelDetailContent(data) {
       </div>
 
       <form id="lab-simulation-form" class="lab-form" novalidate>
+        ${data.is_locked ? `
+          <div class="lab-locked-alert" style="margin-bottom: 1rem; padding: 0.75rem 1rem; background: rgba(107, 33, 168, 0.1); border-left: 4px solid #6b21a8; border-radius: var(--radius-sm); color: #6b21a8;">
+            <strong>🔒 ${t("parcel_locked_badge")}:</strong> ${t("lab_locked_blocked_warning")}
+          </div>
+        ` : ""}
+
         <div class="form-group">
           <label for="lab-from-select" class="form-label">${t("lab_from_label")}</label>
           <select id="lab-from-select" class="form-select" required>
@@ -1219,6 +1531,38 @@ function renderParcelDetailContent(data) {
           <input type="text" id="lab-portion-input" class="form-input" placeholder="PORTION_A">
         </div>
 
+        <div class="form-group">
+          <label for="lab-subdag-input" class="form-label">${t("lab_subdag_label")}</label>
+          <input type="text" id="lab-subdag-input" class="form-input" placeholder="101/1-ka">
+        </div>
+
+        <div class="form-group">
+          <label for="lab-poa-input" class="form-label">${t("lab_poa_label")}</label>
+          <input type="text" id="lab-poa-input" class="form-input" placeholder="${t("lab_poa_placeholder")}">
+        </div>
+
+        <fieldset class="form-fieldset" style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.75rem; margin-bottom: 1rem;">
+          <legend style="font-weight: 600; font-size: 0.85rem; padding: 0 0.25rem; color: var(--text-muted);">${t("lab_boundary_legend")}</legend>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            <div class="form-group" style="margin-bottom: 0.25rem;">
+              <label for="lab-boundary-north" class="form-label" style="font-size: 0.8rem;">${t("lab_boundary_north_label")}</label>
+              <input type="text" id="lab-boundary-north" class="form-input" placeholder="${t("lab_boundary_north_placeholder")}">
+            </div>
+            <div class="form-group" style="margin-bottom: 0.25rem;">
+              <label for="lab-boundary-south" class="form-label" style="font-size: 0.8rem;">${t("lab_boundary_south_label")}</label>
+              <input type="text" id="lab-boundary-south" class="form-input" placeholder="${t("lab_boundary_south_placeholder")}">
+            </div>
+            <div class="form-group" style="margin-bottom: 0.25rem;">
+              <label for="lab-boundary-east" class="form-label" style="font-size: 0.8rem;">${t("lab_boundary_east_label")}</label>
+              <input type="text" id="lab-boundary-east" class="form-input" placeholder="${t("lab_boundary_east_placeholder")}">
+            </div>
+            <div class="form-group" style="margin-bottom: 0.25rem;">
+              <label for="lab-boundary-west" class="form-label" style="font-size: 0.8rem;">${t("lab_boundary_west_label")}</label>
+              <input type="text" id="lab-boundary-west" class="form-input" placeholder="${t("lab_boundary_west_placeholder")}">
+            </div>
+          </div>
+        </fieldset>
+
         <div id="lab-form-error" class="form-error-msg" role="alert"></div>
 
         <div class="form-actions">
@@ -1243,6 +1587,17 @@ function renderParcelDetailContent(data) {
 
   // Attach interactive simulation form handler
   attachLabFormHandler(data.id, isCitizen);
+
+  // Attach voice reader listener
+  const voiceBtn = document.getElementById("btn-voice-read");
+  if (voiceBtn) {
+    const speechText = isCitizen
+      ? `${pageTitle}। ${summaryDesc}। ${data.score_summary || ""}`
+      : `${pageTitle}। ${summaryDesc}। ${t("attention_score_label")} ${data.attention_score}।`;
+    voiceBtn.addEventListener("click", () => {
+      speakResult(speechText);
+    });
+  }
 
   // Initialize Cytoscape graph for Reviewer only
   if (!isCitizen) {
@@ -1287,6 +1642,18 @@ function attachLabFormHandler(parcelId, isCitizen) {
     const areaVal = document.getElementById("lab-area-input").value.trim();
     const dateVal = document.getElementById("lab-date-input").value.trim() || null;
     const portionVal = document.getElementById("lab-portion-input").value.trim() || null;
+    const subdagInput = document.getElementById("lab-subdag-input");
+    const subdagVal = subdagInput ? subdagInput.value.trim() || null : null;
+    const northInput = document.getElementById("lab-boundary-north");
+    const northVal = northInput ? northInput.value.trim() || null : null;
+    const southInput = document.getElementById("lab-boundary-south");
+    const southVal = southInput ? southInput.value.trim() || null : null;
+    const eastInput = document.getElementById("lab-boundary-east");
+    const eastVal = eastInput ? eastInput.value.trim() || null : null;
+    const westInput = document.getElementById("lab-boundary-west");
+    const westVal = westInput ? westInput.value.trim() || null : null;
+    const poaInput = document.getElementById("lab-poa-input");
+    const poaVal = poaInput ? poaInput.value.trim() || null : null;
 
     if (!fromPerson) {
       showError("error_empty_fields");
@@ -1305,6 +1672,12 @@ function attachLabFormHandler(parcelId, isCitizen) {
       area: areaVal,
       date: dateVal,
       portion_id: portionVal,
+      sub_dag: subdagVal,
+      boundary_north: northVal,
+      boundary_south: southVal,
+      boundary_east: eastVal,
+      boundary_west: westVal,
+      via_poa_id: poaVal,
       lang: currentLang
     };
 
@@ -1358,6 +1731,25 @@ function attachLabFormHandler(parcelId, isCitizen) {
           <div class="citizen-lab-sentence">
             <p style="font-size: 1.1rem; font-weight: 500; margin: 0.5rem 0;">${plainSentence}</p>
           </div>
+          ${simRes.attention_score !== undefined ? `
+            <div class="attention-score-card" style="margin-top: 1rem; padding: 0.75rem 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <strong>${t("attention_score_label")}</strong>
+                  <span class="score-badge score-${simRes.traffic_light || 'green'}">
+                    ${currentLang === "bn" ? toBanglaDigits(simRes.attention_score) : simRes.attention_score}/100
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                  <span style="font-size: 0.85rem; color: var(--text-muted);">${t("traffic_light_label")}</span>
+                  <span class="traffic-indicator traffic-${simRes.traffic_light || 'green'}"></span>
+                  <strong style="text-transform: capitalize; color: ${simRes.traffic_light === 'red' ? '#dc2626' : simRes.traffic_light === 'yellow' ? '#ca8a04' : '#16a34a'};">${simRes.traffic_light || 'green'}</strong>
+                </div>
+              </div>
+              <p style="font-size: 0.9rem; margin: 0.4rem 0 0 0;">${esc(simRes.score_summary || t("score_clean_expl"))}</p>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.4rem 0 0 0;"><small>ℹ️ ${esc(simRes.score_disclaimer || t("score_clean_expl"))}</small></p>
+            </div>
+          ` : ""}
           ${nextStep ? `
             <div class="alert-next-step" style="margin-top: 0.75rem;">
               <strong>${t("next_step_label")}</strong> ${nextStep}
@@ -1394,6 +1786,32 @@ function attachLabFormHandler(parcelId, isCitizen) {
           ${calcText ? `
             <div class="r1-calc-line">
               <strong>${t("lab_calc_label")}</strong> <span>${calcText}</span>
+            </div>
+          ` : ""}
+          ${simRes.attention_score !== undefined ? `
+            <div class="attention-score-card" style="margin-top: 1rem; padding: 0.75rem 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <strong>${t("attention_score_label")}</strong>
+                  <span class="score-badge score-${simRes.traffic_light || 'green'}">
+                    ${currentLang === "bn" ? toBanglaDigits(simRes.attention_score) : simRes.attention_score}/100
+                  </span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                  <span style="font-size: 0.85rem; color: var(--text-muted);">${t("traffic_light_label")}</span>
+                  <span class="traffic-indicator traffic-${simRes.traffic_light || 'green'}"></span>
+                  <strong style="text-transform: capitalize; color: ${simRes.traffic_light === 'red' ? '#dc2626' : simRes.traffic_light === 'yellow' ? '#ca8a04' : '#16a34a'};">${simRes.traffic_light || 'green'}</strong>
+                </div>
+              </div>
+              <div style="font-size: 0.85rem; margin-top: 0.4rem;">
+                <strong>${t("score_factors_title")}</strong>
+                ${(simRes.score_factors && simRes.score_factors.length > 0) ? `
+                  <ul style="margin: 0.2rem 0 0 1.25rem; padding: 0;">
+                    ${simRes.score_factors.map(f => `<li>${esc(f)}</li>`).join("")}
+                  </ul>
+                ` : `<p style="margin: 0;">${t("score_clean_expl")}</p>`}
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.4rem 0 0 0;"><small>ℹ️ ${esc(simRes.score_disclaimer || t("score_clean_expl"))}</small></p>
             </div>
           ` : ""}
           ${nextStep ? `
@@ -1542,10 +1960,29 @@ async function openPrintReport(parcelId) {
     const isCitizen = report.role === "citizen";
     const dateStr = new Date().toISOString().split("T")[0];
 
+    let certQrSvg = "";
+    if (typeof qrcode !== "undefined" && report.certificate_qr_payload) {
+      try {
+        const qr = qrcode(0, "M");
+        qr.addData(report.certificate_qr_payload);
+        qr.make();
+        certQrSvg = qr.createSvgTag(3, 2);
+      } catch (e) {
+        certQrSvg = "";
+      }
+    }
+
     printContainer.innerHTML = `
       <div class="print-document">
+        <div class="print-certificate-banner">
+          <h1 style="margin: 0 0 0.25rem 0; font-size: 1.5rem; text-transform: uppercase;">${t("certificate_title")}</h1>
+          <p style="margin: 0 0 0.5rem 0; font-size: 0.95rem; color: #475569;">${t("certificate_subtitle")}</p>
+          <div style="font-size: 0.85rem; border-top: 1px dashed #94a3b8; padding-top: 0.5rem; font-style: italic;">
+            ${t("certificate_advisory_notice")}
+          </div>
+        </div>
+
         <div class="print-header">
-          <h1 class="print-title">${t("print_report_title")}</h1>
           <div class="print-meta-grid">
             <div><strong>${t("print_parcel_label")}</strong> ${report.parcel?.label || report.parcel_id} ${!isCitizen ? `<code>(${report.parcel_id})</code>` : ""}</div>
             <div><strong>${t("print_mouza_label")}</strong> ${report.parcel?.mouza || "—"}, <strong>${t("print_dag_no_label")}</strong> ${report.parcel?.dag_no || "—"}</div>
@@ -1554,10 +1991,58 @@ async function openPrintReport(parcelId) {
           </div>
         </div>
 
-        <div class="print-overall-status">
-          <strong>${t("print_overall_status_label")}</strong>
-          ${formatStatusBadge(report.overall_status_code)}
+        <div class="print-overall-status" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <div>
+            <strong>${t("print_overall_status_label")}</strong>
+            <span style="margin-left: 0.5rem;">${formatStatusBadge(report.overall_status_code)}</span>
+            <span style="margin-left: 0.5rem; font-weight: 600;">${report.overall_status}</span>
+          </div>
         </div>
+
+        <!-- Attention Score Section -->
+        <div class="print-section" style="border: 1px solid #cbd5e1; padding: 0.75rem; border-radius: 4px; background: #f8fafc;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+            <div>
+              <strong>${t("attention_score_label")}</strong>
+              <span style="font-size: 1.2rem; font-weight: 700; margin-left: 0.4rem;">
+                ${currentLang === "bn" ? toBanglaDigits(report.attention_score ?? 0) : (report.attention_score ?? 0)}/100
+              </span>
+            </div>
+            <div>
+              <span>${t("traffic_light_label")}: </span>
+              <strong style="text-transform: capitalize;">${report.traffic_light || "green"}</strong>
+            </div>
+          </div>
+          ${isCitizen ? `
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.95rem;">${report.score_summary || t("score_clean_expl")}</p>
+          ` : `
+            <div style="font-size: 0.9rem;">
+              <strong>${t("score_factors_title")}</strong>
+              ${(report.score_factors && report.score_factors.length > 0) ? `
+                <ul style="margin: 0.25rem 0 0 1.25rem; padding: 0;">
+                  ${report.score_factors.map(f => `<li>${f}</li>`).join("")}
+                </ul>
+              ` : `<p style="margin: 0;">${t("score_clean_expl")}</p>`}
+            </div>
+          `}
+          <div style="margin-top: 0.4rem; font-size: 0.8rem; color: #64748b;">
+            <small>ℹ️ ${report.score_disclaimer || t("score_clean_expl")}</small>
+          </div>
+        </div>
+
+        <!-- QR Verification Section -->
+        ${certQrSvg ? `
+          <div class="certificate-qr-box">
+            <div class="certificate-qr-svg">${certQrSvg}</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem;">${t("certificate_qr_caption")}</div>
+              <div style="font-family: monospace; font-size: 0.8rem; color: #334155;">${report.certificate_qr_payload}</div>
+              <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.35rem;">
+                ${currentLang === "bn" ? "অফলাইন কিউআর কোড স্ক্যান করে উপস্থাপিত দলিলের ডিজিটাল ফিঙ্গারপ্রিন্ট মিলিয়ে দেখুন।" : "Scan offline QR code to verify deed/record cryptographic hash match."}
+              </div>
+            </div>
+          </div>
+        ` : ""}
 
         ${report.recommended_next_steps && report.recommended_next_steps.length > 0 ? `
           <div class="print-section">
@@ -1752,8 +2237,9 @@ function initializeCytoscape(graphData) {
     const elements = [];
     (graphData.nodes || []).forEach(n => {
       const d = n.data || n;
+      const baseColor = (d.type === "parcel" && d.is_locked) ? "#6b21a8" : (nodeColors[d.type] || "#475569");
       elements.push({
-        data: { id: d.id, label: d.label, type: d.type, color: nodeColors[d.type] || "#475569" }
+        data: { id: d.id, label: d.label, type: d.type, color: baseColor }
       });
     });
 
@@ -1799,7 +2285,9 @@ function initializeCytoscape(graphData) {
             "text-background-padding": "2px"
           }
         },
-        { selector: 'edge[type = "SALE"], edge[type = "GIFT"], edge[type = "SUBDIVIDE"]', style: { "line-color": "#b45309", "target-arrow-color": "#b45309", "width": 3 } }
+        { selector: 'edge[type = "SALE"], edge[type = "GIFT"], edge[type = "SUBDIVIDE"]', style: { "line-color": "#b45309", "target-arrow-color": "#b45309", "width": 3 } },
+        { selector: 'edge[type = "MORTGAGE"], edge[type = "MORTGAGE_RELEASE"]', style: { "line-color": "#dc2626", "target-arrow-color": "#dc2626", "width": 2 } },
+        { selector: 'edge[type = "POA_GRANT"], edge[type = "POA_REVOKE"]', style: { "line-color": "#7c3aed", "target-arrow-color": "#7c3aed", "width": 2 } }
       ],
       layout: {
         name: "breadthfirst",
